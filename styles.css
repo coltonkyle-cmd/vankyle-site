@@ -57,7 +57,7 @@ section{padding:88px 0}
 .section-dark p{color:var(--sand)}
 .split{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 .quote{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:clamp(24px,3vw,34px);line-height:1.15}
-.follow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.follow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
 .follow a{display:block;padding:22px;border:1px solid rgba(243,238,228,.2);border-radius:6px;color:var(--paper);text-decoration:none}
 .follow a:hover{border-color:var(--brick)}
 .follow small{display:block;color:var(--sand);opacity:.8;font-size:14px;margin-top:4px}
@@ -92,3 +92,6 @@ section{padding:88px 0}
   section{padding:64px 0}
   .hero .wrap{padding-top:64px;padding-bottom:130px}
 }
+
+.site-footer .social{margin-top:0}
+.site-footer .social a{margin-right:16px}

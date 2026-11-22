@@ -99,3 +99,35 @@ a.card-link:hover,a.card-link:focus-visible{transform:translateY(-3px);box-shado
 
 .site-footer .social{margin-top:0}
 .site-footer .social a{margin-right:16px}
+
+/* course */
+.btn.ghost-dark{color:var(--ink);border-color:rgba(22,32,42,.3)}
+.mnum{font:700 13px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--brick);margin-bottom:12px}
+.lnum{font-family:"Archivo Black",sans-serif;color:var(--brick);margin-right:6px}
+.toc ol.plain,.module-card ol.plain{list-style:none;padding-left:0}
+.toc ol.plain li{margin-bottom:.35em}
+.toc a,.module-card ol a{text-decoration:none}
+.toc a:hover,.module-card ol a:hover{text-decoration:underline}
+.crumbs{font-size:15px;color:var(--muted);margin-bottom:12px}
+.lesson h2{display:block}
+.keypoints{background:var(--sand);border-radius:6px;padding:16px 22px;margin:20px 0 8px}
+.keypoints ul{margin:6px 0 0}
+.keypoints li{margin-bottom:.25em}
+.lesson-sources{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.lesson-sources summary{cursor:pointer;font-weight:600}
+.lesson-sources ul{margin-top:8px}
+.follow-strip{margin:56px 0 0;padding:20px 24px;background:var(--ink);color:var(--sand);border-radius:6px;font-size:16px}
+.follow-strip strong{color:var(--paper)}
+.follow-strip a{color:var(--paper)}
+.module-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}
+.module-nav a{display:block;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:6px;text-decoration:none;color:var(--ink);font-weight:700}
+.module-nav a small{display:block;color:var(--brick);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.module-nav .next{text-align:right}
+.module-grid{display:grid;gap:22px;grid-template-columns:repeat(2,1fr)}
+.module-card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--brick);border-radius:6px;padding:28px}
+.module-card h3 a{color:var(--ink);text-decoration:none}
+.module-card p{color:#33414d}
+.module-card li{margin-bottom:.4em;font-size:16px}
+.next-step{margin-top:48px}
+.grid .card .mnum{margin-bottom:10px}
+@media (max-width:860px){.module-grid,.module-nav{grid-template-columns:1fr}.module-nav .next{text-align:left}}

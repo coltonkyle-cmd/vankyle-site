@@ -21,6 +21,7 @@ def footer(p):
 </div></footer>'''
 def page(path, title, desc, cur, body, extra_head=''):
     p = '../' * path.count('/')
+    if 'w-widget' in body or 'VK.' in body: extra_head += f'\n<script src="{p}assets/widgets.js" defer></script>'
     out = f'''<!doctype html>
 <html lang="en">
 <head>

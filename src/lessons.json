@@ -49,7 +49,7 @@
      "26 U.S.C. &sect; 42(g)(1) (set-asides), &sect; 42(g)(2) (rent limits, imputed household size), &sect; 42(i)(3)(D) (students).",
      "HUD, Multifamily Tax Subsidy Project (MTSP) income limits."
     ],
-    "more": "<h3>Where income limits come from</h3>\n<p>HUD publishes income limits for tax credit properties every year, by county or metro area and by household size. They're called MTSP limits (Multifamily Tax Subsidy Project). The 50% and 60% limits are the ones most deals use. To see yours, search for \"HUD MTSP income limits\" and pick your state and county.</p>\n<h3>How rent is figured</h3>\n<p>Rent is tied to the size of the apartment, not who actually lives in it. The rule assumes 1.5 people per bedroom (one person for a studio):</p>\n<table class=\"cmp\"><thead><tr><th>Unit</th><th>Household size used</th></tr></thead><tbody>\n<tr><td>Studio</td><td>1 person</td></tr><tr><td>1 bedroom</td><td>1.5 people</td></tr><tr><td>2 bedrooms</td><td>3 people</td></tr><tr><td>3 bedrooms</td><td>4.5 people</td></tr></tbody></table>\n<p>For half-person sizes, the limit is averaged between the two household sizes. Then: maximum gross rent = 30% of that income limit, divided by 12. Try it in the <a href=\"../tools/rent-cap.html\">rent cap calculator</a>.</p>\n<h3>What counts as income</h3>\n<p>Generally the same definition HUD uses for Section 8: wages, Social Security, pensions, child support, and income from assets above certain amounts, for everyone in the household. The property verifies it with documents before move-in, and the household signs a certification.</p>\n<h3>The student rule, in more detail</h3>\n<p>A household where everyone is a full-time student generally can't live in a tax credit unit. Exceptions include:</p>\n<ul><li>A student receiving TANF assistance.</li>\n<li>A student in certain government job training programs.</li>\n<li>Single parents and their children, if none are claimed as dependents by someone else.</li>\n<li>Married students filing a joint return.</li>\n<li>Students who were previously in foster care.</li></ul>\n<h3>Common questions</h3>\n<p><b>Is there a minimum income?</b> Federal law doesn't set one, but many properties use a rent-to-income screen. Rules on that vary, especially for voucher holders.</p>\n<p><b>What if my household gets bigger or smaller?</b> The unit's rent doesn't change with household size. Your eligibility is based on your actual household size at move-in. See <a href=\"getting-a-raise.html\">what happens if you get a raise</a>.</p>",
+    "more": "<h3>Where income limits come from</h3>\n<p>HUD publishes income limits for tax credit properties every year, by county or metro area and by household size. They're called MTSP limits (Multifamily Tax Subsidy Project). The 50% and 60% limits are the ones most deals use. Pick yours below.</p>\n<div class=\"w-widget w-county-limits\"></div>\n<h3>How rent is figured</h3>\n<p>Rent is tied to the size of the apartment, not who actually lives in it. The rule assumes 1.5 people per bedroom (one person for a studio):</p>\n<table class=\"cmp\"><thead><tr><th>Unit</th><th>Household size used</th></tr></thead><tbody>\n<tr><td>Studio</td><td>1 person</td></tr><tr><td>1 bedroom</td><td>1.5 people</td></tr><tr><td>2 bedrooms</td><td>3 people</td></tr><tr><td>3 bedrooms</td><td>4.5 people</td></tr></tbody></table>\n<p>For half-person sizes, the limit is averaged between the two household sizes. Then: maximum gross rent = 30% of that income limit, divided by 12. Try it in the <a href=\"../tools/rent-cap.html\">rent cap calculator</a>.</p>\n<h3>What counts as income</h3>\n<p>Generally the same definition HUD uses for Section 8: wages, Social Security, pensions, child support, and income from assets above certain amounts, for everyone in the household. The property verifies it with documents before move-in, and the household signs a certification.</p>\n<h3>The student rule, in more detail</h3>\n<p>A household where everyone is a full-time student generally can't live in a tax credit unit. Exceptions include:</p>\n<ul><li>A student receiving TANF assistance.</li>\n<li>A student in certain government job training programs.</li>\n<li>Single parents and their children, if none are claimed as dependents by someone else.</li>\n<li>Married students filing a joint return.</li>\n<li>Students who were previously in foster care.</li></ul>\n<h3>Common questions</h3>\n<p><b>Is there a minimum income?</b> Federal law doesn't set one, but many properties use a rent-to-income screen. Rules on that vary, especially for voucher holders.</p>\n<p><b>What if my household gets bigger or smaller?</b> The unit's rent doesn't change with household size. Your eligibility is based on your actual household size at move-in. See <a href=\"getting-a-raise.html\">what happens if you get a raise</a>.</p>",
     "slug": "who-can-live-there",
     "tool": "rent-cap"
    },
@@ -179,7 +179,7 @@
      "IRS Rev. Proc. 2025-32 (2026 amount of $3.416).",
      "26 U.S.C. &sect; 42(h)(3)."
     ],
-    "more": "",
+    "more": "<h3>Pick your state</h3>\n<div class=\"w-widget w-state-budget\" data-show=\"credits\"></div>",
     "slug": "state-credit-budget",
     "tool": null
    },
@@ -192,7 +192,7 @@
      "IRS Rev. Proc. 2026-35 (2027 amounts).",
      "Public Law 119-21 (25% test for bonds issued after 2025)."
     ],
-    "more": "",
+    "more": "<h3>Pick your state</h3>\n<div class=\"w-widget w-state-budget\" data-show=\"bonds\"></div>",
     "slug": "bond-volume-cap",
     "tool": null
    }
@@ -410,7 +410,7 @@
      "Minnesota Housing, FY2026 limits bulletin (45-day grace period).",
      "Housing and Economic Recovery Act of 2008, &sect; 3009 (hold harmless)."
     ],
-    "more": "",
+    "more": "<h3>See your county's current limits</h3>\n<div class=\"w-widget w-county-limits\"></div>",
     "slug": "when-rents-go-up",
     "tool": "rent-cap"
    },

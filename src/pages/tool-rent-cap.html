@@ -4,6 +4,7 @@
 <section><div class="wrap calc">
 <div class="calc-grid">
 <div class="calc-inputs">
+<fieldset><legend>Use your county (optional)</legend><div id="cp"></div><p class="w-note" id="cpnote">Fills in HUD's FY2026 limits for your county.</p></fieldset>
 <fieldset><legend>Income limit</legend>
 <label>Area median income, 4-person household ($) <input id="mfi" type="number" value="75000" step="500"></label>
 <label>Income level (% of AMI) <select id="pct"><option>20</option><option>30</option><option>40</option><option>50</option><option selected>60</option><option>70</option><option>80</option></select></label>
@@ -28,6 +29,7 @@
 </div></section>
 <script>
 (function(){
+var picked=null,pubTouched=false;
 var $=function(i){return document.getElementById(i)};
 var F={1:.7,2:.8,3:.9,4:1,5:1.08,6:1.16};
 var U=[['Studio',1,F[1]],['1 bedroom',1.5,(F[1]+F[2])/2],['2 bedrooms',3,F[3]],['3 bedrooms',4.5,(F[4]+F[5])/2],['4 bedrooms',6,F[6]]];
@@ -35,13 +37,17 @@ function v(i){var x=parseFloat($(i).value);return isNaN(x)?0:x}
 function d(x){return '$'+Math.round(x).toLocaleString()}
 function calc(){
  var four=v('pub')>0?v('pub'):v('mfi')*v('pct')/100;
- var rows=U.map(function(u,k){var lim=four*u[2],g=lim*.3/12,ua=v('ua'+k);return [u[0],u[1],lim,g,Math.max(0,g-ua),ua]});
+ var rows=U.map(function(u,k){var lim=(picked&&!pubTouched)?VK.limFor(picked,v('pct'),u[1]):four*u[2],g=Math.floor(lim*.3/12),ua=v('ua'+k);return [u[0],u[1],lim,g,Math.max(0,g-ua),ua]});
  var mx=Math.max.apply(null,rows.map(function(r){return r[3]}));
  $('bars').innerHTML=rows.map(function(r){return '<div class="rb"><div class="col" style="height:'+(r[3]/mx*100)+'%"><span class="soft" style="height:'+(r[5]/r[3]*100)+'%"></span><span class="loan" style="height:'+(r[4]/r[3]*100)+'%"><em>'+d(r[4])+'</em></span></div><small>'+r[0]+'</small></div>'}).join('');
  $('math').innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+d(r[2])+'</td><td>'+d(r[3])+'</td><td><b>'+d(r[4])+'</b></td></tr>'}).join('');
- $('headline').innerHTML='4-person limit: <b>'+d(four)+'</b> <span>'+(v('pub')>0?'(published figure you entered)':'('+v('pct')+'% of '+d(v('mfi'))+')')+'</span>';
+ $('headline').innerHTML='4-person limit: <b>'+d(four)+'</b> <span>'+(picked&&!pubTouched?'(HUD FY2026, '+picked[0]+'; each unit size uses HUD\'s own limit)':v('pub')>0?'(published figure you entered)':'('+v('pct')+'% of '+d(v('mfi'))+')')+'</span>';
 }
 ['mfi','pct','pub','ua0','ua1','ua2','ua3','ua4'].forEach(function(i){$(i).addEventListener('input',calc)});
+$('pub').addEventListener('input',function(){pubTouched=true});$('mfi').addEventListener('input',function(){picked=null;$('cpnote').innerHTML='Fills in HUD\'s FY2026 limits for your county.'});
+function fill(){pubTouched=false;if(!picked)return;$('mfi').value=picked[2];$('pub').value=Math.round(VK.limFor(picked,+$('pct').value,4));calc()}
+$('pct').addEventListener('change',fill);
+window.addEventListener('DOMContentLoaded',function(){if(window.VK)VK.countyPicker($('cp'),function(r,st){picked=r;$('cpnote').innerHTML='Using HUD FY2026 limits for <b>'+r[0]+', '+st+'</b>.';fill()})});
 calc();
 })();
 </script>

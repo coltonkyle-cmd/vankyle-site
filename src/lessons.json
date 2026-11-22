@@ -1,0 +1,514 @@
+[
+ {
+  "slug": "lihtc-101",
+  "num": 1,
+  "title": "LIHTC 101",
+  "blurb": "What the tax credit is, who it's for, how long it lasts, and the money that makes it work.",
+  "lessons": [
+   {
+    "id": "what",
+    "title": "What LIHTC is",
+    "body": "<p>The Low-Income Housing Tax Credit, or LIHTC, is a federal tax credit created by the Tax Reform Act of 1986. It lives in Section 42 of the tax code, which is why you'll hear people call these \"Section 42 properties.\"</p>\n<p>Every year, each state gets a budget of credits based on its population. The state's housing finance agency hands them out to apartment projects through a competition, using a scoring plan called the Qualified Allocation Plan (QAP).</p>\n<p>The developer who wins doesn't keep the credits. An investor, usually a bank, puts cash into the project in exchange for them. That cash is equity. It means the building needs less debt, and less debt is what lets the rents stay low.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a project receives $1,000,000 of credits a year for 10 years, or $10 million total. If an investor pays 83 cents per dollar of credit, that's $8.3 million of equity for the building.</div><div class=\"keypoints\"><strong>Key points</strong><ul><li>A federal tax credit, Section 42 of the tax code.</li><li>States award it through a competition.</li><li>Investors buy the credits; the cash builds the apartments.</li><li>Less debt means lower rents.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42.",
+     "IRS, Low-Income Housing Credit overview."
+    ],
+    "more": "<h3>Where the credits come from</h3>\n<p>Congress sets the formula and the IRS adjusts it for inflation each year. For 2027, each state gets the greater of $3.53 per resident or $4,082,400. That pot covers the competitive 9% credits. The 4% credits work differently: they aren't capped by that formula, but they need tax-exempt bonds, and bonds are capped by a separate limit. See <a href=\"state-credit-budget.html\">your state's credit budget</a> and <a href=\"bond-volume-cap.html\">the bond cap</a>.</p>\n<h3>Why a tax credit instead of a grant</h3>\n<p>The government could just write checks to build apartments. The tax credit does something different: it brings in private investors whose money is at risk for 15 years. If the property is badly run or breaks the rules, the investor can lose credits. That gives the investor a reason to watch the deal closely, which is a big part of why the program has lasted since 1986.</p>\n<p>It also means the property is privately owned and privately managed. The government sets the rules and checks compliance, but it doesn't run the building.</p>\n<h3>How big it is</h3>\n<p>Since 1986, the program has helped finance about 4 million affordable homes, built or preserved. It's the largest source of funding for new affordable rental housing in the country.</p>\n<h3>Who's involved</h3>\n<ul><li><b>The state housing finance agency</b> writes the rules and awards the credits. See <a href=\"what-qaps-reward.html\">what QAPs reward</a>.</li>\n<li><b>The developer</b> finds the site, applies, builds and usually stays on as the general partner. See <a href=\"deal-team.html\">the deal team</a>.</li>\n<li><b>The investor</b> buys the credits, usually through a syndicator. See <a href=\"who-owns-the-deal.html\">who owns the deal</a>.</li>\n<li><b>The residents</b> have to income-qualify. See <a href=\"who-can-live-there.html\">who can live there</a>.</li></ul>\n<h3>Common questions</h3>\n<p><b>Is it a tax break for the developer?</b> Not really. The developer sells the credits. The tax benefit goes to the investor, and the cash goes into the building.</p>\n<p><b>Do residents get a tax credit?</b> No. Residents get a lower, capped rent.</p>\n<p><b>Is it the same as Section 8?</b> No. Section 8 vouchers help a renter pay rent. The tax credit helps pay to build the apartment. A renter can use a voucher at a tax credit property, though. See <a href=\"voucher-rule.html\">the voucher rule</a>.</p>",
+    "slug": "what-is-lihtc",
+    "tool": null
+   },
+   {
+    "id": "not-public",
+    "title": "It's not public housing",
+    "body": "<p>People mix these up all the time. Public housing is owned and run by a local housing authority, and residents usually pay about 30% of their own income in rent.</p>\n<p>Most LIHTC properties are privately owned and privately managed. The rent is capped by the <i>unit</i>, based on the area's income limits, not by each resident's paycheck. A family earning less than the limit pays the same capped rent as a family right at the limit, unless they also have a voucher.</p>\n<p>The two programs do overlap. When an old public housing site gets rebuilt, it's often financed with tax credits, and some units may keep deeper rental assistance. That's covered in <a href=\"the-long-game.html#rad\">the RAD lesson</a>.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Public housing: owned by a housing authority; rent based on the resident's income.</li><li>LIHTC: usually private owners; rent capped by the unit's income limit.</li><li>They can be combined, especially in public housing rebuilds.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(g) (rent restrictions).",
+     "HUD, Public Housing Program overview."
+    ],
+    "more": "<h3>Side by side</h3>\n<table class=\"cmp\"><thead><tr><th></th><th>Public housing</th><th>Tax credit (LIHTC)</th><th>Housing Choice Voucher</th></tr></thead><tbody>\n<tr><td>Who owns it</td><td>Local housing authority</td><td>Usually a private partnership</td><td>Any landlord who accepts it</td></tr>\n<tr><td>What's subsidized</td><td>The building and its operations</td><td>The cost to build</td><td>The renter's rent</td></tr>\n<tr><td>How rent is set</td><td>About 30% of the household's income</td><td>Capped by the unit's income limit</td><td>Renter pays about 30% of income; the voucher covers the rest, up to a limit</td></tr>\n<tr><td>Who checks the rules</td><td>HUD</td><td>The state agency and the IRS</td><td>The housing authority</td></tr></tbody></table>\n<h3>An example of how rent works</h3>\n<div class=\"callout\"><b>Example, made-up numbers:</b> two families live in identical 60% AMI apartments where the capped rent is $1,050. One earns right at the limit; the other earns half that. Both pay $1,050. If the second family has a voucher, they pay about 30% of their income and the voucher pays the rest.</div>\n<p>That's why tax credit housing alone isn't always affordable for the lowest-income families, and why many deals pair the credits with vouchers or other rental assistance.</p>\n<p>One detail: when a family has a voucher, the voucher's share isn't counted toward the tax credit rent cap. So the total rent on a voucher unit can sometimes be higher than the cap, as long as the family's share stays within it.</p>\n<h3>Where they overlap</h3>\n<p>Many old public housing sites are being rebuilt with tax credits through RAD and Section 18. The housing authority often stays involved as a partner or landlord, and units can keep deep rental assistance. See <a href=\"rad.html\">the RAD lesson</a>.</p>\n<h3>Common misconceptions</h3>\n<p><b>\"It's government housing.\"</b> Usually not. Most tax credit properties are privately owned and managed, and they often look like any other new apartment complex.</p>\n<p><b>\"Rent is based on what I make.\"</b> Not in a tax credit unit, unless you also have a voucher or other rental assistance.</p>",
+    "slug": "not-public-housing",
+    "tool": null
+   },
+   {
+    "id": "how-long",
+    "title": "The 30-year promise",
+    "body": "<p>A tax credit deal isn't a 10-year bet. There are three clocks:</p>\n<ul><li><b>Years 1&ndash;10: the credit period.</b> Investors claim the credits a little at a time.</li>\n<li><b>Years 1&ndash;15: the compliance period.</b> Incomes get checked and rents stay capped. If the property breaks the rules, the IRS can take credits back.</li>\n<li><b>Years 16&ndash;30+: extended use.</b> At least 15 more years of affordability, recorded against the property and enforced by the state.</li></ul>\n<p>That's at least 30 years, and plenty of states ask for longer. California's agreements, for example, run 55 years. Ownership often changes hands around year 15, but the rent rules stay with the property. More on that in <a href=\"the-long-game.html#year-15\">the Year 15 lesson</a>.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>10 years of credits.</li><li>15-year compliance period, enforced by the IRS.</li><li>At least 15 more years of extended use, enforced by the state.</li><li>Many states require longer.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(f)(1), &sect; 42(i)(1), &sect; 42(h)(6), &sect; 42(j).",
+     "California Tax Credit Allocation Committee regulations (55-year term)."
+    ],
+    "more": "<h3>The timeline</h3>\n<table class=\"cmp\"><thead><tr><th>When</th><th>What happens</th><th>Who enforces it</th></tr></thead><tbody>\n<tr><td>Placed in service</td><td>The building is ready for residents; the clocks start</td><td></td></tr>\n<tr><td>Years 1&ndash;10</td><td>Investor claims credits each year</td><td>IRS</td></tr>\n<tr><td>Years 1&ndash;15</td><td>Compliance period: incomes checked, rents capped</td><td>State agency and IRS (credits can be recaptured)</td></tr>\n<tr><td>Years 16&ndash;30+</td><td>Extended use: rules still apply</td><td>State agency, through the recorded agreement</td></tr></tbody></table>\n<h3>Why there are two enforcers</h3>\n<p>During the first 15 years, breaking the rules can cost the investor credits, so the IRS has teeth. After year 15, there are no credits left to take back. The affordability rules keep going because they're written into a recorded agreement on the property, often called a LURA (land use restriction agreement). The state enforces that agreement, and it binds whoever owns the property.</p>\n<h3>Why many deals last longer than 30 years</h3>\n<p>Federal law requires states to favor projects that stay affordable the longest. So many states award points for longer commitments, or require them outright. California's agreements run 55 years.</p>\n<h3>What happens at the end</h3>\n<p>When the agreement finally ends, an owner may be able to move to market rents. In practice, many properties get rehabbed with new credits and a new agreement first, which resets the clock. Losing affordable units this way is a real concern for housing advocates, often called \"expiring use.\"</p>\n<h3>Common questions</h3>\n<p><b>Can the rules end early?</b> Rarely. One path, the qualified contract, is covered in <a href=\"year-15.html\">the Year 15 lesson</a>. Many states now require owners to give it up.</p>\n<p><b>Do residents have to move at year 15?</b> No. The rent rules continue through extended use.</p>",
+    "slug": "how-long-it-stays-affordable",
+    "tool": null
+   },
+   {
+    "id": "who",
+    "title": "Who can live there, and how rent is set",
+    "body": "<p>Every deal picks one of three minimum set-asides:</p>\n<ul><li><b>20/50:</b> at least 20% of units for households earning 50% or less of area median income (AMI).</li>\n<li><b>40/60:</b> at least 40% of units for households at 60% of AMI or less.</li>\n<li><b>Income averaging:</b> at least 40% of units, with income limits that average 60% of AMI or less and no unit above 80%. See <a href=\"living-there.html#income-averaging\">the income averaging lesson</a>.</li></ul>\n<p>In practice, most deals make nearly every unit affordable, because credits are only earned on the affordable units.</p>\n<p>Rent is capped too. Gross rent, meaning rent plus a utility allowance, can't be more than 30% of the income limit for that unit. The limit is figured using 1.5 people per bedroom, so a two-bedroom is priced off a three-person household.</p>\n<p>One rule surprises people: a household made up entirely of full-time students generally doesn't qualify, with some exceptions such as single parents and students who receive certain public assistance.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> if the 60% AMI income limit for a three-person household is $48,000, the maximum gross rent for a two-bedroom at 60% is 30% &times; $48,000 &divide; 12 = $1,200 a month, including the utility allowance.</div><div class=\"keypoints\"><strong>Key points</strong><ul><li>Three set-aside options: 20/50, 40/60, income averaging.</li><li>Gross rent capped at 30% of the unit's income limit.</li><li>Rent is priced off 1.5 people per bedroom.</li><li>All-student households generally don't qualify.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(g)(1) (set-asides), &sect; 42(g)(2) (rent limits, imputed household size), &sect; 42(i)(3)(D) (students).",
+     "HUD, Multifamily Tax Subsidy Project (MTSP) income limits."
+    ],
+    "more": "<h3>Where income limits come from</h3>\n<p>HUD publishes income limits for tax credit properties every year, by county or metro area and by household size. They're called MTSP limits (Multifamily Tax Subsidy Project). The 50% and 60% limits are the ones most deals use. To see yours, search for \"HUD MTSP income limits\" and pick your state and county.</p>\n<h3>How rent is figured</h3>\n<p>Rent is tied to the size of the apartment, not who actually lives in it. The rule assumes 1.5 people per bedroom (one person for a studio):</p>\n<table class=\"cmp\"><thead><tr><th>Unit</th><th>Household size used</th></tr></thead><tbody>\n<tr><td>Studio</td><td>1 person</td></tr><tr><td>1 bedroom</td><td>1.5 people</td></tr><tr><td>2 bedrooms</td><td>3 people</td></tr><tr><td>3 bedrooms</td><td>4.5 people</td></tr></tbody></table>\n<p>For half-person sizes, the limit is averaged between the two household sizes. Then: maximum gross rent = 30% of that income limit, divided by 12. Try it in the <a href=\"../tools/rent-cap.html\">rent cap calculator</a>.</p>\n<h3>What counts as income</h3>\n<p>Generally the same definition HUD uses for Section 8: wages, Social Security, pensions, child support, and income from assets above certain amounts, for everyone in the household. The property verifies it with documents before move-in, and the household signs a certification.</p>\n<h3>The student rule, in more detail</h3>\n<p>A household where everyone is a full-time student generally can't live in a tax credit unit. Exceptions include:</p>\n<ul><li>A student receiving TANF assistance.</li>\n<li>A student in certain government job training programs.</li>\n<li>Single parents and their children, if none are claimed as dependents by someone else.</li>\n<li>Married students filing a joint return.</li>\n<li>Students who were previously in foster care.</li></ul>\n<h3>Common questions</h3>\n<p><b>Is there a minimum income?</b> Federal law doesn't set one, but many properties use a rent-to-income screen. Rules on that vary, especially for voucher holders.</p>\n<p><b>What if my household gets bigger or smaller?</b> The unit's rent doesn't change with household size. Your eligibility is based on your actual household size at move-in. See <a href=\"getting-a-raise.html\">what happens if you get a raise</a>.</p>",
+    "slug": "who-can-live-there",
+    "tool": "rent-cap"
+   },
+   {
+    "id": "nine-four",
+    "title": "9% vs 4% deals",
+    "body": "<p>There are two flavors of credit. The names come from roughly how much of a building's eligible cost the credits are worth each year.</p>\n<ul><li><b>9% credits</b> are designed to be worth about 70% of eligible costs in present value. They're scarce, so states award them competitively through the QAP. The 9% rate is now a fixed minimum for new buildings.</li>\n<li><b>4% credits</b> are designed to be worth about 30%. They don't come out of the state's competitive budget. Instead, a project gets them automatically if enough of it is financed with tax-exempt private activity bonds. The 4% rate has been a fixed minimum since 2021.</li></ul>\n<p>The trade-off: 9% deals bring much more equity but are hard to win. 4% deals are easier to get but leave a bigger gap that soft money, a bigger loan or a deferred fee has to fill. Either way, credits are claimed over 10 years.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>9%: about 70% of costs in value, competitive.</li><li>4%: about 30%, comes with tax-exempt bonds.</li><li>4% deals need more money from other sources.</li><li>Both are claimed over 10 years.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(b) (applicable percentages and minimums), &sect; 42(h)(4) (bond-financed buildings).",
+     "Consolidated Appropriations Act, 2021 (4% minimum)."
+    ],
+    "more": "<h3>Side by side</h3>\n<table class=\"cmp\"><thead><tr><th></th><th>9% credits</th><th>4% credits</th></tr></thead><tbody>\n<tr><td>Where they come from</td><td>The state's annual credit budget</td><td>Automatic with enough tax-exempt bond financing</td></tr>\n<tr><td>How you get them</td><td>Win a scored competition (the QAP)</td><td>Get bond volume cap and meet the bond test</td></tr>\n<tr><td>Minimum annual rate</td><td>9% (new construction)</td><td>4%</td></tr>\n<tr><td>Rough value</td><td>About 70% of eligible costs</td><td>About 30% of eligible costs</td></tr>\n<tr><td>Bonds needed</td><td>No</td><td>Yes, at least 25% of building and land cost (bonds issued after 2025)</td></tr>\n<tr><td>Typical challenge</td><td>Winning the award</td><td>Filling the bigger financing gap</td></tr></tbody></table>\n<h3>Why the rates are \"at least\"</h3>\n<p>The rates used to float monthly, set by the Treasury to hit the 70% and 30% values. Congress later locked in minimums: 9% for new buildings that aren't federally subsidized, and 4% for buildings placed in service after 2020. Today both work as fixed rates.</p>\n<h3>See the difference</h3>\n<p>Put the same building through the <a href=\"../tools/capital-stack.html\">capital stack calculator</a> and flip between 9% and 4%. The 4% version brings in much less equity, so the gap gets much bigger.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> $17M of eligible basis. At 9%, that's $1.53M of credit a year; at 83 cents, about $12.7M of equity. At 4%, it's $680K a year, or about $5.6M of equity. Same building, $7M less.</div>\n<h3>So why would anyone do a 4% deal?</h3>\n<ul><li>There's no annual competition to win, so it can move on the developer's timeline.</li>\n<li>Bigger projects that would blow past a state's per-deal 9% limit can still work.</li>\n<li>The bonds can carry an attractive loan, and some states pair 4% deals with their own soft money or state credits.</li></ul>\n<p>Some deals even combine the two on separate buildings, where the state allows it.</p>",
+    "slug": "9-percent-vs-4-percent",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "capital-stack",
+    "title": "The capital stack",
+    "body": "<p>No affordable deal is paid for by one source. It's a stack, and every piece comes with strings.</p>\n<ul><li><b>Tax credit equity.</b> Usually the biggest piece. No monthly payment, but strict rules for decades.</li>\n<li><b>A first mortgage.</b> A regular loan. Rents are capped, so the loan has to stay small enough for the property to pay it.</li>\n<li><b>Soft loans and grants.</b> State, city or Federal Home Loan Bank money. Cheap or forgiven, but competitive and slow.</li>\n<li><b>Deferred developer fee.</b> The developer leaves part of their fee in the deal and gets paid later from cash flow. It closes the last gap.</li></ul>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a $20 million deal paid for with $13M of tax credit equity (65%), a $4M first mortgage (20%), $2M of soft money (10%) and a $1M deferred developer fee (5%).</div><p>Module 4, <a href=\"paying-for-it.html\">Paying for it</a>, takes each piece apart.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Every deal is layered.</li><li>Equity is the biggest piece.</li><li>The mortgage is limited by capped rents.</li><li>Soft money and deferred fee fill the gap.</li></ul></div>",
+    "sources": [
+     "Example numbers are made up for illustration."
+    ],
+    "more": "<h3>Sources must equal uses</h3>\n<p>Every deal has two columns. <b>Uses</b> is what it costs: land, construction, fees, reserves. See <a href=\"development-budget.html\">the development budget</a>. <b>Sources</b> is where the money comes from. They have to match to the dollar before closing. Whatever the main sources don't cover is the <b>gap</b>.</p>\n<h3>The layers, top to bottom</h3>\n<ol><li><b>First mortgage.</b> Gets paid first from the property's income. Sized by what capped rents can support. See <a href=\"why-the-mortgage-is-small.html\">why the mortgage is small</a>.</li>\n<li><b>Soft loans.</b> Get paid only from leftover cash flow, if any, and are often forgiven at the end. See <a href=\"soft-money.html\">soft money</a>.</li>\n<li><b>Deferred developer fee.</b> Paid from cash flow after the loans. See <a href=\"developer-fee.html\">the developer fee</a>.</li>\n<li><b>Tax credit equity.</b> Not a loan at all. Investors are paid back in credits and tax losses, not cash.</li></ol>\n<h3>Try it</h3>\n<p>The <a href=\"../tools/capital-stack.html\">capital stack calculator</a> lets you change costs, rents, interest rates and credit prices and watch the gap grow or shrink. Flip between 9% and 4% to see why 4% deals need so much more soft money.</p>\n<h3>How gaps get closed</h3>\n<ul><li>Apply for more soft money (slow and competitive).</li>\n<li>Defer more of the developer fee (only as much as cash flow can realistically pay back).</li>\n<li>Cut costs through value engineering.</li>\n<li>Get a basis boost if the site qualifies. See <a href=\"basis-boost.html\">the basis boost</a>.</li>\n<li>Change the unit mix or the number of units.</li></ul>\n<p>If none of those works, the deal doesn't happen.</p>",
+    "slug": "capital-stack",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "pricing",
+    "title": "Why $1 of credit sells for about 83 cents",
+    "body": "<p>Developers don't get a dollar for every dollar of credit. In the second quarter of 2026, investors paid about 82.7 cents on average, down from about 85 cents a year earlier.</p>\n<p>Why the discount:</p>\n<ul><li><b>Investors wait.</b> The credits come in over 10 years. A dollar in year 10 is worth less than a dollar today.</li>\n<li><b>Investors take risk.</b> If the property breaks the rules during the 15-year compliance period, the IRS can take credits back.</li>\n<li><b>Investors want a return.</b> Paying less than $1 now is how they earn one.</li></ul>\n<p>Some investors pay more. Banks get Community Reinvestment Act (CRA) credit for investing in certain markets, so pricing tends to be stronger where banks want CRA credit. And when supply jumped in 2026, with 12% more 9% credits, prices slipped.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Pricing is cents per dollar of credit.</li><li>Time, risk and return explain the discount.</li><li>CRA demand pushes prices up in some markets.</li><li>About 83 cents in mid-2026.</li></ul></div>",
+    "sources": [
+     "Affordable Housing Finance, 2026 midyear LIHTC investor survey (Q2 2026 average of 82.7 cents).",
+     "CohnReznick Tax Credit Monitor (Feb&ndash;May 2026 median of about $0.835).",
+     "26 U.S.C. &sect; 42(f), &sect; 42(j)."
+    ],
+    "more": "<h3>How pricing is quoted</h3>\n<p>Pricing is stated as cents of equity per dollar of credit the investor will receive over 10 years. \"83 cents\" means the investor pays $0.83 now for each $1.00 of credit it will claim.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a deal gets $1.5M of credit a year, or $15M over 10 years. At 83 cents, that's $12.45M of equity. At 90 cents, it's $13.5M. That 7-cent difference is $1.05M, which can decide whether the deal works.</div>\n<h3>What moves the price</h3>\n<ul><li><b>CRA demand:</b> banks that want Community Reinvestment Act credit in a market compete for deals there.</li>\n<li><b>Investors' tax appetite:</b> credits only help investors with enough tax liability to use them.</li>\n<li><b>Interest rates:</b> higher rates make investors want a higher return, which lowers the price.</li>\n<li><b>Supply:</b> more credits chasing the same investors pushes prices down, as happened after 2026's 12% increase.</li>\n<li><b>Deal risk:</b> the sponsor's track record, the market and the structure all matter.</li></ul>\n<h3>Who's buying</h3>\n<p>Most investors are banks and large companies. Many invest through syndicators, firms that pool investor money into funds and buy into many deals. Some large banks invest directly.</p>\n<h3>Why developers care so much</h3>\n<p>Price is one of the biggest numbers in the whole deal. Every cent of price on a $15M credit award is $150,000 of equity. Try changing the price in the <a href=\"../tools/capital-stack.html\">capital stack calculator</a>.</p>",
+    "slug": "tax-credit-pricing",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "2026",
+    "title": "What changed in 2026",
+    "body": "<p>The tax law signed July 4, 2025 (Public Law 119-21) made two big changes for affordable housing, both starting in 2026:</p>\n<ul><li><b>12% more 9% credits, permanently.</b> Each state's annual credit budget went up 12%. That's why the 2026 amount was $3.416 per resident.</li>\n<li><b>An easier bond test.</b> 4% deals used to need tax-exempt bonds covering 50% of the building and land cost. For bonds issued after 2025, it's 25%. That stretches each state's bond cap across more projects.</li></ul>\n<p>What didn't make it: a 30% basis boost for rural and tribal areas was in the House version but dropped from the final law.</p>\n<p>The catch: more credits, same pool of investors. Pricing softened, as covered in the lesson above.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Signed July 4, 2025.</li><li>9% credits up 12%, permanently.</li><li>4% bond test cut from 50% to 25%.</li><li>Rural and tribal basis boost was not included.</li></ul></div>",
+    "sources": [
+     "Public Law 119-21 (2025).",
+     "IRS Rev. Proc. 2025-32 (2026 per-capita amount).",
+     "EY Tax News, July 10, 2025; Moss Adams, 2025 (rural boost dropped)."
+    ],
+    "more": "<h3>What the 12% increase means in dollars</h3>\n<p>Without the change, the 2026 amount would have been $3.05 per resident. With it, it was $3.416.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a state with 5 million residents gets about $1.8M more annual credit authority in 2026 than it would have. At roughly $1.5M per award, that's about one more deal a year, every year.</div>\n<h3>What the 25% bond test means</h3>\n<p>To get 4% credits, a building used to need tax-exempt bonds covering at least 50% of its building and land cost. Now it's 25%, for buildings financed by bonds issued after 2025.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a project with $40M of building and land cost used to need $20M of bonds. Now it needs $10M. A state's bond cap can stretch across about twice as many deals of that size.</div>\n<p>Bonds are still capped (see <a href=\"bond-volume-cap.html\">the bond cap</a>), so the change matters most in states where bond cap was the bottleneck.</p>\n<h3>What didn't change</h3>\n<ul><li>Credits are still claimed over 10 years.</li>\n<li>The 15-year compliance period and extended use stayed the same.</li>\n<li>Income limits and rent caps work the same way.</li>\n<li>No new basis boost for rural or tribal areas.</li></ul>\n<h3>Side effects to watch</h3>\n<p>More credits on the market softened pricing. More 4% deals can compete for the same soft money and the same construction crews. The net effect should still be more homes, but the gap on each deal doesn't disappear.</p>",
+    "slug": "2026-law-changes",
+    "tool": null
+   }
+  ]
+ },
+ {
+  "slug": "sizing-the-credit",
+  "num": 2,
+  "title": "Sizing the credit",
+  "blurb": "How an award gets calculated, where the address adds 30%, and how much each state has to give out.",
+  "lessons": [
+   {
+    "id": "credit-math",
+    "title": "Three numbers, one award",
+    "body": "<p>Every tax credit award comes from the same formula:</p>\n<ul><li><b>Eligible basis:</b> what it cost to build the apartments. Land doesn't count.</li>\n<li><b>Applicable fraction:</b> the share of the building that's affordable, by units or by floor space, whichever is lower. If every unit is restricted, it's 100%.</li>\n<li><b>Credit rate:</b> at least 9% a year for a new 9% deal, at least 4% for a 4% deal.</li></ul>\n<p>Eligible basis &times; applicable fraction = qualified basis. Qualified basis &times; credit rate = the annual credit, claimed for 10 years.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> $10M of eligible basis &times; 100% &times; 9% = $900,000 of credit a year, or $9 million over 10 years. The developer sells that to an investor for cash.</div><p>In practice, the state also checks the deal's funding gap and awards only what the deal needs, which can be less than the formula. More eligible basis still means more credit, which is why what counts as basis, and where you build, matter so much.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Eligible basis &times; applicable fraction &times; rate.</li><li>Land isn't in basis.</li><li>Claimed every year for 10 years.</li><li>States can award less than the formula if the deal needs less.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(a), &sect; 42(b), &sect; 42(c)(1), &sect; 42(d)(1), &sect; 42(f)(1).",
+     "26 U.S.C. &sect; 42(m)(2) (credit limited to the amount needed for feasibility)."
+    ],
+    "more": "",
+    "slug": "how-credits-are-sized",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "basis-boost",
+    "title": "The 30% basis boost",
+    "body": "<p>Two identical buildings can get very different awards. The difference is the address.</p>\n<p>In certain areas, the tax code lets a deal count 130% of its eligible basis:</p>\n<ul><li><b>Qualified Census Tracts (QCTs):</b> tracts where at least half of households earn under 60% of area median income, or the poverty rate is 25% or more.</li>\n<li><b>Difficult Development Areas (DDAs):</b> places where land, construction and utility costs are high compared to local incomes.</li>\n<li><b>State-designated buildings:</b> a state agency can give the boost to a 9% building that needs it to be financially feasible. This one isn't available to bond-financed 4% deals.</li></ul>\n<div class=\"callout\"><b>Example, made-up numbers:</b> $10M of basis becomes $13M. At 9%, that's $1.17M of credit a year instead of $900K, about $2.7M more over 10 years.</div><p>HUD redraws the QCT and DDA maps every year. The 2027 lists were announced in October 2026. A boost for all rural and tribal areas was proposed in 2025 but didn't make it into law.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Count 130% of eligible basis.</li><li>QCTs: lower-income tracts.</li><li>DDAs: high-cost areas.</li><li>Or the state designates the building (9% only).</li><li>The map changes every year.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(d)(5)(B).",
+     "HUD, 2027 Difficult Development Areas and Qualified Census Tracts (announced Oct. 5, 2026; Federal Register Oct. 6, 2026).",
+     "Rural basis boost omitted from P.L. 119-21: Housing Assistance Council; Moss Adams."
+    ],
+    "more": "",
+    "slug": "basis-boost",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "basis-in-out",
+    "title": "What counts in eligible basis",
+    "body": "<p>Since credits are sized off eligible basis, every line in the budget gets a question: is it in basis or not?</p>\n<p><b>Usually in:</b> construction of the residential building, much of the site work tied to it, architecture and engineering, construction-period interest and fees, permits, and the developer fee (within the state's cap). Common areas like a community room or laundry count if residents aren't charged extra to use them.</p>\n<p><b>Usually out:</b> land, permanent loan costs, reserves, marketing, syndication costs, and commercial space.</p>\n<p><b>Things that shrink it:</b> federal grants used for the building reduce eligible basis. That's why many federal soft funds are made as loans instead.</p>\n<p><b>Existing buildings:</b> for a rehab deal, the cost of buying an existing building can count as acquisition basis at the 4% rate, generally if it hasn't changed hands in the last 10 years. The rehab work itself has to meet a minimum: the greater of 20% of the building's basis or a per-unit amount ($9,000 per low-income unit for 2027).</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Building costs and most soft costs are in.</li><li>Land, reserves and permanent loan costs are out.</li><li>Federal grants reduce basis.</li><li>Acquisition basis can earn 4% credits on existing buildings.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(d)(1)&ndash;(5), &sect; 42(e)(3).",
+     "IRS Rev. Proc. 2026-35 (2027 rehab per-unit minimum).",
+     "Item-by-item treatment varies; deals rely on tax counsel and a cost certification."
+    ],
+    "more": "",
+    "slug": "eligible-basis",
+    "tool": null
+   },
+   {
+    "id": "award-to-cash",
+    "title": "From award to cash",
+    "body": "<p>Here's what a $1 million award actually turns into.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> $1,000,000 of credit a year &times; 10 years = $10,000,000 of total credits. At 83 cents per dollar, the investor pays about $8,300,000 into the partnership.</div><p>A few things to know about that $8.3M:</p>\n<ul><li>It doesn't arrive all at once. Investors pay in installments tied to milestones. See <a href=\"paying-for-it.html#equity-pay-in\">the pay-in lesson</a>.</li>\n<li>The investor gets the credits plus the property's tax losses, mostly depreciation. Both count toward its return.</li>\n<li>If the credits come in late or short, the agreement usually cuts the investor's payments. Those are called adjusters.</li></ul>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Annual credit &times; 10 &times; price = equity.</li><li>Paid in installments, not one check.</li><li>Investors get credits and tax losses.</li><li>Shortfalls trigger adjusters.</li></ul></div>",
+    "sources": [
+     "Example numbers and pricing are made up for illustration; actual pricing varies by deal and market."
+    ],
+    "more": "",
+    "slug": "award-to-cash",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "nonprofit-set-aside",
+    "title": "The nonprofit set-aside",
+    "body": "<p>Federal law requires each state to reserve at least 10% of its credit budget for projects where a qualified nonprofit owns an interest and materially participates in development and operations.</p>\n<p>A qualified nonprofit is a 501(c)(3) or 501(c)(4) whose exempt purposes include fostering low-income housing. It can't be controlled by a for-profit.</p>\n<p>Many states go further, with their own nonprofit or community-based pools. That's one reason you see for-profit developers partner with local nonprofits and housing authorities.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>At least 10% of every state's credits.</li><li>The nonprofit must materially participate.</li><li>States can set aside more.</li><li>It's a big reason for nonprofit partnerships.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(h)(5)."
+    ],
+    "more": "",
+    "slug": "nonprofit-set-aside",
+    "tool": null
+   },
+   {
+    "id": "state-budget",
+    "title": "Your state's 2027 credit budget",
+    "body": "<p>Each state's annual 9% credit budget is set by a per-person formula, adjusted for inflation every year.</p>\n<p><b>For 2027:</b> the greater of $3.53 per resident or $4,082,400 for small states. That's up from $3.416 in 2026, the first year with the permanent 12% increase.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a state with 5 million residents gets about $17.65 million of annual credit authority. Since each award is claimed for 10 years, that's about $176.5 million of total credits handed out in one year.</div><p>On top of the per-person amount, states can re-award credits that were returned by earlier deals and may get a share of a small national pool of unused credits.</p>\n<p>Two things to remember: the budget is in <i>annual</i> credits, and it's almost always oversubscribed. States commonly get several dollars of requests for every dollar they can award.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>2027: $3.53 per resident, or $4,082,400 minimum.</li><li>Budgets are in annual credits.</li><li>Returned credits get re-awarded.</li><li>Demand far exceeds supply.</li></ul></div>",
+    "sources": [
+     "IRS Rev. Proc. 2026-35 (2027 amounts); Novogradac, 2026.",
+     "IRS Rev. Proc. 2025-32 (2026 amount of $3.416).",
+     "26 U.S.C. &sect; 42(h)(3)."
+    ],
+    "more": "",
+    "slug": "state-credit-budget",
+    "tool": null
+   },
+   {
+    "id": "bond-cap",
+    "title": "The cap behind every 4% deal",
+    "body": "<p>4% deals don't use the state's credit budget, but they're still rationed. The bonds they need count against the state's private activity bond volume cap.</p>\n<p><b>For 2027:</b> each state's cap is the greater of $135 per resident or $410,520,000.</p>\n<p>Housing isn't the only use. The same cap covers single-family mortgage revenue bonds, some industrial and student loan bonds, and other uses. The state decides how to split it, and in many states housing applications far exceed the cap.</p>\n<p>That's why the 2026 change to a 25% bond test matters. A project that used to need bonds for half its cost now needs them for a quarter, so the same cap can support more deals.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>4% deals need volume-cap bonds.</li><li>2027: $135 per resident, or $410.52M minimum.</li><li>Housing competes with other uses.</li><li>The 25% test stretches the cap further.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 146 (volume cap); &sect; 42(h)(4).",
+     "IRS Rev. Proc. 2026-35 (2027 amounts).",
+     "Public Law 119-21 (25% test for bonds issued after 2025)."
+    ],
+    "more": "",
+    "slug": "bond-volume-cap",
+    "tool": null
+   }
+  ]
+ },
+ {
+  "slug": "winning-the-award",
+  "num": 3,
+  "title": "Winning the award",
+  "blurb": "How states score applications, who's on the team, and how to read the results.",
+  "lessons": [
+   {
+    "id": "qap-rules",
+    "title": "What every state has to reward",
+    "body": "<p>Every state writes its own scoring plan, the Qualified Allocation Plan (QAP). But federal law sets the floor. Every QAP must give preference to:</p>\n<ul><li>Projects serving the lowest-income residents.</li>\n<li>Projects that stay affordable the longest.</li>\n<li>Projects in qualified census tracts that contribute to a local community revitalization plan.</li></ul>\n<p>It also has to weigh a required list of criteria: location, housing needs, the project and sponsor, tenant populations with special needs, public housing waitlists, families with children, energy efficiency, and historic buildings.</p>\n<p>And it has to keep watching after the award, with compliance monitoring, site visits and reports to the IRS.</p>\n<p>Everything else, the points, weights, set-asides and tiebreakers, is up to the state. That's why every QAP reads so differently, and why developers re-read them every year.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Three required preferences.</li><li>A required list of criteria to weigh.</li><li>Ongoing monitoring.</li><li>Points and tiebreakers are up to each state.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(m)(1)(B)&ndash;(C)."
+    ],
+    "more": "",
+    "slug": "what-qaps-reward",
+    "tool": null
+   },
+   {
+    "id": "deal-team",
+    "title": "The team it takes to build one deal",
+    "body": "<p>One tax credit deal takes a lot of people. The core seats:</p>\n<ul><li><b>Developer:</b> finds the site, runs the application, guarantees the deal.</li>\n<li><b>Architect and engineers:</b> design to code, to the QAP and to accessibility rules.</li>\n<li><b>General contractor:</b> prices and builds it.</li>\n<li><b>Syndicator or investor:</b> buys the credits.</li>\n<li><b>Lenders:</b> a construction loan and a permanent loan, sometimes the same bank.</li>\n<li><b>Attorneys:</b> usually several, for the developer, investor, lender and bonds.</li>\n<li><b>Market analyst:</b> proves there's demand.</li>\n<li><b>Property manager:</b> leases it up and keeps it in compliance for decades.</li></ul>\n<p>Add a CPA for the cost certification, often a tax credit consultant, and on public housing deals, the housing authority. Every one of them has to say yes before closing.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>At least eight core seats.</li><li>Several attorneys, not one.</li><li>The property manager matters for 30+ years.</li><li>Everyone has to sign off before closing.</li></ul></div>",
+    "sources": [
+     "General industry practice; roles vary by deal."
+    ],
+    "more": "",
+    "slug": "deal-team",
+    "tool": null
+   },
+   {
+    "id": "market-study",
+    "title": "The market study",
+    "body": "<p>Before a state can award credits, federal law requires a comprehensive market study of the housing needs of low-income people in the area. It's done by a disinterested third party approved by the state, and the developer pays for it.</p>\n<p>The study answers one question: will people rent these apartments at these rents? Things it looks at:</p>\n<ul><li><b>Capture rate:</b> the share of qualified, income-eligible renters the project needs to fill. Lower is safer.</li>\n<li><b>Absorption:</b> how many months to lease up.</li>\n<li><b>Rent advantage:</b> how far the capped rents sit below comparable market rents.</li>\n<li><b>Competition:</b> other affordable properties nearby, open or in the pipeline.</li></ul>\n<p>States set their own thresholds, and many follow national market study standards. A weak study can sink an application before scoring even starts.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Required by federal law before an award.</li><li>Third party, paid for by the developer.</li><li>Capture rate, absorption and rent advantage.</li><li>States set the pass/fail lines.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(m)(1)(A)(iii).",
+     "Metric definitions vary by state; see each state's QAP and market study guide."
+    ],
+    "more": "",
+    "slug": "market-study",
+    "tool": null
+   },
+   {
+    "id": "award-list",
+    "title": "How to read an award list",
+    "body": "<p>Every state posts who applied and who won. It's public, and it's one of the best ways to learn the business.</p>\n<ol><li><b>Find the list.</b> Search your state housing finance agency's site for \"housing tax credit awards\" or \"application log.\"</li>\n<li><b>Check the set-aside or region.</b> Most states award by region and by pool (nonprofit, rural, elderly, at-risk). Applications only compete inside their pool.</li>\n<li><b>Look at the scores.</b> Winners are often separated by a point or two, and ties are broken by rules written in the QAP.</li>\n<li><b>Divide credits by units.</b> Annual credits per unit shows how much each deal needed, and how far over the state's limits it was pushing.</li>\n<li><b>Watch the waitlist.</b> Returned credits go to the next deal in line, sometimes months later.</li></ol>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Award lists are public.</li><li>Deals compete within regions and pools.</li><li>Scores are often one or two points apart.</li><li>Credits per unit is the quickest comparison.</li></ul></div>",
+    "sources": [
+     "State housing finance agency award and application logs; formats vary by state."
+    ],
+    "more": "",
+    "slug": "read-an-award-list",
+    "tool": null
+   }
+  ]
+ },
+ {
+  "slug": "paying-for-it",
+  "num": 4,
+  "title": "Paying for it",
+  "blurb": "Who owns the deal, what it costs, why the loan is small, and how the gap gets filled.",
+  "lessons": [
+   {
+    "id": "who-owns-it",
+    "title": "Who actually owns a tax credit deal",
+    "body": "<p>Developers win the credits. Then almost all of them go to someone else.</p>\n<p>Each property is usually owned by its own partnership or LLC, set up just for that deal. The investor comes in as the limited partner and typically owns 99% to 99.99% of it. That's how it receives the credits and tax losses.</p>\n<p>An affiliate of the developer is usually the general partner. It owns a tiny share, as little as 0.01%, but it runs the deal and carries the guarantees.</p>\n<p>So how do developers get paid? Mostly through the developer fee, plus a negotiated share of cash flow and the eventual sale. As limited partners, investors generally can't lose more than they put in.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>One partnership per deal.</li><li>Investor: 99% to 99.99%.</li><li>Developer side: a sliver, but runs it.</li><li>Developers earn fees.</li></ul></div>",
+    "sources": [
+     "Kutak Rock, \"Introduction to Tax Credits\" (CDFA).",
+     "ABA Journal of Affordable Housing &amp; Community Development Law.",
+     "General description only; structures vary."
+    ],
+    "more": "",
+    "slug": "who-owns-the-deal",
+    "tool": null
+   },
+   {
+    "id": "dev-budget",
+    "title": "The six buckets in every development budget",
+    "body": "<p>The capital stack is where the money comes from. The development budget is where it goes. Almost every budget sorts into six buckets:</p>\n<ol><li><b>Acquisition:</b> land, plus any existing buildings.</li>\n<li><b>Hard costs:</b> construction, site work and a contingency.</li>\n<li><b>Soft costs:</b> architecture, engineering, legal, the market study, permits, insurance, application fees.</li>\n<li><b>Financing costs:</b> construction interest and loan and bond fees.</li>\n<li><b>Developer fee:</b> capped by the state.</li>\n<li><b>Reserves:</b> operating, replacement and lease-up reserves the investor and lender require.</li></ol>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a $20M budget might be $1M acquisition, $14M hard costs, $1.5M soft costs, $1M financing, $2M developer fee and $0.5M reserves.</div><p>Most of buckets 2 through 5 lands in eligible basis. Land and reserves don't. See <a href=\"sizing-the-credit.html#basis-in-out\">what counts in basis</a>.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Acquisition, hard, soft, financing, fee, reserves.</li><li>Hard costs are the biggest bucket.</li><li>Not every bucket earns credits.</li></ul></div>",
+    "sources": [
+     "Example numbers are made up for illustration."
+    ],
+    "more": "",
+    "slug": "development-budget",
+    "tool": null
+   },
+   {
+    "id": "small-mortgage",
+    "title": "Why the bank lends so little",
+    "body": "<p>On a market-rate deal, the mortgage is often the biggest piece of the stack. On a tax credit deal, it's usually small. The reason is capped rents.</p>\n<p>Lenders size a loan off net operating income (NOI) and a debt service coverage ratio (DSCR), commonly 1.15 to 1.25. Capped rents mean capped NOI, which means a capped loan.</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> 60 units at an average rent of $900 is $648,000 a year. Less 7% vacancy leaves $602,640. Less operating costs of $5,500 a unit ($330,000) leaves NOI of $272,640. At a 1.20 DSCR, the deal can carry $227,200 a year of debt service. At 6.5% over 35 years, that supports a loan of about $3.1 million, on a deal that might cost $20 million.</div><p>That's why the rest has to come from equity and soft money, and why higher interest rates hit affordable deals so hard.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Loans are sized off NOI and DSCR.</li><li>Capped rents cap the loan.</li><li>Often 15% to 25% of the stack.</li><li>Rate increases shrink it further.</li></ul></div>",
+    "sources": [
+     "Example numbers are made up; loan math is standard amortization at the rate and term shown."
+    ],
+    "more": "",
+    "slug": "why-the-mortgage-is-small",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "soft-money",
+    "title": "The four most common soft-money sources",
+    "body": "<p>Soft money is the cheap or forgivable layer that closes the gap. The four you'll see most:</p>\n<ul><li><b>HOME:</b> HUD block grants to states and cities, created in 1990, used for loans or grants to affordable housing.</li>\n<li><b>CDBG:</b> Community Development Block Grants, a broader HUD program cities sometimes use for site work or infrastructure.</li>\n<li><b>National Housing Trust Fund:</b> created in 2008 and funded by Fannie Mae and Freddie Mac, aimed mostly at extremely low-income households.</li>\n<li><b>FHLB Affordable Housing Program (AHP):</b> each Federal Home Loan Bank sets aside at least 10% of its prior year's net income for competitive grants, applied for through a member bank.</li></ul>\n<p>Plus state and local trust funds, and sometimes the housing authority. Every source brings its own rules: income targeting, affordability periods, and with federal money, extra requirements like accessibility (Section 504) and, in some cases, Davis-Bacon wages. Funding levels change every year.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>HOME, CDBG, Housing Trust Fund, FHLB AHP.</li><li>Cheap or forgivable, but competitive and slow.</li><li>Federal grants can reduce eligible basis, so many are made as loans.</li><li>Each source adds its own rules.</li></ul></div>",
+    "sources": [
+     "HOME: Cranston-Gonzalez National Affordable Housing Act of 1990; 24 CFR Part 92.",
+     "National Housing Trust Fund: Housing and Economic Recovery Act of 2008; 24 CFR Part 93.",
+     "FHLB AHP: 12 U.S.C. &sect; 1430(j); 12 CFR Part 1291.",
+     "CDBG: Housing and Community Development Act of 1974."
+    ],
+    "more": "",
+    "slug": "soft-money",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "equity-pay-in",
+    "title": "How the equity actually gets paid in",
+    "body": "<p>The investor doesn't write one check at closing. Equity comes in installments, each tied to a milestone that lowers the investor's risk:</p>\n<ol><li><b>Closing.</b></li>\n<li><b>Construction completion.</b></li>\n<li><b>Placed in service and lease-up.</b></li>\n<li><b>Stabilization or conversion to the permanent loan.</b></li>\n<li><b>Final cost certification and IRS Form 8609s.</b></li></ol>\n<div class=\"callout\"><b>Example, made-up numbers:</b> $8.3M of equity paid 20% at closing, 40% at completion, 30% at stabilization and 10% at 8609s.</div><p>Because most equity arrives after construction, a construction loan bridges the gap. Some investors pay more up front for a lower price; others pay later for a higher one. That timing is part of every pricing negotiation.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Equity comes in milestones, not one check.</li><li>A construction loan bridges the timing.</li><li>Up-front vs. later pay-in affects price.</li><li>The last piece often waits on the 8609s.</li></ul></div>",
+    "sources": [
+     "General industry practice; schedules are negotiated deal by deal.",
+     "IRS Form 8609, Low-Income Housing Credit Allocation and Certification."
+    ],
+    "more": "",
+    "slug": "equity-pay-in",
+    "tool": null
+   },
+   {
+    "id": "dev-fee",
+    "title": "The developer fee, and why part of it waits",
+    "body": "<p>The developer fee pays the developer for the time, risk and guarantees it takes to get a deal built. States cap it in the QAP, often around 15% of development costs, though the formula varies a lot by state.</p>\n<p>Most of the fee is in eligible basis, so it earns credits. But it's rarely all paid in cash. Part of it is usually <b>deferred</b>: left in the deal as a source of funds and paid later out of cash flow.</p>\n<p>Investors generally want the deferred piece to be realistically paid off within about 15 years. If it can't be, the IRS could question whether it belongs in basis, which would shrink the credits.</p>\n<p>So a deferred fee is the developer betting its own pay on the property performing.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Capped by each state.</li><li>Mostly in eligible basis.</li><li>Part is deferred and paid from cash flow.</li><li>It has to be realistically payable.</li></ul></div>",
+    "sources": [
+     "State QAP developer fee limits (vary by state).",
+     "General tax practice on deferred developer fees; specifics depend on tax counsel."
+    ],
+    "more": "",
+    "slug": "developer-fee",
+    "tool": "capital-stack"
+   },
+   {
+    "id": "cost-squeeze",
+    "title": "Why construction costs sink deals",
+    "body": "<p>On a market-rate deal, higher costs can be passed on through higher rents. On a tax credit deal, they can't. Rents are capped by the income limits.</p>\n<p>Higher costs do raise eligible basis, and so the credit amount. But states cap how much credit one deal can get, and many cap cost per unit. Once a deal hits those limits, every extra dollar of cost is a dollar of gap.</p>\n<p>That gap has to come from somewhere: more soft money, more deferred fee, a value-engineered design, or fewer units. If none of those works, the deal dies, sometimes after the award.</p>\n<p>A federal review found per-unit costs vary widely from state to state, and that states use very different cost controls.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Rents are capped, so costs can't be passed on.</li><li>Credit and cost caps limit how far basis helps.</li><li>Extra cost becomes gap.</li><li>Gaps kill deals, even after an award.</li></ul></div>",
+    "sources": [
+     "GAO-18-637, \"Low-Income Housing Tax Credit: Improved Data and Oversight Would Strengthen Cost Assessment and Fraud Risk Management\" (2018).",
+     "State QAP credit and cost limits (vary by state)."
+    ],
+    "more": "",
+    "slug": "construction-costs",
+    "tool": "capital-stack"
+   }
+  ]
+ },
+ {
+  "slug": "living-there",
+  "num": 5,
+  "title": "Living there",
+  "blurb": "For renters: vouchers, utility allowances, raises, rent changes, senior housing and accessibility.",
+  "lessons": [
+   {
+    "id": "voucher-rule",
+    "title": "They can't turn you down for having a voucher",
+    "body": "<p>Plenty of landlords turn down Section 8 vouchers. Tax credit properties can't do that just because you have one.</p>\n<p>Every tax credit property signs a long-term agreement with the state. Federal law requires it to prohibit refusing a renter because they hold a Section 8 voucher. It lasts as long as the affordability rules do: at least 30 years.</p>\n<p>It's not a free pass. You still have to income-qualify and meet the same screening rules as every other applicant.</p>\n<p>The two programs fit together: the tax credit caps the rent on the apartment, and the voucher helps the renter pay it. To find properties near you, search for HUD's LIHTC database.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>It's in every long-term agreement.</li><li>No refusing just for a voucher.</li><li>You still have to income-qualify.</li><li>Lasts 30+ years.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(h)(6)(B)(iv).",
+     "HUD LIHTC Database (huduser.gov).",
+     "State and local source-of-income laws vary; not legal advice."
+    ],
+    "more": "",
+    "slug": "voucher-rule",
+    "tool": null
+   },
+   {
+    "id": "utility-allowance",
+    "title": "Why your rent is lower than the cap",
+    "body": "<p>The rent cap on a tax credit apartment is a <i>gross</i> rent cap. It includes an allowance for any utilities you pay yourself, like electricity or gas. (Phone, cable and internet don't count.)</p>\n<div class=\"callout\"><b>Example, made-up numbers:</b> if the maximum gross rent is $1,200 and the utility allowance is $150, the most you can be charged in rent is $1,050.</div><p>Where the allowance comes from depends on the building. Properties with Rural Development or HUD project-based assistance use those agencies' figures. Others can use the local housing authority's schedule, or an estimate from the utility company, the state agency, HUD's utility model or an energy consumption model.</p>\n<p>Allowances are reviewed at least once a year. A change usually takes effect after a 90-day notice period.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Rent cap includes utilities you pay.</li><li>Allowance = cap minus what you can be charged.</li><li>Source depends on the building.</li><li>Reviewed at least yearly.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(g)(2)(B)(ii).",
+     "Treas. Reg. &sect; 1.42-10."
+    ],
+    "more": "",
+    "slug": "utility-allowance",
+    "tool": "rent-cap"
+   },
+   {
+    "id": "income-averaging",
+    "title": "Income averaging in four rules",
+    "body": "<p>Income averaging, added to the law in 2018, lets one building serve a wider range of incomes.</p>\n<ol><li>At least 40% of units must be restricted.</li>\n<li>Each restricted unit gets a designated income limit in 10% steps, from 20% to 80% of AMI.</li>\n<li>The designations must average 60% of AMI or less.</li>\n<li>Each unit's rent is capped based on its own designated limit.</li></ol>\n<div class=\"callout\"><b>Example, made-up numbers:</b> a 100-unit building designates 20 units at 30% AMI, 40 at 60% and 40 at 80%. The average is 62%, which fails. Move 10 of the 80% units down to 60%, and the average is exactly 60%, which works.</div><p>The appeal: deeply affordable units for very low-income families and workforce units in the same building, with the higher rents helping carry the lower ones.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>40% minimum.</li><li>Limits from 20% to 80% in 10% steps.</li><li>Average must be 60% or less.</li><li>Rent follows each unit's limit.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(g)(1)(C) (Consolidated Appropriations Act, 2018).",
+     "Treas. Reg. &sect; 1.42-19."
+    ],
+    "more": "",
+    "slug": "income-averaging",
+    "tool": "rent-cap"
+   },
+   {
+    "id": "raise",
+    "title": "What happens if you get a raise",
+    "body": "<p>A common worry: if I earn more, does my rent go up or do I have to move? Usually, neither.</p>\n<p>You have to qualify when you move in. After that, a raise doesn't kick you out. Your rent stays capped by the unit's limit, not your paycheck.</p>\n<p>The one rule that kicks in is the <b>140% rule</b>. If your household income rises above 140% of the current income limit, your unit still counts as affordable. But the owner must rent the next available unit of comparable or smaller size to a qualified household.</p>\n<p>In buildings where every unit is affordable, federal law doesn't require yearly income checks after move-in, though many states still require them.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Qualify at move-in.</li><li>A raise doesn't change your rent cap.</li><li>Over 140%: the next available unit goes to a qualified renter.</li><li>Some states still require yearly income checks.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(g)(2)(D).",
+     "26 U.S.C. &sect; 42(g)(8)(B) (recertification for 100% low-income buildings).",
+     "Not legal advice; property and state rules vary."
+    ],
+    "more": "",
+    "slug": "getting-a-raise",
+    "tool": "rent-cap"
+   },
+   {
+    "id": "rents-go-up",
+    "title": "When rents can go up",
+    "body": "<p>Yes, rents at tax credit properties can go up. Here's how.</p>\n<p>Every year, HUD publishes new income limits for tax credit properties. For fiscal 2026 they took effect May 1, 2026, and properties had a 45-day grace period to start using them. When the limits rise, the maximum rents rise too.</p>\n<p>There are guardrails. HUD capped the increase at 10% for fiscal 2026, and the average change across areas was about 3.4%. A federal hold-harmless rule keeps a project's limits from falling below the highest level it has reached.</p>\n<p>Owners aren't required to charge the maximum. Lease terms, notice rules and other funding sources can also limit increases. The utility allowance can change too, which moves the rent in the other direction.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Limits are updated every year by HUD.</li><li>Higher limits mean higher maximum rents.</li><li>FY2026 increases were capped at 10%.</li><li>Owners don't have to charge the max.</li></ul></div>",
+    "sources": [
+     "HUD, FY2026 Income Limits and MTSP Income Limits (huduser.gov).",
+     "National Law Review, \"HUD Releases 2026 Income Limits\" (2026) (10% cap, 3.4% average).",
+     "Minnesota Housing, FY2026 limits bulletin (45-day grace period).",
+     "Housing and Economic Recovery Act of 2008, &sect; 3009 (hold harmless)."
+    ],
+    "more": "",
+    "slug": "when-rents-go-up",
+    "tool": "rent-cap"
+   },
+   {
+    "id": "senior",
+    "title": "Senior vs. family deals",
+    "body": "<p>Many tax credit properties are age-restricted. Under fair housing law, there are two ways to do it:</p>\n<ul><li><b>62 and older:</b> every resident is 62+.</li>\n<li><b>55 and older:</b> at least 80% of occupied units have at least one resident who's 55+, and the property follows policies showing it's meant for older adults.</li></ul>\n<p>They pencil differently than family deals. Senior deals are mostly one-bedrooms, so rent per unit is lower. They usually need elevators, more common space and more accessible units. Some states reserve credits or points specifically for elderly housing.</p>\n<p>Family deals have more two- and three-bedroom units and higher rents per unit, but more wear, more turnover and different amenities, like playgrounds.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Two legal options: 62+ or 55+.</li><li>Senior deals skew to one-bedrooms.</li><li>Elevators and common space add cost.</li><li>Some QAPs set aside credits for seniors.</li></ul></div>",
+    "sources": [
+     "Fair Housing Act, 42 U.S.C. &sect; 3607(b), as amended by the Housing for Older Persons Act of 1995.",
+     "24 CFR Part 100, Subpart E."
+    ],
+    "more": "",
+    "slug": "senior-housing",
+    "tool": null
+   },
+   {
+    "id": "accessibility",
+    "title": "The accessibility rules every new deal meets",
+    "body": "<p>Several layers of law apply, and a tax credit deal usually triggers more than one:</p>\n<ul><li><b>Fair Housing Act:</b> for buildings with 4 or more units first occupied after March 13, 1991, every unit in an elevator building and every ground-floor unit otherwise must meet seven basic design requirements, like accessible routes, wider doors and reinforced bathroom walls.</li>\n<li><b>Section 504:</b> if the deal has federal financial assistance, like HOME or CDBG, at least 5% of units must be fully accessible for people with mobility disabilities and another 2% for people with hearing or vision disabilities.</li>\n<li><b>ADA Title III:</b> covers the leasing office and other areas open to the public.</li></ul>\n<p>On top of that, many state QAPs require or reward more accessible units. And for tax credit properties, a final fair housing discrimination finding is treated as noncompliance.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Fair Housing Act design rules apply to most new apartments.</li><li>Section 504 adds 5% mobility and 2% sensory units with federal funds.</li><li>ADA covers public areas.</li><li>States often require more.</li></ul></div>",
+    "sources": [
+     "42 U.S.C. &sect; 3604(f)(3)(C); 24 CFR &sect; 100.205.",
+     "24 CFR &sect; 8.22 (Section 504).",
+     "28 CFR Part 36 (ADA Title III).",
+     "Treas. Reg. &sect; 1.42-9 (general public use)."
+    ],
+    "more": "",
+    "slug": "accessibility",
+    "tool": null
+   },
+   {
+    "id": "supportive-housing",
+    "title": "What supportive housing is",
+    "body": "<p>Supportive housing is affordable housing paired with services, like case management, health care coordination or job help, for people who need them to stay housed. That often means people leaving homelessness, people with disabilities, or veterans.</p>\n<p>The housing is usually financed with tax credits like any other deal. What's different:</p>\n<ul><li><b>Rental assistance</b> is usually needed so residents with very low or no income can pay rent.</li>\n<li><b>Services</b> are funded separately, by sources like Medicaid, HUD homeless programs or state funds.</li>\n<li><b>Service fees</b> paid by a government program aren't counted as rent under the tax credit rules.</li></ul>\n<p>Many QAPs give points for supportive housing units. The hard part is that all three pieces, building, rental assistance and services, have to be lined up for decades.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Housing plus services.</li><li>Usually needs rental assistance.</li><li>Services are funded separately.</li><li>All three pieces have to last.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(g)(2)(B)(iii) (supportive service fees); &sect; 42(i)(3)(B)(iii) (transitional housing for the homeless)."
+    ],
+    "more": "",
+    "slug": "supportive-housing",
+    "tool": null
+   }
+  ]
+ },
+ {
+  "slug": "the-long-game",
+  "num": 6,
+  "title": "The long game",
+  "blurb": "The deadlines after an award, what happens when rules get broken, Year 15, and rebuilding public housing.",
+  "lessons": [
+   {
+    "id": "deal-clock",
+    "title": "You won. The clock started.",
+    "body": "<p>Winning tax credits feels like the finish line. It's really the starting gun.</p>\n<ul><li><b>Before the award:</b> the developer pays for a market study.</li>\n<li><b>Within 12 months:</b> if the building won't be finished in the award year, more than 10% of its expected basis has to be spent within a year of the allocation.</li>\n<li><b>By the end of year 2:</b> the building has to be placed in service by the end of the second calendar year after the award year.</li></ul>\n<div class=\"callout\"><b>Example, made-up numbers:</b> award in June 2027. Spend more than 10% by June 2028. Placed in service by December 31, 2029.</div><p>Miss a deadline and the allocation fails; the credits go back to the state to hand out again. Closing the land, the loans and the investor, permits, and construction all have to fit inside that window.</p><div class=\"keypoints\"><strong>Key points</strong><ul><li>Market study before the award.</li><li>10% of basis spent within 12 months.</li><li>Placed in service by the end of year 2.</li><li>Miss it and the credits go back.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(m)(1)(A)(iii), &sect; 42(h)(1)(E), &sect; 42(h)(3)(C).",
+     "Example dates are made up."
+    ],
+    "more": "",
+    "slug": "deal-deadlines",
+    "tool": null
+   },
+   {
+    "id": "broke-the-rules",
+    "title": "When a property breaks the rules",
+    "body": "<p>Tax credit properties report to the state every year and get monitored, with file reviews of tenant income records and physical inspections.</p>\n<p>When the state finds a problem, like an over-income tenant, an unsafe unit or rent over the cap, it tells the owner, who generally gets up to 90 days to fix it, extendable to six months. The state must then report it to the IRS on <b>Form 8823</b>, even if it was corrected.</p>\n<p>Consequences during the 15-year compliance period:</p>\n<ul><li>Credits can be lost for any unit and year out of compliance.</li>\n<li>If the building's qualified basis drops, part of the credits already claimed can be <b>recaptured</b>, with interest.</li></ul>\n<p>After year 15, the IRS steps back, and the state enforces the extended use agreement.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Annual reporting and state monitoring.</li><li>A correction period, then Form 8823 to the IRS.</li><li>Lost credits and recapture during years 1&ndash;15.</li><li>The state enforces years 16&ndash;30+.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(j), &sect; 42(m)(1)(B)(iii).",
+     "Treas. Reg. &sect; 1.42-5.",
+     "IRS, Guide for Completing Form 8823."
+    ],
+    "more": "",
+    "slug": "compliance-and-recapture",
+    "tool": null
+   },
+   {
+    "id": "year-15",
+    "title": "Year 15: how the investor exits",
+    "body": "<p>Once the 15-year compliance period ends, the investor has gotten its credits and usually wants out. Common paths:</p>\n<ul><li><b>Sale to the general partner:</b> the developer side buys the investor's interest or the property, often under an option written into the partnership agreement.</li>\n<li><b>Nonprofit right of first refusal:</b> a qualified nonprofit, tenant group or government agency can buy at a minimum price, roughly the outstanding debt plus the investor's exit taxes.</li>\n<li><b>Qualified contract:</b> after year 14, an owner can ask the state to find a buyer at a formula price. If none is found within a year, the extended use period ends, though existing tenants keep protections for three more years. Many states now require owners to waive this option.</li></ul>\n<p>Year 15 is also when many properties get rehabbed with a new round of credits, called resyndication.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Investors usually exit after year 15.</li><li>The GP often buys them out.</li><li>Nonprofits can have a right of first refusal.</li><li>Many states require waiving the qualified contract.</li></ul></div>",
+    "sources": [
+     "26 U.S.C. &sect; 42(i)(7) (right of first refusal), &sect; 42(h)(6)(E)&ndash;(F), (I) (qualified contract).",
+     "Not legal advice; exits depend on each partnership agreement."
+    ],
+    "more": "",
+    "slug": "year-15",
+    "tool": null
+   },
+   {
+    "id": "rad",
+    "title": "How old public housing gets rebuilt (RAD)",
+    "body": "<p>Public housing nationwide has a big backlog of repairs, and the old funding model doesn't let housing authorities borrow against it. The Rental Assistance Demonstration (RAD), created in 2012, fixes that.</p>\n<p>RAD converts public housing units to long-term Section 8 contracts, either project-based vouchers or project-based rental assistance. With a steady contract, the property can take on debt and tax credit equity to renovate or rebuild.</p>\n<p>Residents keep key protections, including the right to return after construction without being re-screened.</p>\n<p>Scale: Congress capped conversions at 455,000 public housing units, and HUD says about half of the public housing that existed in 2012 has now converted. Some deals blend RAD with Section 18, another tool for repositioning public housing. In May 2026, HUD began winding down Restore-Rebuild (formerly Faircloth-to-RAD), which had let authorities use RAD to build new units.</p>\n<div class=\"keypoints\"><strong>Key points</strong><ul><li>Converts public housing to Section 8 contracts.</li><li>Lets housing authorities borrow and use tax credits.</li><li>Residents have a right to return.</li><li>Capped at 455,000 units.</li></ul></div>",
+    "sources": [
+     "HUD, RAD Overview (August 2026).",
+     "National Housing Law Project, RAD resources (455,000-unit cap).",
+     "Nelson Mullins and Nixon Peabody alerts, May 2026 (Restore-Rebuild wind-down)."
+    ],
+    "more": "",
+    "slug": "rad",
+    "tool": null
+   }
+  ]
+ }
+]

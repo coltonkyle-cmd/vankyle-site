@@ -1,0 +1,47 @@
+{"path": "tools/rent-cap.html", "title": "Rent cap calculator", "desc": "Turn an area median income and AMI level into maximum LIHTC rents by apartment size, with the utility allowance taken out.", "cur": "tools.html"}
+---
+<div class="page-hero"><div class="wrap"><div class="eyebrow">Tools</div><h1>Rent cap calculator</h1><p>How an income limit turns into the maximum rent for each apartment size.</p></div></div>
+<section><div class="wrap calc">
+<div class="calc-grid">
+<div class="calc-inputs">
+<fieldset><legend>Income limit</legend>
+<label>Area median income, 4-person household ($) <input id="mfi" type="number" value="75000" step="500"></label>
+<label>Income level (% of AMI) <select id="pct"><option>20</option><option>30</option><option>40</option><option>50</option><option selected>60</option><option>70</option><option>80</option></select></label>
+<label>Or type HUD's published 4-person limit at that level ($) <input id="pub" type="number" placeholder="optional" step="50"></label>
+</fieldset>
+<fieldset><legend>Utility allowance ($/month)</legend>
+<label>Studio <input id="ua0" type="number" value="90" step="5"></label>
+<label>1 bedroom <input id="ua1" type="number" value="110" step="5"></label>
+<label>2 bedrooms <input id="ua2" type="number" value="140" step="5"></label>
+<label>3 bedrooms <input id="ua3" type="number" value="170" step="5"></label>
+<label>4 bedrooms <input id="ua4" type="number" value="200" step="5"></label>
+</fieldset>
+</div>
+<div class="calc-out">
+<div class="headline" id="headline"></div>
+<div class="rentbars" id="bars" aria-hidden="true"></div>
+<ul class="legend"><li><i class="sw loan"></i>Maximum rent</li><li><i class="sw soft"></i>Utility allowance</li></ul>
+<div class="table-wrap"><table class="cmp math"><thead><tr><th>Unit</th><th>Household size used</th><th>Income limit</th><th>Max gross rent</th><th>Max rent after utilities</th></tr></thead><tbody id="math"></tbody></table></div>
+</div></div>
+<div class="callout"><b>How it works:</b> each apartment size is priced off 1.5 people per bedroom (1 person for a studio). HUD scales the 4-person limit by household size: 70% for 1 person, 80% for 2, 90% for 3, 108% for 5, 116% for 6. Maximum gross rent is 30% of that limit divided by 12, and the utility allowance comes out of it. More in <a href="../learn/who-can-live-there.html">who can live there</a> and <a href="../learn/utility-allowance.html">the utility allowance</a>.</div>
+<p class="sources">Education only. HUD's published limits include rounding and adjustments for high- and low-cost areas, so they won't exactly match a straight percentage of median income. For real numbers, use HUD's published MTSP limits for your county and type the 4-person figure in above. Example utility allowances are made up.</p>
+</div></section>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var F={1:.7,2:.8,3:.9,4:1,5:1.08,6:1.16};
+var U=[['Studio',1,F[1]],['1 bedroom',1.5,(F[1]+F[2])/2],['2 bedrooms',3,F[3]],['3 bedrooms',4.5,(F[4]+F[5])/2],['4 bedrooms',6,F[6]]];
+function v(i){var x=parseFloat($(i).value);return isNaN(x)?0:x}
+function d(x){return '$'+Math.round(x).toLocaleString()}
+function calc(){
+ var four=v('pub')>0?v('pub'):v('mfi')*v('pct')/100;
+ var rows=U.map(function(u,k){var lim=four*u[2],g=lim*.3/12,ua=v('ua'+k);return [u[0],u[1],lim,g,Math.max(0,g-ua),ua]});
+ var mx=Math.max.apply(null,rows.map(function(r){return r[3]}));
+ $('bars').innerHTML=rows.map(function(r){return '<div class="rb"><div class="col" style="height:'+(r[3]/mx*100)+'%"><span class="soft" style="height:'+(r[5]/r[3]*100)+'%"></span><span class="loan" style="height:'+(r[4]/r[3]*100)+'%"><em>'+d(r[4])+'</em></span></div><small>'+r[0]+'</small></div>'}).join('');
+ $('math').innerHTML=rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+d(r[2])+'</td><td>'+d(r[3])+'</td><td><b>'+d(r[4])+'</b></td></tr>'}).join('');
+ $('headline').innerHTML='4-person limit: <b>'+d(four)+'</b> <span>'+(v('pub')>0?'(published figure you entered)':'('+v('pct')+'% of '+d(v('mfi'))+')')+'</span>';
+}
+['mfi','pct','pub','ua0','ua1','ua2','ua3','ua4'].forEach(function(i){$(i).addEventListener('input',calc)});
+calc();
+})();
+</script>

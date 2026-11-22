@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capital stack calculator | VanKyle Properties</title>
+<meta name="description" content="Interactive LIHTC capital stack calculator. Toggle 9% and 4% credits, change rents, rates and credit pricing, and see the financing gap.">
+<meta property="og:title" content="Capital stack calculator">
+<meta property="og:description" content="Interactive LIHTC capital stack calculator. Toggle 9% and 4% credits, change rents, rates and credit pricing, and see the financing gap.">
+<link rel="icon" type="image/svg+xml" href="../assets/vk.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="../index.html"><img src="../assets/vk.svg" alt=""><span>VanKyle Properties</span></a>
+  <nav class="nav"><a href="../start-here.html">Start here</a><a href="../course.html">Course</a><a href="../tools.html" aria-current="page">Tools</a><a href="../glossary.html">Glossary</a><a href="../renters.html">Renters</a><a href="../about.html">About</a></nav>
+</div></header>
+
+<main>
+<div class="page-hero"><div class="wrap"><div class="eyebrow">Tools</div><h1>Capital stack calculator</h1><p>See why even with tax credits and a mortgage, most deals still have a gap.</p></div></div>
+<section><div class="wrap calc">
+<div class="toggle" role="group" aria-label="Credit type"><button type="button" data-type="9" class="on">9% deal</button><button type="button" data-type="4">4% deal</button></div>
+<div class="calc-grid">
+<div class="calc-inputs">
+<fieldset><legend>The building</legend>
+<label>Total development cost <input id="tdc" type="number" value="20000000" step="100000"></label>
+<label>Land cost <input id="land" type="number" value="1000000" step="50000"></label>
+<label>Units <input id="units" type="number" value="60" step="1"></label>
+<label>Share of non-land cost in eligible basis (%) <input id="elig" type="number" value="90" step="1"></label>
+<label class="check"><input id="boost" type="checkbox"> In a QCT or DDA (30% basis boost)</label>
+</fieldset>
+<fieldset><legend>Tax credits</legend>
+<label>Credit price (cents per $1) <input id="price" type="number" value="83" step="1"></label>
+</fieldset>
+<fieldset><legend>First mortgage</legend>
+<label>Average rent per unit ($/month) <input id="rent" type="number" value="900" step="25"></label>
+<label>Vacancy (%) <input id="vac" type="number" value="7" step="1"></label>
+<label>Operating costs per unit ($/year) <input id="opex" type="number" value="5500" step="100"></label>
+<label>Interest rate (%) <input id="rate" type="number" value="6.5" step="0.25"></label>
+<label>Amortization (years) <input id="yrs" type="number" value="35" step="1"></label>
+<label>Required DSCR <input id="dscr" type="number" value="1.20" step="0.05"></label>
+</fieldset>
+<fieldset><legend>Other sources</legend>
+<label>Soft money <input id="soft" type="number" value="0" step="100000"></label>
+<label>Deferred developer fee <input id="def" type="number" value="0" step="50000"></label>
+</fieldset>
+</div>
+<div class="calc-out">
+<div class="headline" id="headline"></div>
+<div class="stackbar" id="bar" aria-hidden="true"></div>
+<ul class="legend" id="legend"></ul>
+<table class="cmp math"><tbody id="math"></tbody></table>
+<p class="sources" id="note"></p>
+</div></div>
+<div class="callout"><b>How to read it:</b> the bar is the total development cost. Each colored piece is a source of money. The red striped piece is the gap: money still missing. Try the 4% toggle, a higher interest rate, a lower credit price, or the basis boost. Then read <a href="../learn/capital-stack.html">the capital stack lesson</a> and <a href="../learn/9-percent-vs-4-percent.html">9% vs 4%</a>.</div>
+<p class="sources">Education only. Simplified on purpose: assumes every unit is affordable (100% applicable fraction), ignores state limits on credits per deal and per unit, fees, reserves and bond details. In real 4% deals the tax-exempt bonds usually fund the construction loan and part of the permanent loan.</p>
+</div></section>
+<script>
+(function(){
+var type=9, $=function(i){return document.getElementById(i)};
+var ids=['tdc','land','units','elig','price','rent','vac','opex','rate','yrs','dscr','soft','def'];
+function v(i){var x=parseFloat($(i).value);return isNaN(x)?0:x}
+function m(x){var s=Math.round(Math.abs(x)/1000)*1000;return (x<0?'-':'')+'$'+(s>=1e6?(s/1e6).toFixed(2)+'M':(s/1e3).toFixed(0)+'K')}
+function calc(){
+ var tdc=v('tdc'),land=v('land'),u=v('units');
+ var basis0=Math.max(0,(tdc-land)*v('elig')/100), boost=$('boost').checked?1.3:1, basis=basis0*boost;
+ var cr=type==9?0.09:0.04, annual=basis*cr, equity=annual*10*v('price')/100;
+ var egi=u*v('rent')*12*(1-v('vac')/100), noi=egi-u*v('opex'), ds=Math.max(0,noi/Math.max(v('dscr'),0.01));
+ var r=v('rate')/1200, n=v('yrs')*12, loan=r>0?ds/12*(1-Math.pow(1+r,-n))/r:ds/12*n;
+ var soft=v('soft'), dfee=v('def'), src=equity+loan+soft+dfee, gap=tdc-src;
+ var parts=[['equity','Tax credit equity',equity],['loan','First mortgage',loan],['soft','Soft money',soft],['def','Deferred fee',dfee]];
+ if(gap>0) parts.push(['gap','Gap',gap]);
+ var tot=Math.max(tdc,src);
+ $('bar').innerHTML=parts.map(function(p){return p[2]>0?'<span class="seg '+p[0]+'" style="width:'+(p[2]/tot*100)+'%"><em>'+(p[2]/tot>0.09?m(p[2]):'')+'</em></span>':''}).join('');
+ $('legend').innerHTML=parts.map(function(p){return '<li><i class="sw '+p[0]+'"></i>'+p[1]+': <b>'+m(p[2])+'</b> ('+(p[2]/tdc*100).toFixed(0)+'%)</li>'}).join('');
+ $('headline').innerHTML=gap>0?'Gap: <b class="neg">'+m(gap)+'</b> <span>of '+m(tdc)+' still needs a source</span>':'No gap: <b class="pos">'+m(-gap)+'</b> <span>more than needed. A state would likely award fewer credits.</span>';
+ var rows=[['Eligible basis','('+m(tdc)+' &minus; '+m(land)+' land) &times; '+v('elig')+'%'+(boost>1?' &times; 130% boost':''),m(basis)],
+  ['Annual credit',m(basis)+' &times; 100% affordable &times; '+(cr*100)+'%',m(annual)],
+  ['Tax credit equity',m(annual)+' &times; 10 years &times; '+v('price')+'&cent;',m(equity)],
+  ['Net operating income',u+' units &times; $'+v('rent')+' &times; 12 &times; '+(100-v('vac'))+'% &minus; '+u+' &times; $'+v('opex'),m(noi)],
+  ['Max debt service',m(noi)+' &divide; '+v('dscr')+' DSCR',m(ds)+'/yr'],
+  ['First mortgage','at '+v('rate')+'%, '+v('yrs')+'-year amortization',m(loan)],
+  [gap>0?'Gap':'Surplus','cost &minus; all sources',m(Math.abs(gap))]];
+ $('math').innerHTML=rows.map(function(x){return '<tr><td>'+x[0]+'</td><td>'+x[1]+'</td><td>'+x[2]+'</td></tr>'}).join('');
+ $('note').innerHTML=type==4?'4% deals also need tax-exempt bonds for at least 25% of building and land cost: about '+m(0.25*(basis0+land))+' here (bonds issued after 2025).':'9% credits are won in a competition, and most states cap the credits one deal can get, so a big 9% award like this one may not be possible.';
+}
+document.querySelectorAll('.toggle button').forEach(function(b){b.addEventListener('click',function(){type=+b.dataset.type;document.querySelectorAll('.toggle button').forEach(function(x){x.classList.toggle('on',x===b)});calc()})});
+ids.concat(['boost']).forEach(function(i){$(i).addEventListener('input',calc)});
+calc();
+})();
+</script>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <div><a href="../start-here.html">Start here</a><a href="../course.html">Course</a><a href="../tools.html">Tools</a><a href="../glossary.html">Glossary</a><a href="../renters.html">Renters</a><a href="../sources.html">Sources</a><a href="../about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
+  <div class="social"><a href="https://www.instagram.com/vankyle_properties/">Instagram</a><a href="https://www.youtube.com/@vankyle_properties">YouTube</a><a href="https://www.facebook.com/VanKyleProp">Facebook</a><a href="https://www.threads.com/@vankyle_properties">Threads</a><a href="https://www.linkedin.com/in/colton-kyle-mba-03282821/">LinkedIn</a></div>
+  <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
+</div></footer>
+</body>
+</html>

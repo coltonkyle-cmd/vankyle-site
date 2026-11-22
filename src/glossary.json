@@ -1,0 +1,248 @@
+[
+ {
+  "term": "AMI (area median income)",
+  "id": "ami",
+  "def": "The middle household income for an area, published by HUD and adjusted for household size. Tax credit income limits are set as a percentage of it, usually 50% or 60%.",
+  "lesson": "who-can-live-there"
+ },
+ {
+  "term": "Applicable fraction",
+  "id": "applicable-fraction",
+  "def": "The share of a building that's affordable, measured by units or floor space, whichever is lower. Multiplied by eligible basis to get qualified basis.",
+  "lesson": "how-credits-are-sized"
+ },
+ {
+  "term": "Applicable percentage (credit rate)",
+  "id": "applicable-percentage",
+  "def": "The annual credit rate: at least 9% for new competitive deals and at least 4% for bond-financed deals.",
+  "lesson": "9-percent-vs-4-percent"
+ },
+ {
+  "term": "Basis boost",
+  "id": "basis-boost",
+  "def": "Counting 130% of eligible basis for a building in a QCT, a DDA or one the state designates, which raises the credit amount.",
+  "lesson": "basis-boost"
+ },
+ {
+  "term": "Capital stack",
+  "id": "capital-stack",
+  "def": "All the sources of money that pay for a deal, layered from the first mortgage down to equity.",
+  "lesson": "capital-stack"
+ },
+ {
+  "term": "Compliance period",
+  "id": "compliance-period",
+  "def": "The first 15 years of a tax credit property's life, when the IRS can recapture credits if the rules are broken.",
+  "lesson": "how-long-it-stays-affordable"
+ },
+ {
+  "term": "CRA (Community Reinvestment Act)",
+  "id": "cra",
+  "def": "A federal law that encourages banks to invest in the communities they serve. Tax credit investments can count, which is why banks are big buyers.",
+  "lesson": "tax-credit-pricing"
+ },
+ {
+  "term": "DDA (Difficult Development Area)",
+  "id": "dda",
+  "def": "An area HUD designates where land, construction and utility costs are high relative to incomes. Deals there can get the 30% basis boost.",
+  "lesson": "basis-boost"
+ },
+ {
+  "term": "Deferred developer fee",
+  "id": "deferred-developer-fee",
+  "def": "The part of the developer fee left in the deal as a source of funds and paid later from cash flow.",
+  "lesson": "developer-fee"
+ },
+ {
+  "term": "DSCR (debt service coverage ratio)",
+  "id": "dscr",
+  "def": "Net operating income divided by the annual mortgage payment. Lenders require a minimum, often 1.15 to 1.25, which limits how big the loan can be.",
+  "lesson": "why-the-mortgage-is-small"
+ },
+ {
+  "term": "Eligible basis",
+  "id": "eligible-basis",
+  "def": "The costs of a building that can earn credits: mostly construction and related soft costs, not land.",
+  "lesson": "eligible-basis"
+ },
+ {
+  "term": "Equity (tax credit equity)",
+  "id": "equity",
+  "def": "The cash investors pay into a deal in exchange for its tax credits and tax losses.",
+  "lesson": "award-to-cash"
+ },
+ {
+  "term": "Extended use",
+  "id": "extended-use",
+  "def": "At least 15 more years of affordability after the compliance period, enforced by the state through a recorded agreement.",
+  "lesson": "how-long-it-stays-affordable"
+ },
+ {
+  "term": "Form 8609",
+  "id": "form-8609",
+  "def": "The IRS form the state issues for each building once it's placed in service, confirming its credit amount. The owner needs it to claim credits.",
+  "lesson": "equity-pay-in"
+ },
+ {
+  "term": "Form 8823",
+  "id": "form-8823",
+  "def": "The form a state agency files with the IRS to report a property's noncompliance.",
+  "lesson": "compliance-and-recapture"
+ },
+ {
+  "term": "General partner (GP)",
+  "id": "general-partner",
+  "def": "The owner that runs the deal, usually a developer affiliate, holding a tiny ownership share.",
+  "lesson": "who-owns-the-deal"
+ },
+ {
+  "term": "Gross rent",
+  "id": "gross-rent",
+  "def": "Rent plus a utility allowance for tenant-paid utilities. The tax credit cap applies to gross rent.",
+  "lesson": "utility-allowance"
+ },
+ {
+  "term": "HOME",
+  "id": "home",
+  "def": "A HUD block grant program that states and cities use for affordable housing loans and grants.",
+  "lesson": "soft-money"
+ },
+ {
+  "term": "Housing Choice Voucher (Section 8)",
+  "id": "voucher",
+  "def": "Rental assistance that helps a household pay rent at a private apartment. The renter usually pays about 30% of income.",
+  "lesson": "voucher-rule"
+ },
+ {
+  "term": "Income averaging",
+  "id": "income-averaging",
+  "def": "A set-aside option where unit income limits range from 20% to 80% of AMI but must average 60% or less.",
+  "lesson": "income-averaging"
+ },
+ {
+  "term": "LIHTC",
+  "id": "lihtc",
+  "def": "The Low-Income Housing Tax Credit, Section 42 of the tax code. The main federal tool for building affordable rental housing.",
+  "lesson": "what-is-lihtc"
+ },
+ {
+  "term": "Limited partner (LP)",
+  "id": "limited-partner",
+  "def": "The investor in a tax credit partnership, usually owning 99% or more to receive the credits.",
+  "lesson": "who-owns-the-deal"
+ },
+ {
+  "term": "LURA",
+  "id": "lura",
+  "def": "Land use restriction agreement: the recorded document that keeps a property affordable for its full term, whoever owns it.",
+  "lesson": "how-long-it-stays-affordable"
+ },
+ {
+  "term": "Market study",
+  "id": "market-study",
+  "def": "A third-party report, required before an award, showing there's demand for the apartments at the proposed rents.",
+  "lesson": "market-study"
+ },
+ {
+  "term": "Minimum set-aside",
+  "id": "set-aside",
+  "def": "The share of units a deal must keep affordable: 20/50, 40/60 or income averaging.",
+  "lesson": "who-can-live-there"
+ },
+ {
+  "term": "MTSP income limits",
+  "id": "mtsp",
+  "def": "The income limits HUD publishes each year for tax credit and bond-financed properties.",
+  "lesson": "when-rents-go-up"
+ },
+ {
+  "term": "NOI (net operating income)",
+  "id": "noi",
+  "def": "Rental income minus vacancy and operating costs, before the mortgage payment.",
+  "lesson": "why-the-mortgage-is-small"
+ },
+ {
+  "term": "Placed in service",
+  "id": "placed-in-service",
+  "def": "When a building is ready for residents. Starts the credit and compliance clocks.",
+  "lesson": "deal-deadlines"
+ },
+ {
+  "term": "Private activity bonds",
+  "id": "private-activity-bonds",
+  "def": "Tax-exempt bonds issued for private projects like affordable housing. Using enough of them unlocks 4% credits.",
+  "lesson": "bond-volume-cap"
+ },
+ {
+  "term": "QAP (Qualified Allocation Plan)",
+  "id": "qap",
+  "def": "Each state's rulebook and scoring system for awarding tax credits.",
+  "lesson": "what-qaps-reward"
+ },
+ {
+  "term": "QCT (Qualified Census Tract)",
+  "id": "qct",
+  "def": "A lower-income census tract designated by HUD. Deals there can get the 30% basis boost.",
+  "lesson": "basis-boost"
+ },
+ {
+  "term": "Qualified basis",
+  "id": "qualified-basis",
+  "def": "Eligible basis times the applicable fraction. Multiplied by the credit rate to get the annual credit.",
+  "lesson": "how-credits-are-sized"
+ },
+ {
+  "term": "Qualified contract",
+  "id": "qualified-contract",
+  "def": "A process that can let an owner end the affordability period after year 14 if the state can't find a buyer at a formula price. Many states require owners to waive it.",
+  "lesson": "year-15"
+ },
+ {
+  "term": "RAD",
+  "id": "rad",
+  "def": "The Rental Assistance Demonstration: converts public housing to long-term Section 8 contracts so it can be financed and rebuilt.",
+  "lesson": "rad"
+ },
+ {
+  "term": "Recapture",
+  "id": "recapture",
+  "def": "The IRS taking back part of the credits already claimed, with interest, if a building's qualified basis drops during the compliance period.",
+  "lesson": "compliance-and-recapture"
+ },
+ {
+  "term": "Right of first refusal (ROFR)",
+  "id": "rofr",
+  "def": "A right for a nonprofit, tenant group or agency to buy a property after year 15 at a minimum price.",
+  "lesson": "year-15"
+ },
+ {
+  "term": "Soft money",
+  "id": "soft-money",
+  "def": "Below-market or forgivable loans and grants that fill financing gaps.",
+  "lesson": "soft-money"
+ },
+ {
+  "term": "Syndicator",
+  "id": "syndicator",
+  "def": "A firm that pools investor money into funds and invests it in tax credit deals.",
+  "lesson": "tax-credit-pricing"
+ },
+ {
+  "term": "Utility allowance",
+  "id": "utility-allowance",
+  "def": "An estimate of tenant-paid utility costs, subtracted from the gross rent cap to get the maximum rent.",
+  "lesson": "utility-allowance"
+ },
+ {
+  "term": "Volume cap",
+  "id": "volume-cap",
+  "def": "Each state's annual limit on private activity bonds. 4% deals compete for it.",
+  "lesson": "bond-volume-cap"
+ },
+ {
+  "term": "Year 15",
+  "id": "year-15",
+  "def": "The end of the compliance period, when investors usually exit and ownership often changes hands.",
+  "lesson": "year-15"
+ }
+]

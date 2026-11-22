@@ -64,8 +64,10 @@ function fmtNum(el,live){
   var out=(neg?'-':'')+ip+dp; if(out===raw)return; el.value=out;
   if(caret!=null){var n=0,i=0;for(;i<out.length&&n<before;i++){if(/[0-9.]/.test(out[i]))n++}try{el.setSelectionRange(i,i)}catch(e){}}
 }
-function fmtAll(){document.querySelectorAll('input[data-num]').forEach(function(el){fmtNum(el,false)})}
-document.addEventListener('input',function(e){if(e.target.matches&&e.target.matches('input[data-num]'))fmtNum(e.target,true)});
+function fitNum(el){el.style.fontSize='';var fs=parseFloat(getComputedStyle(el).fontSize),min=10;while(el.scrollWidth>el.clientWidth&&fs>min){fs-=0.5;el.style.fontSize=fs+'px'}}
+function fmtAll(){document.querySelectorAll('input[data-num]').forEach(function(el){fmtNum(el,false);fitNum(el)})}
+window.addEventListener('resize',function(){document.querySelectorAll('input[data-num]').forEach(fitNum)});
+document.addEventListener('input',function(e){if(e.target.matches&&e.target.matches('input[data-num]')){fmtNum(e.target,true);fitNum(e.target)}});
 window.VK=window.VK||{};VK.fmtAll=fmtAll;VK.num=function(el){return parseFloat(String(el.value).replace(/,/g,''))};
 fmtAll();
 

@@ -214,5 +214,4 @@ a.card-link:hover,a.card-link:focus-visible{transform:translateY(-3px);box-shado
 #cp select{width:100%}
 input[data-num]{text-align:right;font-variant-numeric:tabular-nums}
 .calc input[data-num]{width:150px;flex:none}
-@media (max-width:860px){.calc input[data-num]{width:140px}.calc label{gap:12px}}
-@media (max-width:860px){.calc label{flex-wrap:wrap;gap:6px}.calc label.check{flex-wrap:nowrap}.calc input[data-num],.calc select{width:100%;font-size:18px;padding:10px 12px}}
+@media (max-width:860px){.calc input[data-num]{width:130px}.calc label{gap:12px}}

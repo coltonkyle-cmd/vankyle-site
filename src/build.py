@@ -5,6 +5,8 @@ LESSONS = [(m, l, j) for m in MODS for j, l in enumerate(m['lessons'])]
 BYSLUG = {l['slug']: (m, l, j) for m, l, j in LESSONS}
 ANCHOR = {(m['slug'], l['id']): l['slug'] for m, l, j in LESSONS}
 TOTAL = len(LESSONS)
+import hashlib
+CSSV = hashlib.md5(open(f'{ROOT}/styles.css','rb').read()).hexdigest()[:8]
 SOCIAL = [("https://www.instagram.com/vankyle_properties/","Instagram"),("https://www.youtube.com/@vankyle_properties","YouTube"),("https://www.facebook.com/VanKyleProp","Facebook"),("https://www.threads.com/@vankyle_properties","Threads"),("https://www.linkedin.com/in/colton-kyle-mba-03282821/","LinkedIn")]
 NAV = [("start-here.html","Start here"),("course.html","Course"),("tools.html","Tools"),("glossary.html","Glossary"),("renters.html","Renters"),("about.html","About")]
 
@@ -34,7 +36,7 @@ def page(path, title, desc, cur, body, extra_head=''):
 <link rel="icon" type="image/svg+xml" href="{p}assets/vk.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{p}styles.css">{extra_head}
+<link rel="stylesheet" href="{p}styles.css?v={CSSV}">{extra_head}
 </head>
 <body>
 {header(cur, p)}
@@ -187,5 +189,6 @@ for f in ['index.html', 'start-here.html', 'about.html']:
     cur = 'start-here.html' if f == 'start-here.html' else ('about.html' if f == 'about.html' else '')
     s = re.sub(r'<nav class="nav">.*?</nav>', nav(cur, ''), s, flags=re.S)
     s = re.sub(r'<footer class="site-footer">.*?</footer>', footer(''), s, flags=re.S)
+    s = re.sub(r'href="styles\.css(\?v=[^"]*)?"', f'href="styles.css?v={CSSV}"', s)
     open(f'{ROOT}/{f}', 'w').write(s)
 print(TOTAL, 'lessons built')

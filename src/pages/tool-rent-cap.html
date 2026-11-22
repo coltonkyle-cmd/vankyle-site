@@ -6,16 +6,16 @@
 <div class="calc-inputs">
 <fieldset><legend>Use your county (optional)</legend><div id="cp"></div><p class="w-note" id="cpnote">Fills in HUD's FY2026 limits for your county.</p></fieldset>
 <fieldset><legend>Income limit</legend>
-<label>Area median income, 4-person household ($) <input id="mfi" type="number" value="75000" step="500"></label>
+<label>Area median income, 4-person household ($) <input id="mfi" type="text" inputmode="decimal" data-num value="75000" step="500"></label>
 <label>Income level (% of AMI) <select id="pct"><option>20</option><option>30</option><option>40</option><option>50</option><option selected>60</option><option>70</option><option>80</option></select></label>
-<label>Or type HUD's published 4-person limit at that level ($) <input id="pub" type="number" placeholder="optional" step="50"></label>
+<label>Or type HUD's published 4-person limit at that level ($) <input id="pub" type="text" inputmode="decimal" data-num placeholder="optional" step="50"></label>
 </fieldset>
 <fieldset><legend>Utility allowance ($/month)</legend>
-<label>Studio <input id="ua0" type="number" value="90" step="5"></label>
-<label>1 bedroom <input id="ua1" type="number" value="110" step="5"></label>
-<label>2 bedrooms <input id="ua2" type="number" value="140" step="5"></label>
-<label>3 bedrooms <input id="ua3" type="number" value="170" step="5"></label>
-<label>4 bedrooms <input id="ua4" type="number" value="200" step="5"></label>
+<label>Studio <input id="ua0" type="text" inputmode="decimal" data-num value="90" step="5"></label>
+<label>1 bedroom <input id="ua1" type="text" inputmode="decimal" data-num value="110" step="5"></label>
+<label>2 bedrooms <input id="ua2" type="text" inputmode="decimal" data-num value="140" step="5"></label>
+<label>3 bedrooms <input id="ua3" type="text" inputmode="decimal" data-num value="170" step="5"></label>
+<label>4 bedrooms <input id="ua4" type="text" inputmode="decimal" data-num value="200" step="5"></label>
 </fieldset>
 </div>
 <div class="calc-out">
@@ -33,7 +33,7 @@ var picked=null,pubTouched=false;
 var $=function(i){return document.getElementById(i)};
 var F={1:.7,2:.8,3:.9,4:1,5:1.08,6:1.16};
 var U=[['Studio',1,F[1]],['1 bedroom',1.5,(F[1]+F[2])/2],['2 bedrooms',3,F[3]],['3 bedrooms',4.5,(F[4]+F[5])/2],['4 bedrooms',6,F[6]]];
-function v(i){var x=parseFloat($(i).value);return isNaN(x)?0:x}
+function v(i){var x=parseFloat(String($(i).value).replace(/,/g,''));return isNaN(x)?0:x}
 function d(x){return '$'+Math.round(x).toLocaleString()}
 function calc(){
  var four=v('pub')>0?v('pub'):v('mfi')*v('pct')/100;
@@ -45,7 +45,7 @@ function calc(){
 }
 ['mfi','pct','pub','ua0','ua1','ua2','ua3','ua4'].forEach(function(i){$(i).addEventListener('input',calc)});
 $('pub').addEventListener('input',function(){pubTouched=true});$('mfi').addEventListener('input',function(){picked=null;$('cpnote').innerHTML='Fills in HUD\'s FY2026 limits for your county.'});
-function fill(){pubTouched=false;if(!picked)return;$('mfi').value=picked[2];$('pub').value=Math.round(VK.limFor(picked,+$('pct').value,4));calc()}
+function fill(){pubTouched=false;if(!picked)return;$('mfi').value=picked[2];$('pub').value=Math.round(VK.limFor(picked,+$('pct').value,4));VK.fmtAll();calc()}
 $('pct').addEventListener('change',fill);
 window.addEventListener('DOMContentLoaded',function(){if(window.VK)VK.countyPicker($('cp'),function(r,st){picked=r;$('cpnote').innerHTML='Using HUD FY2026 limits for <b>'+r[0]+', '+st+'</b>.';fill()})});
 calc();

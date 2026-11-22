@@ -6,26 +6,26 @@
 <div class="calc-grid">
 <div class="calc-inputs">
 <fieldset><legend>The building</legend>
-<label>Total development cost <input id="tdc" type="number" value="20000000" step="100000"></label>
-<label>Land cost <input id="land" type="number" value="1000000" step="50000"></label>
-<label>Units <input id="units" type="number" value="60" step="1"></label>
-<label>Share of non-land cost in eligible basis (%) <input id="elig" type="number" value="90" step="1"></label>
+<label>Total development cost <input id="tdc" type="text" inputmode="decimal" data-num value="20000000" step="100000"></label>
+<label>Land cost <input id="land" type="text" inputmode="decimal" data-num value="1000000" step="50000"></label>
+<label>Units <input id="units" type="text" inputmode="decimal" data-num value="60" step="1"></label>
+<label>Share of non-land cost in eligible basis (%) <input id="elig" type="text" inputmode="decimal" data-num value="90" step="1"></label>
 <label class="check"><input id="boost" type="checkbox"> In a QCT or DDA (30% basis boost)</label>
 </fieldset>
 <fieldset><legend>Tax credits</legend>
-<label>Credit price (cents per $1) <input id="price" type="number" value="83" step="1"></label>
+<label>Credit price (cents per $1) <input id="price" type="text" inputmode="decimal" data-num value="83" step="1"></label>
 </fieldset>
 <fieldset><legend>First mortgage</legend>
-<label>Average rent per unit ($/month) <input id="rent" type="number" value="900" step="25"></label>
-<label>Vacancy (%) <input id="vac" type="number" value="7" step="1"></label>
-<label>Operating costs per unit ($/year) <input id="opex" type="number" value="5500" step="100"></label>
-<label>Interest rate (%) <input id="rate" type="number" value="6.5" step="0.25"></label>
-<label>Amortization (years) <input id="yrs" type="number" value="35" step="1"></label>
-<label>Required DSCR <input id="dscr" type="number" value="1.20" step="0.05"></label>
+<label>Average rent per unit ($/month) <input id="rent" type="text" inputmode="decimal" data-num value="900" step="25"></label>
+<label>Vacancy (%) <input id="vac" type="text" inputmode="decimal" data-num value="7" step="1"></label>
+<label>Operating costs per unit ($/year) <input id="opex" type="text" inputmode="decimal" data-num value="5500" step="100"></label>
+<label>Interest rate (%) <input id="rate" type="text" inputmode="decimal" data-num value="6.5" step="0.25"></label>
+<label>Amortization (years) <input id="yrs" type="text" inputmode="decimal" data-num value="35" step="1"></label>
+<label>Required DSCR <input id="dscr" type="text" inputmode="decimal" data-num value="1.20" step="0.05"></label>
 </fieldset>
 <fieldset><legend>Other sources</legend>
-<label>Soft money <input id="soft" type="number" value="0" step="100000"></label>
-<label>Deferred developer fee <input id="def" type="number" value="0" step="50000"></label>
+<label>Soft money <input id="soft" type="text" inputmode="decimal" data-num value="0" step="100000"></label>
+<label>Deferred developer fee <input id="def" type="text" inputmode="decimal" data-num value="0" step="50000"></label>
 </fieldset>
 </div>
 <div class="calc-out">
@@ -38,11 +38,12 @@
 <div class="callout"><b>How to read it:</b> the bar is the total development cost. Each colored piece is a source of money. The red striped piece is the gap: money still missing. Try the 4% toggle, a higher interest rate, a lower credit price, or the basis boost. Then read <a href="../learn/capital-stack.html">the capital stack lesson</a> and <a href="../learn/9-percent-vs-4-percent.html">9% vs 4%</a>.</div>
 <p class="sources">Education only. Simplified on purpose: assumes every unit is affordable (100% applicable fraction), ignores state limits on credits per deal and per unit, fees, reserves and bond details. In real 4% deals the tax-exempt bonds usually fund the construction loan and part of the permanent loan.</p>
 </div></section>
+<script src="../assets/widgets.js" defer></script>
 <script>
 (function(){
 var type=9, $=function(i){return document.getElementById(i)};
 var ids=['tdc','land','units','elig','price','rent','vac','opex','rate','yrs','dscr','soft','def'];
-function v(i){var x=parseFloat($(i).value);return isNaN(x)?0:x}
+function v(i){var x=parseFloat(String($(i).value).replace(/,/g,''));return isNaN(x)?0:x}
 function m(x){var s=Math.round(Math.abs(x)/1000)*1000;return (x<0?'-':'')+'$'+(s>=1e6?(s/1e6).toFixed(2)+'M':(s/1e3).toFixed(0)+'K')}
 function calc(){
  var tdc=v('tdc'),land=v('land'),u=v('units');
@@ -60,7 +61,7 @@ function calc(){
  var rows=[['Eligible basis','('+m(tdc)+' &minus; '+m(land)+' land) &times; '+v('elig')+'%'+(boost>1?' &times; 130% boost':''),m(basis)],
   ['Annual credit',m(basis)+' &times; 100% affordable &times; '+(cr*100)+'%',m(annual)],
   ['Tax credit equity',m(annual)+' &times; 10 years &times; '+v('price')+'&cent;',m(equity)],
-  ['Net operating income',u+' units &times; $'+v('rent')+' &times; 12 &times; '+(100-v('vac'))+'% &minus; '+u+' &times; $'+v('opex'),m(noi)],
+  ['Net operating income',u+' units &times; $'+v('rent')+' &times; 12 &times; '+(100-v('vac'))+'% &minus; '+u+' &times; $'+v('opex').toLocaleString(),m(noi)],
   ['Max debt service',m(noi)+' &divide; '+v('dscr')+' DSCR',m(ds)+'/yr'],
   ['First mortgage','at '+v('rate')+'%, '+v('yrs')+'-year amortization',m(loan)],
   [gap>0?'Gap':'Surplus','cost &minus; all sources',m(Math.abs(gap))]];

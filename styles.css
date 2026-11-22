@@ -169,7 +169,7 @@ a.card-link:hover,a.card-link:focus-visible{transform:translateY(-3px);box-shado
 .calc legend{font-weight:700;padding:0 6px}
 .calc label{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;margin:8px 0}
 .calc label.check{justify-content:flex-start}
-.calc input[type=number],.calc select{width:120px;padding:6px 8px;border:1px solid #b9b2a6;border-radius:4px;font:16px Inter,sans-serif}
+.calc input[type=number],.calc input[data-num],.calc select{width:120px;padding:6px 8px;border:1px solid #b9b2a6;border-radius:4px;font:16px Inter,sans-serif}
 .calc-out{position:sticky;top:96px}
 .headline{font-size:20px;margin-bottom:14px}
 .headline span{color:var(--muted);font-size:16px}
@@ -193,7 +193,7 @@ a.card-link:hover,a.card-link:focus-visible{transform:translateY(-3px);box-shado
 @media (max-width:860px){.calc-grid,.grid.two{grid-template-columns:1fr}.calc-out{position:static}.legend{columns:1}.nav{gap:12px;font-size:14px;overflow-x:auto}.cmp{font-size:14px}}
 .nav a{white-space:nowrap}
 .calc-grid>*,.calc fieldset{min-width:0}
-@media (max-width:860px){.calc input[type=number],.calc select{width:96px;flex:none}.rentbars{gap:6px;height:200px}.rb small{font-size:11px}.rb .col em{font-size:10px}.site-header .wrap{gap:12px}.brand img{width:36px}}
+@media (max-width:860px){.calc input[type=number],.calc input[data-num],.calc select{width:96px;flex:none}.rentbars{gap:6px;height:200px}.rb small{font-size:11px}.rb .col em{font-size:10px}.site-header .wrap{gap:12px}.brand img{width:36px}}
 
 /* widgets */
 .w-widget{background:#fff;border:1px solid var(--line);border-top:4px solid var(--brick);border-radius:6px;padding:18px 20px;margin:16px 0 24px}
@@ -212,3 +212,4 @@ a.card-link:hover,a.card-link:focus-visible{transform:translateY(-3px);box-shado
 .w-tbl td,.w-tbl th{text-align:right;white-space:nowrap}
 #cp .w-pick{flex-direction:column}
 #cp select{width:100%}
+input[data-num]{text-align:right;font-variant-numeric:tabular-nums}

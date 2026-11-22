@@ -53,7 +53,22 @@ function countyLimits(el){
   lvl.addEventListener('change',show);
   countyPicker(el.querySelector('.w-picker'),function(r,s){cur=r;stn=s;show()});
 }
-window.VK={countyPicker:countyPicker,limFor:limFor};
+window.VK=window.VK||{};VK.countyPicker=countyPicker;VK.limFor=limFor;
+/* number inputs with commas: <input type="text" inputmode="decimal" data-num> */
+function fmtNum(el,live){
+  var raw=String(el.value), caret=live&&el.selectionStart!=null?el.selectionStart:null;
+  var before=caret==null?0:raw.slice(0,caret).replace(/[^0-9.]/g,'').length;
+  var neg=/^\s*-/.test(raw), clean=raw.replace(/[^0-9.]/g,''), dot=clean.indexOf('.');
+  var ip=dot<0?clean:clean.slice(0,dot), dp=dot<0?'':'.'+clean.slice(dot+1).replace(/\./g,'');
+  ip=ip.replace(/^0+(?=\d)/,'').replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  var out=(neg?'-':'')+ip+dp; if(out===raw)return; el.value=out;
+  if(caret!=null){var n=0,i=0;for(;i<out.length&&n<before;i++){if(/[0-9.]/.test(out[i]))n++}try{el.setSelectionRange(i,i)}catch(e){}}
+}
+function fmtAll(){document.querySelectorAll('input[data-num]').forEach(function(el){fmtNum(el,false)})}
+document.addEventListener('input',function(e){if(e.target.matches&&e.target.matches('input[data-num]'))fmtNum(e.target,true)});
+window.VK=window.VK||{};VK.fmtAll=fmtAll;VK.num=function(el){return parseFloat(String(el.value).replace(/,/g,''))};
+fmtAll();
+
 document.querySelectorAll('.w-state-budget').forEach(stateBudget);
 document.querySelectorAll('.w-county-limits').forEach(countyLimits);
 })();

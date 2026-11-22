@@ -14,7 +14,7 @@
  {
   "term": "Applicable percentage (credit rate)",
   "id": "applicable-percentage",
-  "def": "The annual credit rate: at least 9% for new competitive deals and at least 4% for bond-financed deals.",
+  "def": "The annual credit rate: at least 9% for new construction and rehab in competitive deals, and at least 4% for bond-financed deals and building acquisitions.",
   "lesson": "9-percent-vs-4-percent"
  },
  {
@@ -164,7 +164,7 @@
  {
   "term": "Placed in service",
   "id": "placed-in-service",
-  "def": "When a building is ready for residents. Starts the credit and compliance clocks.",
+  "def": "When a building is ready for residents. Generally starts the credit and compliance clocks (the owner can choose to start them the next year).",
   "lesson": "deal-deadlines"
  },
  {

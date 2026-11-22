@@ -66,7 +66,7 @@ function calc(){
   ['First mortgage','at '+v('rate')+'%, '+v('yrs')+'-year amortization',m(loan)],
   [gap>0?'Gap':'Surplus','cost &minus; all sources',m(Math.abs(gap))]];
  $('math').innerHTML=rows.map(function(x){return '<tr><td>'+x[0]+'</td><td>'+x[1]+'</td><td>'+x[2]+'</td></tr>'}).join('');
- $('note').innerHTML=type==4?'4% deals also need tax-exempt bonds for at least 25% of building and land cost: about '+m(0.25*(basis0+land))+' here (bonds issued after 2025).':'9% credits are won in a competition, and most states cap the credits one deal can get, so a big 9% award like this one may not be possible.';
+ $('note').innerHTML=type==4?'4% deals also need tax-exempt bonds for at least 25% of the building and land cost: roughly '+m(0.25*tdc)+' here: 25% of total cost, a bit less once reserves and other costs that aren\'t depreciable come out (buildings placed in service after 2025).':'9% credits are won in a competition, and most states cap the credits one deal can get, so a big 9% award like this one may not be possible.';
 }
 document.querySelectorAll('.toggle button').forEach(function(b){b.addEventListener('click',function(){type=+b.dataset.type;document.querySelectorAll('.toggle button').forEach(function(x){x.classList.toggle('on',x===b)});calc()})});
 ids.concat(['boost']).forEach(function(i){$(i).addEventListener('input',calc)});

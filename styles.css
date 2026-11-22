@@ -213,3 +213,5 @@ a.card-link:hover,a.card-link:focus-visible{transform:translateY(-3px);box-shado
 #cp .w-pick{flex-direction:column}
 #cp select{width:100%}
 input[data-num]{text-align:right;font-variant-numeric:tabular-nums}
+.calc input[data-num]{width:150px;flex:none}
+@media (max-width:860px){.calc input[data-num]{width:140px}.calc label{gap:12px}}

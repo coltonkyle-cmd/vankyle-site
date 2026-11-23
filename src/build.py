@@ -30,12 +30,14 @@ def footer(p):
 SITE = 'https://www.vankyleproperties.com'
 GC_CODE = 'vankyle'  # GoatCounter site code: https://vankyle.goatcounter.com
 OG_IMG = 'assets/og-default.png'
+GSV = 'a39eCfTlJxCAAO9445ophKeODE1GGXDesJ9y5xqYO3U'  # Google Search Console ownership tag
 BUILT = []
 def seo(path, title, desc):
     url = SITE + '/' + ('' if path == 'index.html' else path)
     t = H.escape(title, quote=True); d = H.escape(desc, quote=True)
     return f'''<!--seo-->
 <link rel="canonical" href="{url}">
+<meta name="google-site-verification" content="{GSV}">
 <meta property="og:site_name" content="VanKyle Properties">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{d}">

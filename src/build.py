@@ -32,14 +32,14 @@ def signup_form(uid, compact=False):
             f'<button class="btn primary" type="submit">Subscribe</button>'
             f'<p class="signup-msg" role="status" aria-live="polite"></p></form>')
 def signup_card(uid):
-    return (f'<div class="signup-card"><strong>Get new lessons by email</strong>'
-            f'<p>One short email when a new lesson or rule change goes up. Plain English, no spam, unsubscribe anytime.</p>'
+    return (f'<div class="signup-card"><strong>The Deal Desk: a weekly newsletter</strong>'
+            f'<p>One email a week on how affordable housing deals actually get done, with any new lessons and rule changes rolled in. Plain English, no spam, unsubscribe anytime.</p>'
             f'{signup_form(uid)}</div>')
 def footer(p):
     soc = ''.join(f'<a href="{u}">{t}</a>' for u, t in SOCIAL)
     return f'''<footer class="site-footer"><div class="wrap">
   <div><a href="{p}start-here.html">Start here</a><a href="{p}course.html">Course</a><a href="{p}tools.html">Tools</a><a href="{p}glossary.html">Glossary</a><a href="{p}renters.html">Renters</a><a href="{p}sources.html">Sources</a><a href="{p}about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
-  <div class="footer-signup"><strong>Get new lessons by email</strong>{signup_form('footer', compact=True)}</div>
+  <div class="footer-signup"><strong>Get The Deal Desk, my weekly newsletter</strong>{signup_form('footer', compact=True)}</div>
   <div class="social">{soc}</div>
   <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
 </div></footer>

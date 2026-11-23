@@ -8,10 +8,16 @@ TOTAL = len(LESSONS)
 import hashlib
 CSSV = hashlib.md5(open(f'{ROOT}/styles.css','rb').read()).hexdigest()[:8]
 SOCIAL = [("https://www.instagram.com/vankyle_properties/","Instagram"),("https://www.youtube.com/@vankyle_properties","YouTube"),("https://www.facebook.com/VanKyleProp","Facebook"),("https://www.threads.com/@vankyle_properties","Threads"),("https://www.linkedin.com/in/colton-kyle-mba-03282821/","LinkedIn")]
-NAV = [("start-here.html","Start here"),("course.html","Course"),("tools.html","Tools"),("glossary.html","Glossary"),("renters.html","Renters"),("about.html","About")]
+NAV = [("start-here.html","Start here"),("course.html","Course"),("tools.html","Tools")]
+MORE = [("glossary.html","Glossary"),("renters.html","For renters"),("sources.html","Sources"),("about.html","About")]
+NAVJS = "<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-more[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open')})});document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.nav-more[open]').forEach(function(d){d.removeAttribute('open');d.querySelector('summary').focus()})})</script>"
 
 def nav(cur, p):
-    return '<nav class="nav">' + ''.join(f'<a href="{p}{h}"' + (' aria-current="page"' if h == cur else '') + f'>{t}</a>' for h, t in NAV) + '</nav>'
+    a = lambda h, t: f'<a href="{p}{h}"' + (' aria-current="page"' if h == cur else '') + f'>{t}</a>'
+    top = ''.join(a(h, t) for h, t in NAV)
+    on = ' data-current' if any(h == cur for h, _ in MORE) else ''
+    menu = ''.join(a(h, t) for h, t in MORE)
+    return f'<nav class="nav">{top}<details class="nav-more"{on}><summary>More</summary><div class="nav-menu">{menu}</div></details>{NAVJS}</nav>'
 def header(cur, p):
     return f'<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/vk.svg" alt=""><span>VanKyle Properties</span></a>\n  {nav(cur, p)}\n</div></header>'
 def footer(p):
@@ -21,6 +27,28 @@ def footer(p):
   <div class="social">{soc}</div>
   <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
 </div></footer>'''
+SITE = 'https://www.vankyleproperties.com'
+GC_CODE = 'vankyle'  # GoatCounter site code: https://vankyle.goatcounter.com
+OG_IMG = 'assets/og-default.png'
+BUILT = []
+def seo(path, title, desc):
+    url = SITE + '/' + ('' if path == 'index.html' else path)
+    t = H.escape(title, quote=True); d = H.escape(desc, quote=True)
+    return f'''<!--seo-->
+<link rel="canonical" href="{url}">
+<meta property="og:site_name" content="VanKyle Properties">
+<meta property="og:title" content="{t}">
+<meta property="og:description" content="{d}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{SITE}/{OG_IMG}">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LIHTC Explained by VanKyle Properties: how affordable housing actually gets built">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{SITE}/{OG_IMG}">
+<script data-goatcounter="https://{GC_CODE}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<!--/seo-->'''
+
 def page(path, title, desc, cur, body, extra_head=''):
     p = '../' * path.count('/')
     if 'w-widget' in body or 'VK.' in body: extra_head += f'\n<script src="{p}assets/widgets.js" defer></script>'
@@ -31,8 +59,7 @@ def page(path, title, desc, cur, body, extra_head=''):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} | VanKyle Properties</title>
 <meta name="description" content="{H.escape(desc, quote=True)}">
-<meta property="og:title" content="{H.escape(title, quote=True)}">
-<meta property="og:description" content="{H.escape(desc, quote=True)}">
+{seo(path, title, desc)}
 <link rel="icon" type="image/svg+xml" href="{p}assets/vk.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -51,11 +78,19 @@ def page(path, title, desc, cur, body, extra_head=''):
 '''
     os.makedirs(os.path.dirname(f'{ROOT}/{path}') or ROOT, exist_ok=True)
     open(f'{ROOT}/{path}', 'w').write(out)
+    BUILT.append(path)
 
 def strip(s): return H.unescape(re.sub(r'<[^>]+>', '', s))
 def summary(l):
     t = strip(re.search(r'<p>(.*?)</p>', l['body'], re.S).group(1))
     return re.split(r'(?<=[.!?])\s', t)[0]
+def meta_desc(l):
+    t = strip(re.search(r'<p>(.*?)</p>', l['body'], re.S).group(1))
+    parts = re.split(r'(?<=[.!?])\s', t); d = parts[0]
+    for x in parts[1:]:
+        if len(d) >= 70: break
+        d += ' ' + x
+    return d
 def fix_links(s):
     def rep(mo):
         mod, frag = mo.group(1), mo.group(2)
@@ -78,6 +113,11 @@ def terms_for(l):
         if g['lesson'] == l['slug'] or any(re.search(r'\b' + re.escape(k) + r'\b', txt) for k in keys if len(k) > 2):
             out.append(g)
     return out[:10]
+
+# renter call to action (Module 5 + lesson 1.4)
+RENTER_SLUGS = {'who-can-live-there'}
+def renter_cta(p):
+    return f'<div class="callout next-step renter-cta"><b>Renting or looking for a place?</b> The <a href="{p}renters.html">renter page</a> has your county&rsquo;s income and rent limits, links to find tax credit properties near you, and where to get help if something goes wrong. <a href="{p}renters.html">Go to the renter page &rarr;</a></div>'
 
 # lesson pages
 for i, (m, l, j) in enumerate(LESSONS):
@@ -105,6 +145,7 @@ for i, (m, l, j) in enumerate(LESSONS):
   {fix_links(l["body"])}
   {fix_links(l.get("more", ""))}
   {tool}
+  {renter_cta('../') if (m['slug'] == 'living-there' or l['slug'] in RENTER_SLUGS) else ''}
   {'<div class="terms"><strong>Terms in this lesson</strong><ul>' + tl + '</ul></div>' if tl else ''}
   <div class="lesson-sources open"><strong>Sources</strong><ul class="sources">{src}</ul></div>
   {lnav}
@@ -112,7 +153,7 @@ for i, (m, l, j) in enumerate(LESSONS):
   {DISC}
 </div></section>'''
     body = re.sub(r'(<table class="cmp">.*?</table>)', r'<div class="table-wrap">\1</div>', body, flags=re.S)
-    page(f'learn/{l["slug"]}.html', f'{l["title"]} (Lesson {num})', summary(l), 'course.html', body)
+    page(f'learn/{l["slug"]}.html', f'{l["title"]} (Lesson {num})', meta_desc(l), 'course.html', body)
 
 # module overview pages
 for i, m in enumerate(MODS):
@@ -132,6 +173,7 @@ for i, m in enumerate(MODS):
 <section><div class="wrap article">
   <p class="crumbs"><a href="course.html">The course</a> / Module {n}</p>
   <div class="lesson-list">{cards}</div>
+  {renter_cta('') if m['slug'] == 'living-there' else ''}
   <div class="btns"><a class="btn primary" href="learn/{m["lessons"][0]["slug"]}.html">Start lesson {n}.1</a></div>
   {mnav}
   {FOLLOW}
@@ -190,5 +232,20 @@ for f in ['index.html', 'start-here.html', 'about.html']:
     s = re.sub(r'<nav class="nav">.*?</nav>', nav(cur, ''), s, flags=re.S)
     s = re.sub(r'<footer class="site-footer">.*?</footer>', footer(''), s, flags=re.S)
     s = re.sub(r'href="styles\.css(\?v=[^"]*)?"', f'href="styles.css?v={CSSV}"', s)
+    ogt = re.search(r'<meta property="og:title" content="(.*?)"', s); ogd = re.search(r'<meta property="og:description" content="(.*?)"', s)
+    s = re.sub(r'\n?<!--seo-->.*?<!--/seo-->', '', s, flags=re.S)
+    title = H.unescape(ogt.group(1)) if ogt else re.search(r'<title>(.*?)</title>', s).group(1).replace(' | VanKyle Properties', '')
+    desc = H.unescape((ogd or re.search(r'<meta name="description" content="(.*?)"', s)).group(1))
+    s = re.sub(r'\n<meta (property="og:(type|title|description)"|name="twitter:card")[^>]*>', '', s)
+    s = s.replace('</head>', seo(f, title, desc) + '\n</head>', 1)
     open(f'{ROOT}/{f}', 'w').write(s)
+    BUILT.append(f)
+
+# sitemap + robots
+import datetime
+today = datetime.date.today().isoformat()
+urls = sorted(set(BUILT), key=lambda x: (x != 'index.html', x.count('/'), x))
+sm = ''.join(f'<url><loc>{SITE}/{"" if u == "index.html" else u}</loc><lastmod>{today}</lastmod></url>\n' for u in urls)
+open(f'{ROOT}/sitemap.xml', 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sm}</urlset>\n')
+open(f'{ROOT}/robots.txt', 'w').write(f'User-agent: *\nAllow: /\nDisallow: /src/\n\nSitemap: {SITE}/sitemap.xml\n')
 print(TOTAL, 'lessons built')

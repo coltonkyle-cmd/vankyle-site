@@ -37,7 +37,7 @@ GSV = 'a39eCfTlJxCAAO9445ophKeODE1GGXDesJ9y5xqYO3U'  # Google Search Console own
 BUILT = []
 REVIEWED = ('2026-11', 'November 2026')  # bump when lessons are re-checked; a lesson can override with "reviewed": ["YYYY-MM", "Month YYYY"]
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "VanKyle Properties, LLC", "url": SITE + "/", "logo": SITE + "/assets/vk.svg", "email": "colton@vankyleproperties.com", "sameAs": [u for u, _ in SOCIAL[:4]]}
-PERSON = {"@type": "Person", "@id": SITE + "/#colton", "name": "Colton Kyle", "jobTitle": "Real estate developer", "homeLocation": {"@type": "Place", "name": "Shreveport, Louisiana"}, "url": SITE + "/about.html", "sameAs": [SOCIAL[4][0]]}
+PERSON = {"@type": "Person", "@id": SITE + "/#colton", "name": "Colton Kyle", "jobTitle": "Real estate developer", "homeLocation": {"@type": "Place", "name": "Shreveport, Louisiana"}, "url": SITE + "/about.html", "image": SITE + "/assets/colton-kyle.jpg", "sameAs": [SOCIAL[4][0]]}
 def ld(*items):
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": list(items)}, separators=(',', ':')) + '</script>'
 def crumbs_ld(trail):

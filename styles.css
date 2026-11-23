@@ -1,3 +1,7 @@
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Archivo Black";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/archivo-black-latin-400-normal.woff2) format("woff2")}
 :root{
   --ink:#16202A; --ink-2:#1E2A36; --paper:#F3EEE4; --brick:#B9472A; --sand:#E4D6BA; --muted:#5E6B73;
   --line:rgba(22,32,42,.12); --maxw:1080px;
@@ -15,7 +19,8 @@ h3{font-size:20px;letter-spacing:0}
 p{margin:0 0 1em}
 .eyebrow{display:flex;align-items:center;gap:14px;font:600 14px/1 Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);margin-bottom:22px}
 .eyebrow::before{content:"";width:44px;height:3px;background:var(--brick)}
-.eyebrow.dark{color:var(--muted)}
+.eyebrow.dark{color:#4A555C}
+.band a{color:#9E3A20}
 .accent{color:var(--brick)}
 
 /* header */
@@ -246,3 +251,7 @@ body{overflow-x:clip}
 a[href^="mailto:"]{overflow-wrap:anywhere}
 .card{min-width:0}
 html{overflow-x:clip}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--paper);color:var(--ink);padding:10px 16px;font-weight:700;border-radius:4px}
+.skip:focus{left:16px;top:12px;outline:2px solid var(--brick)}
+.reviewed{font-size:15px;color:var(--muted);margin:-4px 0 20px}

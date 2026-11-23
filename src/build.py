@@ -18,8 +18,11 @@ def nav(cur, p):
     on = ' data-current' if any(h == cur for h, _ in MORE) else ''
     menu = ''.join(a(h, t) for h, t in MORE)
     return f'<nav class="nav">{top}<details class="nav-more"{on}><summary>More</summary><div class="nav-menu">{menu}</div></details>{NAVJS}</nav>'
+def fonts(p):
+    return f'<link rel="preload" href="{p}assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="{p}assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
+SKIP = '<a class="skip" href="#main">Skip to content</a>'
 def header(cur, p):
-    return f'<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/vk.svg" alt=""><span>VanKyle Properties</span></a>\n  {nav(cur, p)}\n</div></header>'
+    return SKIP + f'\n<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/vk.svg" alt=""><span>VanKyle Properties</span></a>\n  {nav(cur, p)}\n</div></header>'
 def footer(p):
     soc = ''.join(f'<a href="{u}">{t}</a>' for u, t in SOCIAL)
     return f'''<footer class="site-footer"><div class="wrap">
@@ -32,7 +35,32 @@ GC_CODE = 'vankyle'  # GoatCounter site code: https://vankyle.goatcounter.com
 OG_IMG = 'assets/og-default.png'
 GSV = 'a39eCfTlJxCAAO9445ophKeODE1GGXDesJ9y5xqYO3U'  # Google Search Console ownership tag
 BUILT = []
-def seo(path, title, desc):
+REVIEWED = ('2026-11', 'November 2026')  # bump when lessons are re-checked; a lesson can override with "reviewed": ["YYYY-MM", "Month YYYY"]
+ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "VanKyle Properties, LLC", "url": SITE + "/", "logo": SITE + "/assets/vk.svg", "email": "colton@vankyleproperties.com", "sameAs": [u for u, _ in SOCIAL[:4]]}
+PERSON = {"@type": "Person", "@id": SITE + "/#colton", "name": "Colton Kyle", "jobTitle": "Real estate developer", "homeLocation": {"@type": "Place", "name": "Shreveport, Louisiana"}, "url": SITE + "/about.html", "sameAs": [SOCIAL[4][0]]}
+def ld(*items):
+    return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": list(items)}, separators=(',', ':')) + '</script>'
+def crumbs_ld(trail):
+    return {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + "/" + u} for i, (n, u) in enumerate(trail)]}
+def title_tag(title):
+    t = f'{title} | VanKyle Properties'
+    if len(t) > 60: t = title
+    if len(t) > 60: t = re.sub(r' \(Lesson [\d.]+\)$', '', t)
+    return t
+def fit_desc(d, extra=''):
+    d = re.sub(r'\s+', ' ', d).strip()
+    if len(d) < 70 and extra:
+        for x in re.split(r'(?<=[.!?])\s', re.sub(r'\s+', ' ', extra).strip()):
+            if not x or x in d: continue
+            if len(d) + 1 + len(x) > 160: break
+            d += ' ' + x
+            if len(d) >= 70: break
+        if len(d) < 70: d = re.sub(r'\s+', ' ', extra).strip()
+    if len(d) > 160:
+        cut = d[:158]; cut = cut[:cut.rfind(' ')].rstrip(',;:')
+        d = cut + '…'
+    return d
+def seo(path, title, desc, data=''):
     url = SITE + '/' + ('' if path == 'index.html' else path)
     t = H.escape(title, quote=True); d = H.escape(desc, quote=True)
     return f'''<!--seo-->
@@ -48,29 +76,30 @@ def seo(path, title, desc):
 <meta property="og:image:alt" content="LIHTC Explained by VanKyle Properties: how affordable housing actually gets built">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{SITE}/{OG_IMG}">
+{data}
 <script data-goatcounter="https://{GC_CODE}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <!--/seo-->'''
 
-def page(path, title, desc, cur, body, extra_head=''):
+def page(path, title, desc, cur, body, extra_head='', data=''):
     p = '../' * path.count('/')
+    desc = fit_desc(desc)
     if 'w-widget' in body or 'VK.' in body: extra_head += f'\n<script src="{p}assets/widgets.js" defer></script>'
     out = f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} | VanKyle Properties</title>
+<title>{H.escape(title_tag(title), quote=False)}</title>
 <meta name="description" content="{H.escape(desc, quote=True)}">
-{seo(path, title, desc)}
+{seo(path, title, desc, data)}
 <link rel="icon" type="image/svg+xml" href="{p}assets/vk.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+{fonts(p)}
 <link rel="stylesheet" href="{p}styles.css?v={CSSV}">{extra_head}
 </head>
 <body>
 {header(cur, p)}
 
-<main>
+<main id="main">
 {body}
 </main>
 
@@ -92,7 +121,7 @@ def meta_desc(l):
     for x in parts[1:]:
         if len(d) >= 70: break
         d += ' ' + x
-    return d
+    return fit_desc(d, strip(l['body']))
 def fix_links(s):
     def rep(mo):
         mod, frag = mo.group(1), mo.group(2)
@@ -130,6 +159,7 @@ for i, (m, l, j) in enumerate(LESSONS):
         tt, td = TOOLINFO[l['tool']]
         tool = f'<a class="tool-cta" href="../tools/{l["tool"]}.html"><small>Try it</small><strong>{tt} &rarr;</strong><span>{td}</span></a>'
     terms = terms_for(l)
+    rv = l.get('reviewed', REVIEWED)
     tl = ''.join(f'<li><a href="../glossary.html#{g["id"]}">{g["term"]}</a></li>' for g in terms)
     src = ''.join(f'<li>{s}</li>' for s in l['sources'])
     lnav = '<nav class="module-nav">'
@@ -144,6 +174,7 @@ for i, (m, l, j) in enumerate(LESSONS):
 
 <section><div class="wrap article lesson-page">
   <p class="crumbs"><a href="../course.html">The course</a> / <a href="../{m["slug"]}.html">Module {n}: {m["title"]}</a> / Lesson {num}</p>
+  <p class="reviewed">Last reviewed <time datetime="{rv[0]}">{rv[1]}</time></p>
   {fix_links(l["body"])}
   {fix_links(l.get("more", ""))}
   {tool}
@@ -155,7 +186,10 @@ for i, (m, l, j) in enumerate(LESSONS):
   {DISC}
 </div></section>'''
     body = re.sub(r'(<table class="cmp">.*?</table>)', r'<div class="table-wrap">\1</div>', body, flags=re.S)
-    page(f'learn/{l["slug"]}.html', f'{l["title"]} (Lesson {num})', meta_desc(l), 'course.html', body)
+    url = f'learn/{l["slug"]}.html'
+    art = {"@type": "Article", "headline": l["title"], "description": meta_desc(l), "dateModified": rv[0], "inLanguage": "en", "url": f'{SITE}/{url}', "author": {"@id": PERSON["@id"]}, "publisher": {"@id": ORG["@id"]}, "image": f'{SITE}/{OG_IMG}', "isAccessibleForFree": True}
+    data = ld(art, crumbs_ld([("The course", "course.html"), (f'Module {n}: {strip(m["title"])}', f'{m["slug"]}.html'), (l["title"], url)]), PERSON, ORG)
+    page(url, f'{l["title"]} (Lesson {num})', meta_desc(l), 'course.html', body, data=data)
 
 # module overview pages
 for i, m in enumerate(MODS):
@@ -180,7 +214,7 @@ for i, m in enumerate(MODS):
   {mnav}
   {FOLLOW}
 </div></section>'''
-    page(f'{m["slug"]}.html', f'Module {n}: {m["title"]}', strip(m['blurb']), 'course.html', body)
+    page(f'{m["slug"]}.html', f'Module {n}: {m["title"]}', strip(m['blurb']), 'course.html', body, data=ld(crumbs_ld([("The course", "course.html"), (f'Module {n}: {strip(m["title"])}', f'{m["slug"]}.html')])))
 
 # course index
 cards = ''
@@ -197,13 +231,13 @@ body = f'''<div class="page-hero"><div class="wrap">
   <div class="module-grid">{cards}</div>
   {FOLLOW}
 </div></section>'''
-page('course.html', 'The LIHTC Course', f'A free {TOTAL}-lesson course on the Low-Income Housing Tax Credit: how credits are sized, how deals are won and financed, what renters should know, and what happens after year 15.', 'course.html', body)
+page('course.html', 'The LIHTC Course', f'A free {TOTAL}-lesson LIHTC course: how credits are sized, how deals are won and financed, what renters should know, and what happens after year 15.', 'course.html', body)
 
 # glossary
 letters = sorted({g['term'][0].upper() for g in GLOS})
 items = ''.join(f'<div class="gterm" id="{g["id"]}"><dt>{g["term"]}</dt><dd>{g["def"]} <a href="learn/{g["lesson"]}.html">Lesson: {BYSLUG[g["lesson"]][1]["title"]} &rarr;</a></dd></div>' for g in GLOS)
 body = f'''<div class="page-hero"><div class="wrap"><div class="eyebrow">Glossary</div><h1>Affordable housing terms</h1><p>{len(GLOS)} terms you'll run into, each in a sentence or two, with a link to the lesson that explains it.</p></div></div>
-<section><div class="wrap article"><dl class="glossary">{items}</dl>{DISC}</div></section>'''
+<section><div class="wrap article"><p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p><dl class="glossary">{items}</dl>{DISC}</div></section>'''
 page('glossary.html', 'Glossary of LIHTC and affordable housing terms', 'Plain-English definitions of LIHTC and affordable housing terms: AMI, eligible basis, QAP, QCT, DDA, recapture, Year 15 and more.', 'glossary.html', body)
 
 # sources library
@@ -214,6 +248,7 @@ ks = ''.join(f'<h3>{grp}</h3><ul class="sources">' + ''.join(f'<li><a href="{u}"
 by = ''.join(f'<li><a href="learn/{l["slug"]}.html">{m["num"]}.{j+1} {l["title"]}</a><ul>' + ''.join(f'<li>{s}</li>' for s in l['sources']) + '</ul></li>' for m, l, j in LESSONS)
 body = f'''<div class="page-hero"><div class="wrap"><div class="eyebrow">Sources</div><h1>Sources and updates</h1><p>Where the numbers and rules on this site come from, and what's changed recently.</p></div></div>
 <section><div class="wrap article">
+<p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p>
 <h2 id="changes">What changed</h2><ul class="changes">{ch}</ul>
 <h2 id="primary">Primary sources</h2>{ks}
 <h2 id="by-lesson">Sources by lesson</h2><ul class="sources by-lesson">{by}</ul>
@@ -225,6 +260,8 @@ for fn in sorted(os.listdir(f'{SRC}/pages')):
     raw = open(f'{SRC}/pages/{fn}').read()
     meta, body = raw.split('\n---\n', 1)
     meta = json.loads(meta)
+    if meta['path'].startswith('tools/'):
+        body = re.sub(r'(<section><div class="wrap[^"]*">)', r'\1' + f'<p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p>', body, count=1)
     page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''))
 
 # patch nav/footer on hand-written pages
@@ -234,12 +271,16 @@ for f in ['index.html', 'start-here.html', 'about.html']:
     s = re.sub(r'<nav class="nav">.*?</nav>', nav(cur, ''), s, flags=re.S)
     s = re.sub(r'<footer class="site-footer">.*?</footer>', footer(''), s, flags=re.S)
     s = re.sub(r'href="styles\.css(\?v=[^"]*)?"', f'href="styles.css?v={CSSV}"', s)
+    s = re.sub(r'<link rel="preconnect" href="https://fonts\.googleapis\.com">.*?rel="stylesheet">|<link rel="preload" href="assets/fonts/inter.*?crossorigin><link rel="preload" href="assets/fonts/archivo.*?crossorigin>', fonts(''), s, count=1, flags=re.S)
+    if SKIP not in s: s = s.replace('<body>\n', '<body>\n' + SKIP + '\n', 1)
+    s = s.replace('<main>', '<main id="main">', 1)
     ogt = re.search(r'<meta property="og:title" content="(.*?)"', s); ogd = re.search(r'<meta property="og:description" content="(.*?)"', s)
     s = re.sub(r'\n?<!--seo-->.*?<!--/seo-->', '', s, flags=re.S)
     title = H.unescape(ogt.group(1)) if ogt else re.search(r'<title>(.*?)</title>', s).group(1).replace(' | VanKyle Properties', '')
     desc = H.unescape((ogd or re.search(r'<meta name="description" content="(.*?)"', s)).group(1))
     s = re.sub(r'\n<meta (property="og:(type|title|description)"|name="twitter:card")[^>]*>', '', s)
-    s = s.replace('</head>', seo(f, title, desc) + '\n</head>', 1)
+    data = {'index.html': ld({"@type": "WebSite", "@id": SITE + "/#site", "name": "VanKyle Properties", "url": SITE + "/", "publisher": {"@id": ORG["@id"]}}, ORG, PERSON), 'about.html': ld({"@type": "ProfilePage", "url": SITE + "/about.html", "mainEntity": {"@id": PERSON["@id"]}}, PERSON, ORG)}.get(f, '')
+    s = s.replace('</head>', seo(f, title, desc, data) + '\n</head>', 1)
     open(f'{ROOT}/{f}', 'w').write(s)
     BUILT.append(f)
 

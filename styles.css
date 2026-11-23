@@ -255,3 +255,5 @@ html{overflow-x:clip}
 .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--paper);color:var(--ink);padding:10px 16px;font-weight:700;border-radius:4px}
 .skip:focus{left:16px;top:12px;outline:2px solid var(--brick)}
 .reviewed{font-size:15px;color:var(--muted);margin:-4px 0 20px}
+.programs{padding-left:20px}
+.programs li{margin-bottom:10px}

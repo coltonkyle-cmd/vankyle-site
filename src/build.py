@@ -23,13 +23,27 @@ def fonts(p):
 SKIP = '<a class="skip" href="#main">Skip to content</a>'
 def header(cur, p):
     return SKIP + f'\n<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/vk.svg" alt=""><span>VanKyle Properties</span></a>\n  {nav(cur, p)}\n</div></header>'
+KIT_FORM = 'https://app.kit.com/forms/10232563/subscriptions'  # Kit form "Website signup (vankyleproperties.com)"
+SIGNUP_JS = "<script>document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('signup-form'))return;e.preventDefault();var m=f.querySelector('.signup-msg'),b=f.querySelector('button');b.disabled=true;fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(d){if(!d||d.status!=='success')throw 0;f.classList.add('done');m.textContent='Almost done: check your inbox and click the link to confirm.'}).catch(function(){b.disabled=false;m.textContent='That didn\\'t go through. Please try again, or email colton@vankyleproperties.com.'})})</script>"
+def signup_form(uid, compact=False):
+    return (f'<form class="signup-form{" compact" if compact else ""}" action="{KIT_FORM}" method="post">'
+            f'<label class="sr-only" for="su-{uid}">Email address</label>'
+            f'<input id="su-{uid}" type="email" name="email_address" placeholder="you@example.com" autocomplete="email" required>'
+            f'<button class="btn primary" type="submit">Subscribe</button>'
+            f'<p class="signup-msg" role="status" aria-live="polite"></p></form>')
+def signup_card(uid):
+    return (f'<div class="signup-card"><strong>The Deal Desk newsletter</strong>'
+            f'<p>Short emails on how affordable housing deals actually get done, with new lessons and rule changes rolled in. Plain English, no spam, unsubscribe anytime.</p>'
+            f'{signup_form(uid)}</div>')
 def footer(p):
     soc = ''.join(f'<a href="{u}">{t}</a>' for u, t in SOCIAL)
     return f'''<footer class="site-footer"><div class="wrap">
   <div><a href="{p}start-here.html">Start here</a><a href="{p}course.html">Course</a><a href="{p}tools.html">Tools</a><a href="{p}glossary.html">Glossary</a><a href="{p}renters.html">Renters</a><a href="{p}sources.html">Sources</a><a href="{p}about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
+  <div class="footer-signup"><strong>Get The Deal Desk, my newsletter</strong>{signup_form('footer', compact=True)}</div>
   <div class="social">{soc}</div>
   <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
-</div></footer>'''
+</div></footer>
+''' + SIGNUP_JS
 SITE = 'https://www.vankyleproperties.com'
 GC_CODE = 'vankyle'  # GoatCounter site code: https://vankyle.goatcounter.com
 OG_IMG = 'assets/og-default.png'
@@ -182,6 +196,7 @@ for i, (m, l, j) in enumerate(LESSONS):
   {'<div class="terms"><strong>Terms in this lesson</strong><ul>' + tl + '</ul></div>' if tl else ''}
   <div class="lesson-sources open"><strong>Sources</strong><ul class="sources">{src}</ul></div>
   {lnav}
+  {signup_card('lesson')}
   {FOLLOW}
   {DISC}
 </div></section>'''
@@ -269,11 +284,14 @@ for f in ['index.html', 'start-here.html', 'about.html']:
     s = open(f'{ROOT}/{f}').read()
     cur = 'start-here.html' if f == 'start-here.html' else ('about.html' if f == 'about.html' else '')
     s = re.sub(r'<nav class="nav">.*?</nav>', nav(cur, ''), s, flags=re.S)
-    s = re.sub(r'<footer class="site-footer">.*?</footer>', footer(''), s, flags=re.S)
+    s = re.sub(r'<footer class="site-footer">.*?</footer>(\n<script>document\.addEventListener\(\'submit\'.*?</script>)*', lambda m: footer(''), s, flags=re.S)
     s = re.sub(r'href="styles\.css(\?v=[^"]*)?"', f'href="styles.css?v={CSSV}"', s)
     s = re.sub(r'<link rel="preconnect" href="https://fonts\.googleapis\.com">.*?rel="stylesheet">|<link rel="preload" href="assets/fonts/inter.*?crossorigin><link rel="preload" href="assets/fonts/archivo.*?crossorigin>', fonts(''), s, count=1, flags=re.S)
     if SKIP not in s: s = s.replace('<body>\n', '<body>\n' + SKIP + '\n', 1)
     s = s.replace('<main>', '<main id="main">', 1)
+    if f == 'index.html':
+        s = re.sub(r'\n?<section class="signup-band">.*?</section>', '', s, flags=re.S)
+        s = s.replace('\n</main>', '\n<section class="signup-band"><div class="wrap">' + signup_card('home') + '</div></section>\n</main>', 1)
     ogt = re.search(r'<meta property="og:title" content="(.*?)"', s); ogd = re.search(r'<meta property="og:description" content="(.*?)"', s)
     s = re.sub(r'\n?<!--seo-->.*?<!--/seo-->', '', s, flags=re.S)
     title = H.unescape(ogt.group(1)) if ogt else re.search(r'<title>(.*?)</title>', s).group(1).replace(' | VanKyle Properties', '')

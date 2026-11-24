@@ -159,6 +159,58 @@ def terms_for(l):
             out.append(g)
     return out[:10]
 
+# glossary pop-ups: first mention of each glossary term in a lesson becomes a link with a hover/tap definition
+def _gl_keys(g):
+    short = re.sub(r'\s*\(.*?\)', '', g['term']).strip()
+    abbr = re.search(r'\((.*?)\)', g['term'])
+    ks = [short] + ([abbr.group(1)] if abbr else [])
+    out = []
+    for k in ks:
+        cs = k == k.upper()  # acronyms (AMI, HOME, GP) match exact case only
+        out.append(re.compile(r'(?<![\w-])(' + re.escape(k) + r'(?:s|es)?)(?![\w-])', 0 if cs else re.I))
+    return out
+GL_KEYS = sorted(((len(k.pattern), k, g) for g in GLOS for k in _gl_keys(g)), key=lambda x: -x[0])
+GL_SKIP = {'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'button', 'code', 'script', 'style', 'summary', 'label', 'select', 'option', 'textarea', 'th'}
+def gloss_link(s, p='../'):
+    done = set()
+    for _, rx, g in GL_KEYS:
+        if g['id'] in done: continue
+        parts = re.split(r'(<[^>]+>)', s); depth = 0; hit = False
+        for i, t in enumerate(parts):
+            if t.startswith('<'):
+                m = re.match(r'<(/?)([a-zA-Z0-9]+)', t)
+                if m and m.group(2).lower() in GL_SKIP and not t.endswith('/>'):
+                    depth += -1 if m.group(1) else 1
+                continue
+            if depth or hit: continue
+            mo = rx.search(t)
+            if not mo: continue
+            a = (f'<a class="gl" href="{p}glossary.html#{g["id"]}" data-t="{H.escape(g["term"], quote=True)}" '
+                 f'data-d="{H.escape(g["def"], quote=True)}">{mo.group(1)}</a>')
+            parts[i] = t[:mo.start()] + a + t[mo.end():]; hit = True
+        if hit:
+            done.add(g['id']); s = ''.join(parts)
+    return s
+GLOSS_JS = """<script>(function(){var tip,cur,ht,st,pd=0,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+function mk(){tip=document.createElement('div');tip.className='gl-tip';tip.id='gl-tip';tip.setAttribute('role','tooltip');tip.hidden=true;document.body.appendChild(tip);
+tip.addEventListener('mouseenter',function(){clearTimeout(ht)});tip.addEventListener('mouseleave',hideSoon)}
+function show(a){if(!tip)mk();clearTimeout(ht);if(cur===a&&!tip.hidden)return;cur=a;tip.innerHTML='';
+var b=document.createElement('strong');b.textContent=a.dataset.t;var d=document.createElement('p');d.textContent=a.dataset.d;
+var l=document.createElement('a');l.href=a.href;l.textContent='Full glossary entry \\u2192';tip.append(b,d,l);tip.hidden=false;a.setAttribute('aria-describedby','gl-tip');
+var r=a.getBoundingClientRect(),w=Math.min(320,innerWidth-24);tip.style.width=w+'px';
+var x=Math.max(12,Math.min(r.left+r.width/2-w/2,innerWidth-w-12)),h=tip.offsetHeight,y=r.bottom+8;
+if(y+h>innerHeight-8&&r.top-h-8>8)y=r.top-h-8;tip.style.left=(x+scrollX)+'px';tip.style.top=(y+scrollY)+'px'}
+function hide(){if(tip){tip.hidden=true}if(cur){cur.removeAttribute('aria-describedby');cur=null}}
+function hideSoon(){clearTimeout(st);ht=setTimeout(hide,180)}
+document.addEventListener('mouseover',function(e){if(!fine)return;var a=e.target.closest&&e.target.closest('a.gl');if(a){clearTimeout(st);st=setTimeout(function(){show(a)},120)}});
+document.addEventListener('mouseout',function(e){if(!fine)return;var a=e.target.closest&&e.target.closest('a.gl');if(a&&!a.contains(e.relatedTarget)){clearTimeout(st);hideSoon()}});
+document.addEventListener('pointerdown',function(){pd=Date.now()},true);
+document.addEventListener('focusin',function(e){if(Date.now()-pd<600)return;var a=e.target.closest&&e.target.closest('a.gl');if(a)show(a);else if(!(tip&&tip.contains(e.target)))hide()});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a.gl');
+if(a&&!fine){if(cur!==a||!tip||tip.hidden){e.preventDefault();show(a)}return}if(tip&&!tip.contains(e.target))hide()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cur){var a=cur;hide();a.focus()}});
+addEventListener('scroll',function(){if(cur&&!fine)hide()},{passive:true});addEventListener('resize',hide)})()</script>"""
+
 # renter call to action (Module 5 + lesson 1.4)
 RENTER_SLUGS = {'who-can-live-there'}
 def renter_cta(p):
@@ -174,7 +226,7 @@ for i, (m, l, j) in enumerate(LESSONS):
         tool = f'<a class="tool-cta" href="../tools/{l["tool"]}.html"><small>Try it</small><strong>{tt} &rarr;</strong><span>{td}</span></a>'
     terms = terms_for(l)
     rv = l.get('reviewed', REVIEWED)
-    tl = ''.join(f'<li><a href="../glossary.html#{g["id"]}">{g["term"]}</a></li>' for g in terms)
+    tl = ''.join(f'<li><a class="gl" href="../glossary.html#{g["id"]}" data-t="{H.escape(g["term"], quote=True)}" data-d="{H.escape(g["def"], quote=True)}">{g["term"]}</a></li>' for g in terms)
     src = ''.join(f'<li>{s}</li>' for s in l['sources'])
     lnav = '<nav class="module-nav">'
     lnav += f'<a class="prev" href="{prev[1]["slug"]}.html"><small>&larr; Lesson {prev[0]["num"]}.{prev[2]+1}</small>{prev[1]["title"]}</a>' if prev else '<a class="prev" href="../course.html"><small>&larr; Back to</small>The course</a>'
@@ -189,8 +241,7 @@ for i, (m, l, j) in enumerate(LESSONS):
 <section><div class="wrap article lesson-page">
   <p class="crumbs"><a href="../course.html">The course</a> / <a href="../{m["slug"]}.html">Module {n}: {m["title"]}</a> / Lesson {num}</p>
   <p class="reviewed">Last reviewed <time datetime="{rv[0]}">{rv[1]}</time></p>
-  {fix_links(l["body"])}
-  {fix_links(l.get("more", ""))}
+  {gloss_link(fix_links(l["body"]) + "\n  " + fix_links(l.get("more", "")))}
   {tool}
   {renter_cta('../') if (m['slug'] == 'living-there' or l['slug'] in RENTER_SLUGS) else ''}
   {'<div class="terms"><strong>Terms in this lesson</strong><ul>' + tl + '</ul></div>' if tl else ''}
@@ -199,7 +250,7 @@ for i, (m, l, j) in enumerate(LESSONS):
   {signup_card('lesson')}
   {FOLLOW}
   {DISC}
-</div></section>'''
+</div></section>{GLOSS_JS}'''
     body = re.sub(r'(<table class="cmp">.*?</table>)', r'<div class="table-wrap">\1</div>', body, flags=re.S)
     url = f'learn/{l["slug"]}.html'
     art = {"@type": "Article", "headline": l["title"], "description": meta_desc(l), "dateModified": rv[0], "inLanguage": "en", "url": f'{SITE}/{url}', "author": {"@id": PERSON["@id"]}, "publisher": {"@id": ORG["@id"]}, "image": f'{SITE}/{OG_IMG}', "isAccessibleForFree": True}

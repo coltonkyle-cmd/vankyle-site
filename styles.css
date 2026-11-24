@@ -272,3 +272,13 @@ html{overflow-x:clip}
 .footer-signup{display:block!important;max-width:520px}
 .footer-signup strong{display:block;color:var(--paper);margin-bottom:8px}
 .footer-signup .signup-msg{color:var(--paper)}
+
+/* glossary pop-ups (first mention of a term in a lesson) */
+a.gl{color:inherit;text-decoration:underline dotted var(--brick);text-decoration-thickness:2px;text-underline-offset:3px;cursor:help}
+a.gl:hover,a.gl:focus-visible{color:var(--brick)}
+.terms a.gl{color:var(--brick);text-decoration:none;cursor:pointer}
+.gl-tip{position:absolute;z-index:30;max-width:calc(100vw - 24px);background:var(--ink);color:var(--paper);border-radius:10px;padding:12px 14px;font-size:15px;line-height:1.45;box-shadow:0 8px 24px rgba(22,32,42,.25)}
+.gl-tip strong{display:block;font-size:15px;margin-bottom:4px}
+.gl-tip p{margin:0 0 8px;color:#E9E2D4}
+.gl-tip a{color:var(--sand);font-size:14px}
+@media print{.gl-tip{display:none}}

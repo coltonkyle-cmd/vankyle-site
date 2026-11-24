@@ -299,3 +299,12 @@ a.gl:hover,a.gl:focus-visible{color:var(--brick)}
 .nl-pop .signup-form input{flex:1 1 140px;padding:11px 12px}
 @media (prefers-reduced-motion:reduce){.nl-pop{transition:none}}
 @media print{.nl-pop{display:none!important}}
+
+/* "keep going" card with buttons (build.py cta_card(); start-here) */
+.cta-card{background:var(--ink);color:var(--paper);border-radius:8px;padding:30px 28px;margin:48px 0 24px}
+.cta-eyebrow{font:600 13px/1.3 Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-bottom:12px}
+.cta-card .cta-title{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:28px;line-height:1.1;margin:0 0 12px;color:var(--paper)}
+.cta-card p{color:#D9D2C4;margin:0 0 22px;font-size:17px}
+.cta-card a:not(.btn){color:var(--sand)}
+.cta-btns{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:560px){.cta-card{padding:24px 20px}.cta-card .cta-title{font-size:24px}.cta-btns .btn{flex:1 1 100%;text-align:center}}

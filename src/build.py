@@ -44,6 +44,11 @@ def popup():
             f'<strong id="nl-pop-t">Get the {NL_NAME} newsletter</strong>'
             f'<p>How affordable housing deals actually get done, in plain English, with new lessons and rule changes rolled in. No spam, unsubscribe anytime.</p>'
             f'{signup_form("pop")}</aside>' + POPUP_JS)
+def cta_card(eyebrow, title, text, primary, secondary=None):
+    # Dark "keep going" card with buttons. primary/secondary = (href, label).
+    b2 = f'<a class="btn ghost" href="{secondary[0]}">{secondary[1]}</a>' if secondary else ''
+    return (f'<div class="cta-card"><div class="cta-eyebrow">{eyebrow}</div><p class="cta-title">{title}</p><p>{text}</p>'
+            f'<div class="cta-btns"><a class="btn primary" href="{primary[0]}">{primary[1]}</a>{b2}</div></div>')
 def footer(p):
     soc = ''.join(f'<a href="{u}">{t}</a>' for u, t in SOCIAL)
     return f'''<footer class="site-footer"><div class="wrap">
@@ -237,6 +242,14 @@ for i, (m, l, j) in enumerate(LESSONS):
     rv = l.get('reviewed', REVIEWED)
     tl = ''.join(f'<li><a class="gl" href="../glossary.html#{g["id"]}" data-t="{H.escape(g["term"], quote=True)}" data-d="{H.escape(g["def"], quote=True)}">{g["term"]}</a></li>' for g in terms)
     src = ''.join(f'<li>{s}</li>' for s in l['sources'])
+    endcard = ''
+    if j == len(m['lessons']) - 1:
+        mi = MODS.index(m)
+        if mi < len(MODS) - 1:
+            nm = MODS[mi + 1]
+            endcard = cta_card(f'You finished Module {n}', f'Next up: Module {nm["num"]}, {nm["title"]}', nm['blurb'], (f'../{nm["slug"]}.html', f'Start Module {nm["num"]} &rarr;'), ('../course.html', 'All modules'))
+        else:
+            endcard = cta_card('You finished the course', 'Keep it handy', 'The tools and glossary are here whenever a deal question comes up, and new lessons and rule changes go out in the LIHTC Explained newsletter.', ('../tools.html', 'Try the tools &rarr;'), ('../glossary.html', 'Glossary'))
     lnav = '<nav class="module-nav">'
     lnav += f'<a class="prev" href="{prev[1]["slug"]}.html"><small>&larr; Lesson {prev[0]["num"]}.{prev[2]+1}</small>{prev[1]["title"]}</a>' if prev else '<a class="prev" href="../course.html"><small>&larr; Back to</small>The course</a>'
     lnav += f'<a class="next" href="{nxt[1]["slug"]}.html"><small>Lesson {nxt[0]["num"]}.{nxt[2]+1} &rarr;</small>{nxt[1]["title"]}</a>' if nxt else '<a class="next" href="../course.html"><small>Done &rarr;</small>The course</a>'
@@ -255,6 +268,7 @@ for i, (m, l, j) in enumerate(LESSONS):
   {renter_cta('../') if (m['slug'] == 'living-there' or l['slug'] in RENTER_SLUGS) else ''}
   {'<div class="terms"><strong>Terms in this lesson</strong><ul>' + tl + '</ul></div>' if tl else ''}
   <div class="lesson-sources open"><strong>Sources</strong><ul class="sources">{src}</ul></div>
+  {endcard}
   {lnav}
   {signup_card('lesson')}
   {FOLLOW}
@@ -285,7 +299,7 @@ for i, m in enumerate(MODS):
   <p class="crumbs"><a href="course.html">The course</a> / Module {n}</p>
   <div class="lesson-list">{cards}</div>
   {renter_cta('') if m['slug'] == 'living-there' else ''}
-  <div class="btns"><a class="btn primary" href="learn/{m["lessons"][0]["slug"]}.html">Start lesson {n}.1</a></div>
+  {cta_card(f'Module {n} &middot; {len(m["lessons"])} short lessons', f'Start with lesson {n}.1', f'First up: {m["lessons"][0]["title"]}. Each lesson is a few minutes, with sources at the bottom.', (f'learn/{m["lessons"][0]["slug"]}.html', f'Start lesson {n}.1 &rarr;'), (f'{nxt["slug"]}.html', f'Skip to Module {nxt["num"]}') if nxt else ('course.html', 'All modules'))}
   {mnav}
   {FOLLOW}
 </div></section>'''

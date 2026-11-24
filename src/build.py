@@ -23,6 +23,7 @@ def fonts(p):
 SKIP = '<a class="skip" href="#main">Skip to content</a>'
 def header(cur, p):
     return SKIP + f'\n<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/vk.svg" alt=""><span>VanKyle Properties</span></a>\n  {nav(cur, p)}\n</div></header>'
+NL_NAME = 'The Deal Desk'  # newsletter name: change here and it updates the signup card, footer and pop-up
 KIT_FORM = 'https://app.kit.com/forms/10232563/subscriptions'  # Kit form "Website signup (vankyleproperties.com)"
 SIGNUP_JS = "<script>document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('signup-form'))return;e.preventDefault();var m=f.querySelector('.signup-msg'),b=f.querySelector('button');b.disabled=true;fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(d){if(!d||d.status!=='success')throw 0;f.classList.add('done');m.textContent='Almost done: check your inbox and click the link to confirm.'}).catch(function(){b.disabled=false;m.textContent='That didn\\'t go through. Please try again, or email colton@vankyleproperties.com.'})})</script>"
 def signup_form(uid, compact=False):
@@ -32,14 +33,22 @@ def signup_form(uid, compact=False):
             f'<button class="btn primary" type="submit">Subscribe</button>'
             f'<p class="signup-msg" role="status" aria-live="polite"></p></form>')
 def signup_card(uid):
-    return (f'<div class="signup-card"><strong>The Deal Desk newsletter</strong>'
+    return (f'<div class="signup-card"><strong>{NL_NAME} newsletter</strong>'
             f'<p>Short emails on how affordable housing deals actually get done, with new lessons and rule changes rolled in. Plain English, no spam, unsubscribe anytime.</p>'
             f'{signup_form(uid)}</div>')
+POPUP_JS = "<script>(function(){var K='vk_nl_pop',el=document.getElementById('nl-pop');if(!el)return;try{var v=localStorage.getItem(K);if(v&&(v==='subscribed'||Date.now()-Number(v)<2592e6))return}catch(e){}var shown=false,t;function seen(){var c=document.querySelector('main .signup-card'),r=c&&c.getBoundingClientRect();return !!(r&&r.top<innerHeight&&r.bottom>0)}function show(){if(shown)return;if(seen()){shown=true;clearTimeout(t);removeEventListener('scroll',sc);return}shown=true;clearTimeout(t);removeEventListener('scroll',sc);el.hidden=false;addEventListener('scroll',sc2,{passive:true});requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('in')})})}function sc(){var h=document.documentElement;if((h.scrollTop+innerHeight)/h.scrollHeight>=0.6)show()}function sc2(){if(seen()&&!el.contains(document.activeElement)){removeEventListener('scroll',sc2);el.classList.remove('in');setTimeout(function(){el.hidden=true},250)}}function hide(){removeEventListener('scroll',sc2);el.classList.remove('in');setTimeout(function(){el.hidden=true},250);try{localStorage.setItem(K,String(Date.now()))}catch(e){}}t=setTimeout(show,40000);addEventListener('scroll',sc,{passive:true});el.querySelector('.nl-pop-x').addEventListener('click',hide);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!el.hidden)hide()});document.addEventListener('submit',function(e){var f=e.target;if(f.classList&&f.classList.contains('signup-form')){try{localStorage.setItem(K,'subscribed')}catch(x){}}})})()</script>"
+def popup():
+    # Slide-in newsletter card: shows once per visitor after 60% scroll or 40 seconds; skipped (or tucked away) on a page when the inline signup card is on screen; closed = hidden 30 days; subscribed = never again.
+    return (f'<aside class="nl-pop" id="nl-pop" role="dialog" aria-labelledby="nl-pop-t" hidden>'
+            f'<button class="nl-pop-x" type="button" aria-label="Close">&times;</button>'
+            f'<strong id="nl-pop-t">Get {NL_NAME}</strong>'
+            f'<p>How affordable housing deals actually get done, in plain English, with new lessons and rule changes rolled in. No spam, unsubscribe anytime.</p>'
+            f'{signup_form("pop")}</aside>' + POPUP_JS)
 def footer(p):
     soc = ''.join(f'<a href="{u}">{t}</a>' for u, t in SOCIAL)
     return f'''<footer class="site-footer"><div class="wrap">
   <div><a href="{p}start-here.html">Start here</a><a href="{p}course.html">Course</a><a href="{p}tools.html">Tools</a><a href="{p}glossary.html">Glossary</a><a href="{p}renters.html">Renters</a><a href="{p}sources.html">Sources</a><a href="{p}about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
-  <div class="footer-signup"><strong>Get The Deal Desk, my newsletter</strong>{signup_form('footer', compact=True)}</div>
+  <div class="footer-signup"><strong>Get {NL_NAME}, my newsletter</strong>{signup_form('footer', compact=True)}</div>
   <div class="social">{soc}</div>
   <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
 </div></footer>
@@ -94,7 +103,7 @@ def seo(path, title, desc, data=''):
 <script data-goatcounter="https://{GC_CODE}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <!--/seo-->'''
 
-def page(path, title, desc, cur, body, extra_head='', data=''):
+def page(path, title, desc, cur, body, extra_head='', data='', pop=True):
     p = '../' * path.count('/')
     desc = fit_desc(desc)
     if 'w-widget' in body or 'VK.' in body: extra_head += f'\n<script src="{p}assets/widgets.js" defer></script>'
@@ -117,7 +126,7 @@ def page(path, title, desc, cur, body, extra_head='', data=''):
 {body}
 </main>
 
-{footer(p)}
+{footer(p)}{popup() if pop else ''}
 </body>
 </html>
 '''
@@ -204,7 +213,7 @@ for i, (m, l, j) in enumerate(LESSONS):
     url = f'learn/{l["slug"]}.html'
     art = {"@type": "Article", "headline": l["title"], "description": meta_desc(l), "dateModified": rv[0], "inLanguage": "en", "url": f'{SITE}/{url}', "author": {"@id": PERSON["@id"]}, "publisher": {"@id": ORG["@id"]}, "image": f'{SITE}/{OG_IMG}', "isAccessibleForFree": True}
     data = ld(art, crumbs_ld([("The course", "course.html"), (f'Module {n}: {strip(m["title"])}', f'{m["slug"]}.html'), (l["title"], url)]), PERSON, ORG)
-    page(url, f'{l["title"]} (Lesson {num})', meta_desc(l), 'course.html', body, data=data)
+    page(url, f'{l["title"]} (Lesson {num})', meta_desc(l), 'course.html', body, data=data, pop=m['slug'] != 'living-there' and l['slug'] not in RENTER_SLUGS)
 
 # module overview pages
 for i, m in enumerate(MODS):
@@ -229,7 +238,7 @@ for i, m in enumerate(MODS):
   {mnav}
   {FOLLOW}
 </div></section>'''
-    page(f'{m["slug"]}.html', f'Module {n}: {m["title"]}', strip(m['blurb']), 'course.html', body, data=ld(crumbs_ld([("The course", "course.html"), (f'Module {n}: {strip(m["title"])}', f'{m["slug"]}.html')])))
+    page(f'{m["slug"]}.html', f'Module {n}: {m["title"]}', strip(m['blurb']), 'course.html', body, data=ld(crumbs_ld([("The course", "course.html"), (f'Module {n}: {strip(m["title"])}', f'{m["slug"]}.html')])), pop=m['slug'] != 'living-there')
 
 # course index
 cards = ''
@@ -277,7 +286,7 @@ for fn in sorted(os.listdir(f'{SRC}/pages')):
     meta = json.loads(meta)
     if meta['path'].startswith('tools/'):
         body = re.sub(r'(<section><div class="wrap[^"]*">)', r'\1' + f'<p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p>', body, count=1)
-    page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''))
+    page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''), pop=meta['path'] not in ('renters.html', 'limits.html'))
 
 # patch nav/footer on hand-written pages
 for f in ['index.html', 'start-here.html', 'about.html']:

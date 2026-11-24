@@ -272,3 +272,15 @@ html{overflow-x:clip}
 .footer-signup{display:block!important;max-width:520px}
 .footer-signup strong{display:block;color:var(--paper);margin-bottom:8px}
 .footer-signup .signup-msg{color:var(--paper)}
+
+/* newsletter slide-in (build.py popup()) */
+.nl-pop{position:fixed;right:16px;bottom:16px;z-index:50;width:min(380px,calc(100vw - 32px));box-sizing:border-box;background:#fff;border:2px solid var(--brick);border-radius:8px;padding:20px 20px 16px;box-shadow:0 10px 30px rgba(22,32,42,.25);transform:translateY(24px);opacity:0;transition:transform .25s ease,opacity .25s ease}
+.nl-pop.in{transform:none;opacity:1}
+.nl-pop[hidden]{display:none}
+.nl-pop strong{display:block;font-size:19px;margin:0 32px 6px 0}
+.nl-pop p{margin:0 0 12px;color:#4A555C;font-size:15px;line-height:1.5}
+.nl-pop-x{position:absolute;top:6px;right:6px;width:40px;height:40px;border:0;background:none;font-size:28px;line-height:1;color:var(--muted);cursor:pointer;border-radius:4px}
+.nl-pop-x:focus-visible{outline:2px solid var(--brick)}
+@media (max-width:560px){.nl-pop{left:12px;right:12px;bottom:12px;width:auto;padding:14px 14px 12px}.nl-pop p{display:none}.nl-pop strong{font-size:17px;margin-bottom:8px}.nl-pop-x{top:2px;right:2px}}
+.nl-pop .signup-form input{flex:1 1 140px;padding:11px 12px}
+@media (prefers-reduced-motion:reduce){.nl-pop{transition:none}}

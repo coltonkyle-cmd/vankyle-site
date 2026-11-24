@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /src/
 
-Sitemap: https://www.vankyleproperties.com/sitemap.xml
+Sitemap: https://www.lihtcexplained.com/sitemap.xml

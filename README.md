@@ -1,2 +1,2 @@
 # vankyle-site
-vankyleproperties.com: LIHTC Explained
+lihtcexplained.com: LIHTC Explained (a VanKyle Properties publication; vankyleproperties.com 301-forwards here)

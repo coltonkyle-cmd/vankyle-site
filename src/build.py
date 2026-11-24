@@ -7,7 +7,7 @@ ANCHOR = {(m['slug'], l['id']): l['slug'] for m, l, j in LESSONS}
 TOTAL = len(LESSONS)
 import hashlib
 CSSV = hashlib.md5(open(f'{ROOT}/styles.css','rb').read()).hexdigest()[:8]
-SOCIAL = [("https://www.instagram.com/vankyle_properties/","Instagram"),("https://www.youtube.com/@vankyle_properties","YouTube"),("https://www.facebook.com/VanKyleProp","Facebook"),("https://www.threads.com/@vankyle_properties","Threads"),("https://www.linkedin.com/in/colton-kyle-mba-03282821/","LinkedIn")]
+SOCIAL = [("https://www.instagram.com/lihtcexplained/","Instagram"),("https://www.youtube.com/@lihtcexplained","YouTube"),("https://www.facebook.com/lihtcexplained","Facebook"),("https://www.threads.com/@lihtcexplained","Threads"),("https://www.linkedin.com/in/colton-kyle-mba-03282821/","LinkedIn")]
 NAV = [("start-here.html","Start here"),("course.html","Course"),("tools.html","Tools")]
 MORE = [("glossary.html","Glossary"),("renters.html","For renters"),("sources.html","Sources"),("about.html","About")]
 NAVJS = "<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-more[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open')})});document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.nav-more[open]').forEach(function(d){d.removeAttribute('open');d.querySelector('summary').focus()})})</script>"
@@ -22,7 +22,7 @@ def fonts(p):
     return f'<link rel="preload" href="{p}assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="{p}assets/fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
 SKIP = '<a class="skip" href="#main">Skip to content</a>'
 def header(cur, p):
-    return SKIP + f'\n<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/vk.svg" alt=""><span>VanKyle Properties</span></a>\n  {nav(cur, p)}\n</div></header>'
+    return SKIP + f'\n<header class="site-header"><div class="wrap">\n  <a class="brand" href="{p}index.html"><img src="{p}assets/le.svg" alt=""><span>LIHTC Explained</span></a>\n  {nav(cur, p)}\n</div></header>'
 NL_NAME = 'LIHTC Explained'  # newsletter name: change here and it updates the signup card, footer and pop-up
 KIT_FORM = 'https://app.kit.com/forms/10232563/subscriptions'  # Kit form "Website signup (vankyleproperties.com)"
 SIGNUP_JS = "<script>document.addEventListener('submit',function(e){var f=e.target;if(!f.classList||!f.classList.contains('signup-form'))return;e.preventDefault();var m=f.querySelector('.signup-msg'),b=f.querySelector('button');b.disabled=true;fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(d){if(!d||d.status!=='success')throw 0;f.classList.add('done');m.textContent='Almost done: check your inbox and click the link to confirm.'}).catch(function(){b.disabled=false;m.textContent='That didn\\'t go through. Please try again, or email colton@vankyleproperties.com.'})})</script>"
@@ -50,23 +50,23 @@ def footer(p):
   <div><a href="{p}start-here.html">Start here</a><a href="{p}course.html">Course</a><a href="{p}tools.html">Tools</a><a href="{p}glossary.html">Glossary</a><a href="{p}renters.html">Renters</a><a href="{p}sources.html">Sources</a><a href="{p}about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
   <div class="footer-signup"><strong>Get the {NL_NAME} newsletter</strong>{signup_form('footer', compact=True)}</div>
   <div class="social">{soc}</div>
-  <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
+  <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. LIHTC Explained is a VanKyle Properties publication. &copy; 2026 VanKyle Properties, LLC.</p>
 </div></footer>
 ''' + SIGNUP_JS
-SITE = 'https://www.vankyleproperties.com'
+SITE = 'https://www.lihtcexplained.com'
 GC_CODE = 'vankyle'  # GoatCounter site code: https://vankyle.goatcounter.com
 OG_IMG = 'assets/og-default.png'
 GSV = 'a39eCfTlJxCAAO9445ophKeODE1GGXDesJ9y5xqYO3U'  # Google Search Console ownership tag
 BUILT = []
 REVIEWED = ('2026-11', 'November 2026')  # bump when lessons are re-checked; a lesson can override with "reviewed": ["YYYY-MM", "Month YYYY"]
-ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "VanKyle Properties, LLC", "url": SITE + "/", "logo": SITE + "/assets/vk.svg", "email": "colton@vankyleproperties.com", "sameAs": [u for u, _ in SOCIAL[:4]]}
+ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "LIHTC Explained", "parentOrganization": {"@type": "Organization", "name": "VanKyle Properties, LLC"}, "url": SITE + "/", "logo": SITE + "/assets/le.svg", "email": "colton@vankyleproperties.com", "sameAs": [u for u, _ in SOCIAL[:4]]}
 PERSON = {"@type": "Person", "@id": SITE + "/#colton", "name": "Colton Kyle", "jobTitle": "Real estate developer", "homeLocation": {"@type": "Place", "name": "Shreveport, Louisiana"}, "url": SITE + "/about.html", "image": SITE + "/assets/colton-kyle.jpg", "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Centenary College of Louisiana"}, {"@type": "CollegeOrUniversity", "name": "Louisiana Tech University"}], "sameAs": [SOCIAL[4][0]]}
 def ld(*items):
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": list(items)}, separators=(',', ':')) + '</script>'
 def crumbs_ld(trail):
     return {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + "/" + u} for i, (n, u) in enumerate(trail)]}
 def title_tag(title):
-    t = f'{title} | VanKyle Properties'
+    t = title if title.startswith('LIHTC Explained') else f'{title} | LIHTC Explained'
     if len(t) > 60: t = title
     if len(t) > 60: t = re.sub(r' \(Lesson [\d.]+\)$', '', t)
     return t
@@ -89,14 +89,14 @@ def seo(path, title, desc, data=''):
     return f'''<!--seo-->
 <link rel="canonical" href="{url}">
 <meta name="google-site-verification" content="{GSV}">
-<meta property="og:site_name" content="VanKyle Properties">
+<meta property="og:site_name" content="LIHTC Explained">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{d}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/{OG_IMG}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LIHTC Explained by VanKyle Properties: how affordable housing actually gets built">
+<meta property="og:image:alt" content="LIHTC Explained with Colton Kyle: how affordable housing actually gets built">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{SITE}/{OG_IMG}">
 {data}
@@ -115,7 +115,7 @@ def page(path, title, desc, cur, body, extra_head='', data='', pop=True):
 <title>{H.escape(title_tag(title), quote=False)}</title>
 <meta name="description" content="{H.escape(desc, quote=True)}">
 {seo(path, title, desc, data)}
-<link rel="icon" type="image/svg+xml" href="{p}assets/vk.svg">
+<link rel="icon" type="image/svg+xml" href="{p}assets/le.svg">
 {fonts(p)}
 <link rel="stylesheet" href="{p}styles.css?v={CSSV}">{extra_head}
 </head>
@@ -354,10 +354,10 @@ for f in ['index.html', 'start-here.html', 'about.html']:
         s = s.replace('\n</main>', '\n<section class="signup-band"><div class="wrap">' + signup_card('home') + '</div></section>\n</main>', 1)
     ogt = re.search(r'<meta property="og:title" content="(.*?)"', s); ogd = re.search(r'<meta property="og:description" content="(.*?)"', s)
     s = re.sub(r'\n?<!--seo-->.*?<!--/seo-->', '', s, flags=re.S)
-    title = H.unescape(ogt.group(1)) if ogt else re.search(r'<title>(.*?)</title>', s).group(1).replace(' | VanKyle Properties', '')
+    title = H.unescape(ogt.group(1)) if ogt else re.search(r'<title>(.*?)</title>', s).group(1).replace(' | LIHTC Explained', '').replace(' | VanKyle Properties', '')
     desc = H.unescape((ogd or re.search(r'<meta name="description" content="(.*?)"', s)).group(1))
     s = re.sub(r'\n<meta (property="og:(type|title|description)"|name="twitter:card")[^>]*>', '', s)
-    data = {'index.html': ld({"@type": "WebSite", "@id": SITE + "/#site", "name": "VanKyle Properties", "url": SITE + "/", "publisher": {"@id": ORG["@id"]}}, ORG, PERSON), 'about.html': ld({"@type": "ProfilePage", "url": SITE + "/about.html", "mainEntity": {"@id": PERSON["@id"]}}, PERSON, ORG)}.get(f, '')
+    data = {'index.html': ld({"@type": "WebSite", "@id": SITE + "/#site", "name": "LIHTC Explained", "alternateName": "VanKyle Properties", "url": SITE + "/", "publisher": {"@id": ORG["@id"]}}, ORG, PERSON), 'about.html': ld({"@type": "ProfilePage", "url": SITE + "/about.html", "mainEntity": {"@id": PERSON["@id"]}}, PERSON, ORG)}.get(f, '')
     s = s.replace('</head>', seo(f, title, desc, data) + '\n</head>', 1)
     open(f'{ROOT}/{f}', 'w').write(s)
     BUILT.append(f)

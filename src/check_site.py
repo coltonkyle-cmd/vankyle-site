@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pre-publish check for vankyleproperties.com. Run from the repo root after the build:
+"""Pre-publish check for lihtcexplained.com. Run from the repo root after the build:
 
     python3 src/build.py && python3 src/check_site.py
 
@@ -39,7 +39,7 @@ for f in pages:
     if f not in SKIP:
         for label, pat in [('title', r'<title>[^<]{5,}</title>'),
                            ('meta description', r'<meta name="description" content="[^"]{30,}"'),
-                           ('canonical URL', r'<link rel="canonical" href="https://www\.vankyleproperties\.com/'),
+                           ('canonical URL', r'<link rel="canonical" href="https://www\.lihtcexplained\.com/'),
                            ('og:title', r'<meta property="og:title"'),
                            ('og:image', r'<meta property="og:image" content="https://'),
                            ('twitter:card', r'<meta name="twitter:card" content="summary_large_image"'),
@@ -48,7 +48,7 @@ for f in pages:
         if len(re.findall(r'<meta property="og:title"', s)) > 1: err(f, 'duplicate og:title')
         if '<meta name="viewport" content="width=device-width,initial-scale=1"' not in s: err(f, 'missing mobile viewport tag')
         if 'user-scalable=no' in s or 'maximum-scale=1' in s: err(f, 'pinch zoom is disabled')
-        loc = 'https://www.vankyleproperties.com/' + ('' if f == 'index.html' else f)
+        loc = 'https://www.lihtcexplained.com/' + ('' if f == 'index.html' else f)
         if sitemap and f'<loc>{loc}</loc>' not in sitemap: err(f, 'not in sitemap.xml')
         if len(re.findall(r'<h1[\s>]', s)) != 1: warn(f, f'{len(re.findall(r"<h1[\\s>]", s))} <h1> headings (should be 1)')
     for tag in re.findall(r'<img\b[^>]*>', s):

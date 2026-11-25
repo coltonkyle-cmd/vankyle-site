@@ -9,7 +9,7 @@ import hashlib
 CSSV = hashlib.md5(open(f'{ROOT}/styles.css','rb').read()).hexdigest()[:8]
 SOCIAL = [("https://www.instagram.com/lihtcexplained/","Instagram"),("https://www.youtube.com/@lihtcexplained","YouTube"),("https://www.facebook.com/lihtcexplained","Facebook"),("https://www.threads.com/@lihtcexplained","Threads"),("https://www.linkedin.com/in/colton-kyle-mba-03282821/","LinkedIn")]
 NAV = [("start-here.html","Start here"),("course.html","Course"),("tools.html","Tools")]
-MORE = [("glossary.html","Glossary"),("newsletter.html","Newsletter"),("newsletter-archive.html","Newsletter archive"),("renters.html","For renters"),("sources.html","Sources"),("about.html","About")]
+MORE = [("glossary.html","Glossary"),("newsletter.html","Newsletter"),("renters.html","For renters"),("sources.html","Sources"),("about.html","About")]
 NAVJS = "<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-more[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open')})});document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.nav-more[open]').forEach(function(d){d.removeAttribute('open');d.querySelector('summary').focus()})})</script>"
 
 def nav(cur, p):
@@ -336,36 +336,35 @@ body = f'''<div class="page-hero"><div class="wrap"><div class="eyebrow">Sources
 page('sources.html', 'Sources and updates', 'The laws, IRS guidance, HUD data and research behind every lesson, plus a log of recent rule and number changes.', 'sources.html', body)
 
 # static pages from src/pages/*.html (body fragments with a front-matter line)
+# newsletter issues (src/issues/*.html: JSON front-matter line, ---, body): listed under "Past issues" on newsletter.html, each at newsletter/<slug>.html
+ISSUES = []
+if os.path.isdir(f'{SRC}/issues'):
+    for fn in sorted(os.listdir(f'{SRC}/issues')):
+        if fn.endswith('.html'):
+            meta, body = open(f'{SRC}/issues/{fn}').read().split('\n---\n', 1)
+            ISSUES.append((json.loads(meta), body))
+ISSUES.sort(key=lambda mb: -mb[0]['num'])
+if ISSUES:
+    ISSUE_LIST = '<ul class="issue-list">' + ''.join(
+        f'<li><a href="newsletter/{m["slug"]}.html"><b>Issue {m["num"]}: {H.escape(m["subject"])}</b></a><br>'
+        f'<span class="muted">{m["date_text"]}</span> &middot; {H.escape(m["preview"])}</li>' for m, _ in ISSUES) + '</ul>'
+else:
+    ISSUE_LIST = '<p>The first issue goes out Tuesday, Dec. 1, 2026. Each issue is posted here after it goes out.</p>'
 for fn in sorted(os.listdir(f'{SRC}/pages')):
     raw = open(f'{SRC}/pages/{fn}').read()
     meta, body = raw.split('\n---\n', 1)
     meta = json.loads(meta)
     if meta['path'].startswith('tools/'):
         body = re.sub(r'(<section><div class="wrap[^"]*">)', r'\1' + f'<p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p>', body, count=1)
-    body = body.replace('<!--signup-->', signup_card('page', '../' * meta['path'].count('/')))
+    body = body.replace('<!--issues-->', ISSUE_LIST).replace('<!--signup-->', signup_card('page', '../' * meta['path'].count('/')))
     page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''), pop=meta['path'] not in ('renters.html', 'limits.html', 'newsletter.html'))
 
-# newsletter issues (src/issues/*.html: JSON front-matter line, ---, body) -> newsletter/<slug>.html, plus the archive page
-ISSUES = []
-if os.path.isdir(f'{SRC}/issues'):
-    for fn in sorted(os.listdir(f'{SRC}/issues')):
-        if not fn.endswith('.html'): continue
-        meta, body = open(f'{SRC}/issues/{fn}').read().split('\n---\n', 1)
-        meta = json.loads(meta); ISSUES.append(meta)
-        hero = (f'<div class="page-hero"><div class="wrap"><div class="eyebrow">Issue {meta["num"]} &middot; {meta["date_text"]}</div>'
-                f'<h1>{H.escape(meta["subject"])}</h1></div></div>')
-        page(f'newsletter/{meta["slug"]}.html', meta['subject'], meta['preview'], 'newsletter-archive.html',
-             hero + '<section><div class="wrap article">' + body + '<p><a href="../newsletter-archive.html">&larr; All issues</a></p>'
-             + signup_card('issue', '../') + '</div></section>', pop=False)
-if ISSUES:
-    items = ''.join(f'<li><a href="newsletter/{m["slug"]}.html"><b>Issue {m["num"]}: {H.escape(m["subject"])}</b></a><br>'
-                    f'<span class="muted">{m["date_text"]}</span> &middot; {H.escape(m["preview"])}</li>' for m in sorted(ISSUES, key=lambda m: -m['num']))
-    lst = f'<ul class="issue-list">{items}</ul>'
-else:
-    lst = '<p>The first issue goes out Tuesday, Dec. 1, 2026. Each issue is posted here after it goes out.</p>'
-page('newsletter-archive.html', 'Newsletter archive', 'Every past issue of the LIHTC Explained newsletter, free to read: how affordable housing deals actually get done, one short issue at a time.', 'newsletter-archive.html',
-     '<div class="page-hero"><div class="wrap"><div class="eyebrow">LIHTC Explained</div><h1>Newsletter archive</h1><p>Every past issue, free to read.</p></div></div>'
-     '<section><div class="wrap article">' + lst + signup_card('archive') + '</div></section>', pop=False)
+for m, b in ISSUES:
+    hero = (f'<div class="page-hero"><div class="wrap"><div class="eyebrow">Issue {m["num"]} &middot; {m["date_text"]}</div>'
+            f'<h1>{H.escape(m["subject"])}</h1></div></div>')
+    page(f'newsletter/{m["slug"]}.html', m['subject'], m['preview'], 'newsletter.html',
+         hero + '<section><div class="wrap article">' + b + '<p><a href="../newsletter.html#issues">&larr; All issues</a></p>'
+         + signup_card('issue', '../') + '</div></section>', pop=False)
 
 # patch nav/footer on hand-written pages
 for f in ['index.html', 'start-here.html', 'about.html']:

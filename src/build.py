@@ -338,7 +338,8 @@ for fn in sorted(os.listdir(f'{SRC}/pages')):
     meta = json.loads(meta)
     if meta['path'].startswith('tools/'):
         body = re.sub(r'(<section><div class="wrap[^"]*">)', r'\1' + f'<p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p>', body, count=1)
-    page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''), pop=meta['path'] not in ('renters.html', 'limits.html'))
+    body = body.replace('<!--signup-->', signup_card('page'))
+    page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''), pop=meta['path'] not in ('renters.html', 'limits.html', 'newsletter.html'))
 
 # patch nav/footer on hand-written pages
 for f in ['index.html', 'start-here.html', 'about.html']:

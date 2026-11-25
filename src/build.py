@@ -9,7 +9,7 @@ import hashlib
 CSSV = hashlib.md5(open(f'{ROOT}/styles.css','rb').read()).hexdigest()[:8]
 SOCIAL = [("https://www.instagram.com/lihtcexplained/","Instagram"),("https://www.youtube.com/@lihtcexplained","YouTube"),("https://www.facebook.com/lihtcexplained","Facebook"),("https://www.threads.com/@lihtcexplained","Threads"),("https://www.linkedin.com/in/colton-kyle-mba-03282821/","LinkedIn")]
 NAV = [("start-here.html","Start here"),("course.html","Course"),("tools.html","Tools")]
-MORE = [("glossary.html","Glossary"),("renters.html","For renters"),("sources.html","Sources"),("about.html","About")]
+MORE = [("glossary.html","Glossary"),("newsletter.html","Newsletter"),("newsletter-archive.html","Newsletter archive"),("renters.html","For renters"),("sources.html","Sources"),("about.html","About")]
 NAVJS = "<script>document.addEventListener('click',function(e){document.querySelectorAll('.nav-more[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open')})});document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.nav-more[open]').forEach(function(d){d.removeAttribute('open');d.querySelector('summary').focus()})})</script>"
 
 def nav(cur, p):
@@ -32,11 +32,14 @@ def signup_form(uid, compact=False):
             f'<input id="su-{uid}" type="email" name="email_address" placeholder="you@example.com" autocomplete="email" required>'
             f'<button class="btn primary" type="submit">Subscribe</button>'
             f'<p class="signup-msg" role="status" aria-live="polite"></p></form>')
-def signup_card(uid):
+def pub(p):
+    return (f'<span class="pub"><img src="{p}assets/vk.svg" alt="VanKyle Properties logo" width="23" height="20">'
+            f'LIHTC Explained is a VanKyle Properties publication.</span>')
+def signup_card(uid, p=''):
     return (f'<div class="signup-card"><strong>{NL_NAME} newsletter</strong>'
             f'<p>Short emails on how affordable housing deals actually get done, with new lessons and rule changes rolled in. Plain English, no spam, unsubscribe anytime.</p>'
             f'{signup_form(uid)}'
-            f'<p class="signup-from">Emails come from Colton Kyle (colton@vankyleproperties.com). LIHTC Explained is a VanKyle Properties publication.</p></div>')
+            f'<p class="signup-from">Emails come from Colton Kyle (colton@vankyleproperties.com).<br>{pub(p)}</p></div>')
 POPUP_JS = "<script>(function(){var K='vk_nl_pop',el=document.getElementById('nl-pop');if(!el)return;try{var v=localStorage.getItem(K);if(v&&(v==='subscribed'||Date.now()-Number(v)<2592e6))return}catch(e){}var shown=false,t;function seen(){var c=document.querySelector('main .signup-card'),r=c&&c.getBoundingClientRect();return !!(r&&r.top<innerHeight&&r.bottom>0)}function show(){if(shown)return;if(seen()){shown=true;clearTimeout(t);removeEventListener('scroll',sc);return}shown=true;clearTimeout(t);removeEventListener('scroll',sc);el.hidden=false;addEventListener('scroll',sc2,{passive:true});requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('in')})})}function sc(){var h=document.documentElement;if((h.scrollTop+innerHeight)/h.scrollHeight>=0.6)show()}function sc2(){if(seen()&&!el.contains(document.activeElement)){removeEventListener('scroll',sc2);el.classList.remove('in');setTimeout(function(){el.hidden=true},250)}}function hide(){removeEventListener('scroll',sc2);el.classList.remove('in');setTimeout(function(){el.hidden=true},250);try{localStorage.setItem(K,String(Date.now()))}catch(e){}}t=setTimeout(show,40000);addEventListener('scroll',sc,{passive:true});el.querySelector('.nl-pop-x').addEventListener('click',hide);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!el.hidden)hide()});document.addEventListener('submit',function(e){var f=e.target;if(f.classList&&f.classList.contains('signup-form')){try{localStorage.setItem(K,'subscribed')}catch(x){}}})})()</script>"
 def popup():
     # Slide-in newsletter card: shows once per visitor after 60% scroll or 40 seconds; skipped (or tucked away) on a page when the inline signup card is on screen; closed = hidden 30 days; subscribed = never again.
@@ -48,10 +51,11 @@ def popup():
 def footer(p):
     soc = ''.join(f'<a href="{u}">{t}</a>' for u, t in SOCIAL)
     return f'''<footer class="site-footer"><div class="wrap">
-  <div><a href="{p}start-here.html">Start here</a><a href="{p}course.html">Course</a><a href="{p}tools.html">Tools</a><a href="{p}glossary.html">Glossary</a><a href="{p}renters.html">Renters</a><a href="{p}sources.html">Sources</a><a href="{p}about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
+  <div><a href="{p}start-here.html">Start here</a><a href="{p}course.html">Course</a><a href="{p}tools.html">Tools</a><a href="{p}glossary.html">Glossary</a><a href="{p}newsletter.html">Newsletter</a><a href="{p}renters.html">Renters</a><a href="{p}sources.html">Sources</a><a href="{p}about.html">About</a><a href="mailto:colton@vankyleproperties.com">colton@vankyleproperties.com</a></div>
+  <p class="footer-pub">{pub(p)}</p>
   <div class="footer-signup"><strong>Get the {NL_NAME} newsletter</strong>{signup_form('footer', compact=True)}</div>
   <div class="social">{soc}</div>
-  <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. LIHTC Explained is a VanKyle Properties publication. &copy; 2026 VanKyle Properties, LLC.</p>
+  <p class="disclaimer">Education only. Not tax, legal or investment advice. Views are my own and don't represent my employer. &copy; 2026 VanKyle Properties, LLC.</p>
 </div></footer>
 ''' + SIGNUP_JS
 SITE = 'https://www.lihtcexplained.com'
@@ -257,7 +261,7 @@ for i, (m, l, j) in enumerate(LESSONS):
   {'<div class="terms"><strong>Terms in this lesson</strong><ul>' + tl + '</ul></div>' if tl else ''}
   <div class="lesson-sources open"><strong>Sources</strong><ul class="sources">{src}</ul></div>
   {lnav}
-  {signup_card('lesson')}
+  {signup_card('lesson', '../')}
   {FOLLOW}
   {DISC}
 </div></section>{GLOSS_JS}'''
@@ -338,8 +342,30 @@ for fn in sorted(os.listdir(f'{SRC}/pages')):
     meta = json.loads(meta)
     if meta['path'].startswith('tools/'):
         body = re.sub(r'(<section><div class="wrap[^"]*">)', r'\1' + f'<p class="reviewed">Last reviewed <time datetime="{REVIEWED[0]}">{REVIEWED[1]}</time></p>', body, count=1)
-    body = body.replace('<!--signup-->', signup_card('page'))
+    body = body.replace('<!--signup-->', signup_card('page', '../' * meta['path'].count('/')))
     page(meta['path'], meta['title'], meta['desc'], meta['cur'], body, meta.get('head', ''), pop=meta['path'] not in ('renters.html', 'limits.html', 'newsletter.html'))
+
+# newsletter issues (src/issues/*.html: JSON front-matter line, ---, body) -> newsletter/<slug>.html, plus the archive page
+ISSUES = []
+if os.path.isdir(f'{SRC}/issues'):
+    for fn in sorted(os.listdir(f'{SRC}/issues')):
+        if not fn.endswith('.html'): continue
+        meta, body = open(f'{SRC}/issues/{fn}').read().split('\n---\n', 1)
+        meta = json.loads(meta); ISSUES.append(meta)
+        hero = (f'<div class="page-hero"><div class="wrap"><div class="eyebrow">Issue {meta["num"]} &middot; {meta["date_text"]}</div>'
+                f'<h1>{H.escape(meta["subject"])}</h1></div></div>')
+        page(f'newsletter/{meta["slug"]}.html', meta['subject'], meta['preview'], 'newsletter-archive.html',
+             hero + '<section><div class="wrap article">' + body + '<p><a href="../newsletter-archive.html">&larr; All issues</a></p>'
+             + signup_card('issue', '../') + '</div></section>', pop=False)
+if ISSUES:
+    items = ''.join(f'<li><a href="newsletter/{m["slug"]}.html"><b>Issue {m["num"]}: {H.escape(m["subject"])}</b></a><br>'
+                    f'<span class="muted">{m["date_text"]}</span> &middot; {H.escape(m["preview"])}</li>' for m in sorted(ISSUES, key=lambda m: -m['num']))
+    lst = f'<ul class="issue-list">{items}</ul>'
+else:
+    lst = '<p>The first issue goes out Tuesday, Dec. 1, 2026. Each issue is posted here after it goes out.</p>'
+page('newsletter-archive.html', 'Newsletter archive', 'Every past issue of the LIHTC Explained newsletter, free to read: how affordable housing deals actually get done, one short issue at a time.', 'newsletter-archive.html',
+     '<div class="page-hero"><div class="wrap"><div class="eyebrow">LIHTC Explained</div><h1>Newsletter archive</h1><p>Every past issue, free to read.</p></div></div>'
+     '<section><div class="wrap article">' + lst + signup_card('archive') + '</div></section>', pop=False)
 
 # patch nav/footer on hand-written pages
 for f in ['index.html', 'start-here.html', 'about.html']:

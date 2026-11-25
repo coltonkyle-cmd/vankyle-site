@@ -300,3 +300,10 @@ a.gl:hover,a.gl:focus-visible{color:var(--brick)}
 .nl-pop .signup-form input{flex:1 1 140px;padding:11px 12px}
 @media (prefers-reduced-motion:reduce){.nl-pop{transition:none}}
 @media print{.nl-pop{display:none!important}}
+
+.pub{display:inline-flex;align-items:center;gap:8px}
+.pub img{width:23px;height:20px;border-radius:3px;flex:none}
+.issue-list{list-style:none;padding:0}
+.issue-list li{padding:14px 0;border-bottom:1px solid #DDD3C2}
+.muted{color:#5E6B73}
+.footer-pub{margin:-6px 0 18px;font-size:14px;color:var(--sand,#E4D6BA)}

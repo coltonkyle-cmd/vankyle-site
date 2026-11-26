@@ -1,4 +1,4 @@
-/* VanKyle site widgets: state budget + county limits. Data: /data/states.json, /data/mtsp/<ST>.json (HUD FY2026 MTSP limits). */
+/* VanKyle site widgets: state budget + county limits + credit agency finder. Data: /data/states.json, /data/mtsp/<ST>.json (HUD FY2026 MTSP limits). */
 (function(){
 var cache={};
 function j(u){if(!cache[u])cache[u]=fetch(u).then(function(r){if(!r.ok)throw r.status;return r.json()});return cache[u]}
@@ -25,6 +25,21 @@ function stateBudget(el){
       out.innerHTML=h}
     sel.addEventListener('change',show);show();
   }).catch(function(){el.innerHTML='<p class="w-note">State data couldn’t load.</p>'});
+}
+
+function hfaDir(el){
+  Promise.all([j('/data/states.json'),j('/data/hfa.json')]).then(function(r){
+    var d=r[0],h=r[1],list=d.states.filter(function(s){return h.agencies[s.st]});
+    var q=el.getAttribute('data-search')==='qap'?'"qualified allocation plan"':'"tax credit" awards';
+    el.innerHTML='<div class="w-head">Pick your state</div>'+stateSelect(list,getSaved())+'<div class="w-out"></div><p class="w-note">The agency that hands out housing tax credits in each state, DC, Puerto Rico, Guam and the U.S. Virgin Islands, checked '+h.checked+'. Not a primary source; agency names and web addresses change.</p>';
+    var sel=el.querySelector('.w-st'),out=el.querySelector('.w-out');
+    function show(){var a=h.agencies[sel.value];if(!a){out.innerHTML='';return}
+      setSaved(sel.value);
+      var host=a.url.replace(/^https?:\/\//,'').split('/')[0];
+      var srch='https://www.google.com/search?q='+encodeURIComponent('site:'+host+' '+q);
+      out.innerHTML='<div class="w-cards"><div class="w-card"><small>Credit agency</small><strong class="w-agency" style="font-size:20px;line-height:1.25">'+a.name+'</strong><span><a href="'+a.url+'" rel="noopener" target="_blank">Visit their site</a> &middot; <a href="'+srch+'" rel="noopener" target="_blank">Search it for '+(q.indexOf('allocation')>0?'the QAP':'award lists')+'</a></span>'+(a.note?'<span class="w-sub" style="display:block">'+a.note+'</span>':'')+'</div></div>'}
+    sel.addEventListener('change',show);show();
+  }).catch(function(){el.innerHTML='<p class="w-note">Agency list couldn’t load.</p>'});
 }
 
 var BR=[['Studio',1,0],['1 bedroom',1.5,1],['2 bedrooms',3,2],['3 bedrooms',4.5,3],['4 bedrooms',6,4]];
@@ -73,4 +88,5 @@ fmtAll();
 
 document.querySelectorAll('.w-state-budget').forEach(stateBudget);
 document.querySelectorAll('.w-county-limits').forEach(countyLimits);
+document.querySelectorAll('.w-hfa').forEach(hfaDir);
 })();
